@@ -47,7 +47,8 @@ function Login() {
                               label="Email"
                               name="email"
                               type="text"
-                              disable={'false'}
+                              disable={false}
+                              readonly={false}
                               errors={errors.email}
                               value={values.email}
                               onChange={handleChange}
@@ -57,7 +58,8 @@ function Login() {
                               label="Password"
                               name="password"
                               type="password"
-                              disable={'false'}
+                              disable={false}
+                              readonly={false}
                               errors={errors.password}
                               value={values.password}
                               onChange={handleChange}

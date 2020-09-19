@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({ label, name, className, errors = [], ...props }) => {
+export default ({ label, name, className, errors = [], disable, readonly, ...props }) => {
      return (
           <div className={className}>
                {label && (
@@ -13,6 +13,8 @@ export default ({ label, name, className, errors = [], ...props }) => {
                     name={name}
                     {...props}
                     className={`shadow-none appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow ${errors.length ? 'border border-red-500' : ''}`}
+                    disabled={disable}
+                    readOnly={readonly}
                />
                {errors && <div className="text-red-500 text-xs italic">{errors[0]}</div>}
           </div>

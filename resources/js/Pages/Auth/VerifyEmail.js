@@ -47,7 +47,8 @@ function VerifyEmail() {
                               label="Email"
                               name="email"
                               type="text"
-                              disable={'false'}
+                              disable={false}
+                              readonly={true}
                               errors={errors.email}
                               value={values.email}
                               onChange={handleChange}
@@ -58,6 +59,7 @@ function VerifyEmail() {
                               name="password"
                               type="password"
                               disable={false}
+                              readonly={false}
                               errors={errors.password}
                               value={values.password}
                               onChange={handleChange}

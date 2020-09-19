@@ -50,7 +50,8 @@ function ResetPassword() {
                               label="Email"
                               name="email"
                               type="email"
-                              disable={'false'}
+                              disable={false}
+                              readonly={false}
                               errors={errors.email}
                               value={values.email}
                               onChange={handleChange}

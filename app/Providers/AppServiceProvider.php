@@ -57,6 +57,7 @@ class AppServiceProvider extends ServiceProvider
                               'name' => Auth::user()->name,
                               'username' => Auth::user()->username,
                               'email' => Auth::user()->email,
+                              'avatar' => null // (Auth::user()->profile_url) ? asset('storage/users/'.Auth::user()->profile_url) : null
                          ] : null,
                     ];
                },

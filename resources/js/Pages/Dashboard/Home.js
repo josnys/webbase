@@ -10,16 +10,13 @@ const Home = () => {
                <Helmet>
                     <title>Dashboard</title>
                </Helmet>
-               <h1 className="mb-8 font-bold text-3xl">Dashboard</h1>
-               <p className="mb-12 leading-normal">
 
-               </p>
           </div>
      );
 };
 
 // Persisten layout
 // Docs: https://inertiajs.com/pages#persistent-layouts
-Home.layout = page => <Layout children={page} />;
+Home.layout = page => <Layout children={page} header={'Dashboard'} />;
 
 export default Home;

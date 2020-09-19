@@ -48496,73 +48496,223 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./Admin/Security/AssignPermission": [
+		"./resources/js/Pages/Admin/Security/AssignPermission.js",
+		15,
+		1,
+		0
+	],
+	"./Admin/Security/AssignPermission.js": [
+		"./resources/js/Pages/Admin/Security/AssignPermission.js",
+		15,
+		1,
+		0
+	],
+	"./Admin/Security/CreatePermission": [
+		"./resources/js/Pages/Admin/Security/CreatePermission.js",
+		15,
+		1,
+		3
+	],
+	"./Admin/Security/CreatePermission.js": [
+		"./resources/js/Pages/Admin/Security/CreatePermission.js",
+		15,
+		1,
+		3
+	],
+	"./Admin/Security/CreateRole": [
+		"./resources/js/Pages/Admin/Security/CreateRole.js",
+		15,
+		1,
+		18
+	],
+	"./Admin/Security/CreateRole.js": [
+		"./resources/js/Pages/Admin/Security/CreateRole.js",
+		15,
+		1,
+		18
+	],
+	"./Admin/Security/EditPermission": [
+		"./resources/js/Pages/Admin/Security/EditPermission.js",
+		15,
+		1,
+		16
+	],
+	"./Admin/Security/EditPermission.js": [
+		"./resources/js/Pages/Admin/Security/EditPermission.js",
+		15,
+		1,
+		16
+	],
+	"./Admin/Security/EditRole": [
+		"./resources/js/Pages/Admin/Security/EditRole.js",
+		15,
+		1,
+		19
+	],
+	"./Admin/Security/EditRole.js": [
+		"./resources/js/Pages/Admin/Security/EditRole.js",
+		15,
+		1,
+		19
+	],
+	"./Admin/Security/Index": [
+		"./resources/js/Pages/Admin/Security/Index.js",
+		15,
+		1,
+		10
+	],
+	"./Admin/Security/Index.js": [
+		"./resources/js/Pages/Admin/Security/Index.js",
+		15,
+		1,
+		10
+	],
+	"./Admin/User/Edit": [
+		"./resources/js/Pages/Admin/User/Edit.js",
+		15,
+		1,
+		17,
+		2
+	],
+	"./Admin/User/Edit.js": [
+		"./resources/js/Pages/Admin/User/Edit.js",
+		15,
+		1,
+		17,
+		2
+	],
+	"./Admin/User/Index": [
+		"./resources/js/Pages/Admin/User/Index.js",
+		15,
+		1,
+		20
+	],
+	"./Admin/User/Index.js": [
+		"./resources/js/Pages/Admin/User/Index.js",
+		15,
+		1,
+		20
+	],
+	"./Admin/User/Role": [
+		"./resources/js/Pages/Admin/User/Role.js",
+		15,
+		1,
+		22
+	],
+	"./Admin/User/Role.js": [
+		"./resources/js/Pages/Admin/User/Role.js",
+		15,
+		1,
+		22
+	],
 	"./Auth/ForgotPassword": [
 		"./resources/js/Pages/Auth/ForgotPassword.js",
-		0,
-		5
+		15,
+		4
 	],
 	"./Auth/ForgotPassword.js": [
 		"./resources/js/Pages/Auth/ForgotPassword.js",
-		0,
-		5
+		15,
+		4
 	],
 	"./Auth/Login": [
 		"./resources/js/Pages/Auth/Login.js",
-		0,
-		7
+		15,
+		6
 	],
 	"./Auth/Login.js": [
 		"./resources/js/Pages/Auth/Login.js",
-		0,
-		7
+		15,
+		6
 	],
 	"./Auth/Register": [
 		"./resources/js/Pages/Auth/Register.js",
-		0,
-		1
+		15,
+		7
 	],
 	"./Auth/Register.js": [
 		"./resources/js/Pages/Auth/Register.js",
-		0,
-		1
+		15,
+		7
 	],
 	"./Auth/ResetPassword": [
 		"./resources/js/Pages/Auth/ResetPassword.js",
-		0,
-		6
+		15,
+		5
 	],
 	"./Auth/ResetPassword.js": [
 		"./resources/js/Pages/Auth/ResetPassword.js",
-		0,
-		6
+		15,
+		5
 	],
 	"./Auth/VerifyEmail": [
 		"./resources/js/Pages/Auth/VerifyEmail.js",
-		0,
-		2
+		15,
+		8
 	],
 	"./Auth/VerifyEmail.js": [
 		"./resources/js/Pages/Auth/VerifyEmail.js",
-		0,
-		2
+		15,
+		8
+	],
+	"./Components/PasswordEditCard": [
+		"./resources/js/Pages/Components/PasswordEditCard.js",
+		15,
+		17,
+		11
+	],
+	"./Components/PasswordEditCard.js": [
+		"./resources/js/Pages/Components/PasswordEditCard.js",
+		15,
+		17,
+		11
+	],
+	"./Components/ProfileEditCard": [
+		"./resources/js/Pages/Components/ProfileEditCard.js",
+		15,
+		17,
+		12
+	],
+	"./Components/ProfileEditCard.js": [
+		"./resources/js/Pages/Components/ProfileEditCard.js",
+		15,
+		17,
+		12
 	],
 	"./Dashboard/Home": [
 		"./resources/js/Pages/Dashboard/Home.js",
-		0,
-		8
+		15,
+		1,
+		13
 	],
 	"./Dashboard/Home.js": [
 		"./resources/js/Pages/Dashboard/Home.js",
-		0,
-		8
+		15,
+		1,
+		13
+	],
+	"./Dashboard/User/Profile": [
+		"./resources/js/Pages/Dashboard/User/Profile.js",
+		15,
+		1,
+		17,
+		9
+	],
+	"./Dashboard/User/Profile.js": [
+		"./resources/js/Pages/Dashboard/User/Profile.js",
+		15,
+		1,
+		17,
+		9
 	],
 	"./Welcome": [
 		"./resources/js/Pages/Welcome.js",
-		4
+		14
 	],
 	"./Welcome.js": [
 		"./resources/js/Pages/Welcome.js",
-		4
+		14
 	]
 };
 function webpackAsyncContext(req) {
@@ -48650,6 +48800,7 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['X-CSRF-TOKEN'] = window.csrf_token;
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

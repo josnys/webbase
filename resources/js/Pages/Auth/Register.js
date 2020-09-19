@@ -49,7 +49,8 @@ function Register() {
                               label="Name"
                               name="name"
                               type="text"
-                              disable={'false'}
+                              disable={false}
+                              readonly={false}
                               errors={errors.name}
                               value={values.name}
                               onChange={handleChange}
@@ -59,7 +60,8 @@ function Register() {
                               label="Username"
                               name="username"
                               type="text"
-                              disable={'false'}
+                              disable={false}
+                              readonly={false}
                               errors={errors.username}
                               value={values.username}
                               onChange={handleChange}
@@ -69,7 +71,8 @@ function Register() {
                               label="Email"
                               name="email"
                               type="email"
-                              disable={'false'}
+                              disable={false}
+                              readonly={false}
                               errors={errors.email}
                               value={values.email}
                               onChange={handleChange}
@@ -79,7 +82,8 @@ function Register() {
                               label="Password"
                               name="password"
                               type="password"
-                              disable={'false'}
+                              disable={false}
+                              readonly={false}
                               errors={errors.password}
                               value={values.password}
                               onChange={handleChange}
@@ -89,7 +93,8 @@ function Register() {
                               label="Confirm Password"
                               name="password_confirmation"
                               type="password"
-                              disable={'false'}
+                              disable={false}
+                              readonly={false}
                               errors={errors.password_confirmation}
                               value={values.password_confirmation}
                               onChange={handleChange}
