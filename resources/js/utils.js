@@ -116,3 +116,10 @@ export function isPar(a){
           return false;
      }
 }
+
+export function can(user, permission){
+     if(user.can.indexOf(permission) > -1){
+          return true;
+     }
+     return false;
+}

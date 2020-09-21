@@ -10,11 +10,6 @@ use Inertia\Inertia;
 
 class SecurityController extends Controller
 {
-     public function __construct()
-     {
-          $this->middleware('auth');
-     }
-
      public function index()
      {
           $roles = Role::paginate(20)->transform(function($role){

@@ -5,10 +5,10 @@ import Layout from '../../../Shared/Layout';
 import DataContainer from '../../../Shared/DataContainer';
 import DropdownButton from '../../../Shared/DropdownButton';
 import Icon from '../../../Shared/Icon';
+import { can } from '../../../utils';
 
 const Index = () => {
      const { auth, errors, data } = usePage();
-     console.log(data.data);
      return (
           <React.Fragment key="security-index">
                <Helmet>
@@ -19,14 +19,14 @@ const Index = () => {
                </div>
                <DataContainer>
                     <div className="col-span-12">
-                         <InertiaLink href={route('role.create')} className="bg-gray-300 hover:bg-gray-400 mr-2 text-gray-800 text-sm py-1 px-1 rounded inline-flex items-center">
+                         {can(auth.user, 'create-role')?<InertiaLink href={route('role.create')} className="bg-gray-300 hover:bg-gray-400 mr-2 text-gray-800 text-sm py-1 px-1 rounded inline-flex items-center">
                               <Icon name={'plus'} className={'fill-current w-4 h-4 mr-2'} />
                               Add Role
-                         </InertiaLink>
-                         <InertiaLink href={route('permission.create')} className="float-right bg-gray-300 hover:bg-gray-400 text-gray-800 text-sm py-1 px-1 rounded inline-flex items-center">
+                         </InertiaLink>:null}
+                         {can(auth.user, 'create-permission')?<InertiaLink href={route('permission.create')} className="float-right bg-gray-300 hover:bg-gray-400 text-gray-800 text-sm py-1 px-1 rounded inline-flex items-center">
                               <Icon name={'plus'} className={'fill-current w-4 h-4 mr-2'} />
                               Permissions
-                         </InertiaLink>
+                         </InertiaLink>:null}
                     </div>
                     <table className="table-fixed col-span-12">
                          <thead className="bg-gray-400">
@@ -45,12 +45,12 @@ const Index = () => {
                                         <td className="border px-4 py-2">{description}</td>
                                         <td className="border px-4 py-2">
                                              <DropdownButton caption="Actions" color="blue">
-                                                  <InertiaLink href={route('role.edit', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                                  {can(auth.user, 'update-role')?<InertiaLink href={route('role.edit', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                        <Icon name={'edit'} className={'fill-current w-5 h-5 mr-2'} /> Edit
-                                                  </InertiaLink>
-                                                  <InertiaLink href={route('role.get.assign', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                                  </InertiaLink>:null}
+                                                  {can(auth.user, 'assign-permission')?<InertiaLink href={route('role.get.assign', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                        <Icon name={'cheveron-right'} className={'fill-current w-5 h-5 mr-2'} /> Assign Permission
-                                                  </InertiaLink>
+                                                  </InertiaLink>:null}
                                              </DropdownButton>
                                         </td>
                                    </tr>

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -51,13 +52,32 @@ class AppServiceProvider extends ServiceProvider
                     ];
                },
                'auth' => function () {
+                    $user = Auth::user() ? User::with(['roles' => function($roles){
+                         return $roles->with('permissions');
+                    }])->find(Auth::user()->id) : null;
+                    $roles = array();
+                    $permissions = array();
+                    if($user){
+                         foreach($user->roles as $r){
+                              array_push($roles, [
+                                   'name' => $r->name,
+                                   'display' => $r->display_name
+                              ]);
+                              foreach($r->permissions as $p){
+                                   array_push($permissions, $p->name);
+                              }
+                         }
+                    }
+
                     return [
-                         'user' => Auth::user() ? [
-                              'id' => Auth::user()->id,
-                              'name' => Auth::user()->name,
-                              'username' => Auth::user()->username,
-                              'email' => Auth::user()->email,
-                              'avatar' => null // (Auth::user()->profile_url) ? asset('storage/users/'.Auth::user()->profile_url) : null
+                         'user' => $user ? [
+                              'id' => $user->id,
+                              'name' => $user->name,
+                              'username' => $user->username,
+                              'email' => $user->email,
+                              'avatar' => null, // (Auth::user()->profile_url) ? asset('storage/users/'.Auth::user()->profile_url) : null
+                              'roles' => ($roles) ? $roles : null,
+                              'can' => ($permissions) ? $permissions : null
                          ] : null,
                     ];
                },

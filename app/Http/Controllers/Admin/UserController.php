@@ -11,11 +11,6 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
-     public function __construct()
-     {
-          $this->middleware('auth');
-     }
-
      public function index()
      {
           $users = User::with('roles')->paginate(20)->transform(function($user){

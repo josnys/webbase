@@ -10,11 +10,6 @@ use Inertia\Inertia;
 
 class PermissionController extends Controller
 {
-     public function __construct()
-     {
-          $this->middleware('auth');
-     }
-
      public function create()
      {
           $permissions = Permission::paginate(100)->transform(function($permission){

@@ -11,11 +11,6 @@ use Inertia\Inertia;
 
 class RoleController extends Controller
 {
-     public function __construct()
-     {
-          $this->middleware('auth');
-     }
-
      public function create()
      {
           $roles = Role::paginate(100)->transform(function($role){

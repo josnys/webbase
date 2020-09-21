@@ -48498,221 +48498,217 @@ module.exports = function(module) {
 var map = {
 	"./Admin/Security/AssignPermission": [
 		"./resources/js/Pages/Admin/Security/AssignPermission.js",
-		15,
+		0,
 		1,
-		0
+		7
 	],
 	"./Admin/Security/AssignPermission.js": [
 		"./resources/js/Pages/Admin/Security/AssignPermission.js",
-		15,
+		0,
 		1,
-		0
+		7
 	],
 	"./Admin/Security/CreatePermission": [
 		"./resources/js/Pages/Admin/Security/CreatePermission.js",
-		15,
+		0,
 		1,
-		3
+		4
 	],
 	"./Admin/Security/CreatePermission.js": [
 		"./resources/js/Pages/Admin/Security/CreatePermission.js",
-		15,
+		0,
 		1,
-		3
+		4
 	],
 	"./Admin/Security/CreateRole": [
 		"./resources/js/Pages/Admin/Security/CreateRole.js",
-		15,
+		0,
 		1,
-		18
+		3
 	],
 	"./Admin/Security/CreateRole.js": [
 		"./resources/js/Pages/Admin/Security/CreateRole.js",
-		15,
+		0,
 		1,
-		18
+		3
 	],
 	"./Admin/Security/EditPermission": [
 		"./resources/js/Pages/Admin/Security/EditPermission.js",
-		15,
+		0,
 		1,
-		16
+		8
 	],
 	"./Admin/Security/EditPermission.js": [
 		"./resources/js/Pages/Admin/Security/EditPermission.js",
-		15,
+		0,
 		1,
-		16
+		8
 	],
 	"./Admin/Security/EditRole": [
 		"./resources/js/Pages/Admin/Security/EditRole.js",
-		15,
+		0,
 		1,
-		19
+		9
 	],
 	"./Admin/Security/EditRole.js": [
 		"./resources/js/Pages/Admin/Security/EditRole.js",
-		15,
+		0,
 		1,
-		19
+		9
 	],
 	"./Admin/Security/Index": [
 		"./resources/js/Pages/Admin/Security/Index.js",
-		15,
+		0,
 		1,
-		10
+		14
 	],
 	"./Admin/Security/Index.js": [
 		"./resources/js/Pages/Admin/Security/Index.js",
-		15,
+		0,
 		1,
-		10
+		14
 	],
 	"./Admin/User/Edit": [
 		"./resources/js/Pages/Admin/User/Edit.js",
-		15,
+		0,
 		1,
-		17,
-		2
+		23
 	],
 	"./Admin/User/Edit.js": [
 		"./resources/js/Pages/Admin/User/Edit.js",
-		15,
+		0,
 		1,
-		17,
-		2
+		23
 	],
 	"./Admin/User/Index": [
 		"./resources/js/Pages/Admin/User/Index.js",
-		15,
+		0,
 		1,
-		20
+		15
 	],
 	"./Admin/User/Index.js": [
 		"./resources/js/Pages/Admin/User/Index.js",
-		15,
+		0,
 		1,
-		20
+		15
 	],
 	"./Admin/User/Role": [
 		"./resources/js/Pages/Admin/User/Role.js",
-		15,
+		0,
 		1,
-		22
+		10
 	],
 	"./Admin/User/Role.js": [
 		"./resources/js/Pages/Admin/User/Role.js",
-		15,
+		0,
 		1,
-		22
+		10
 	],
 	"./Auth/ForgotPassword": [
 		"./resources/js/Pages/Auth/ForgotPassword.js",
-		15,
-		4
+		0,
+		5
 	],
 	"./Auth/ForgotPassword.js": [
 		"./resources/js/Pages/Auth/ForgotPassword.js",
-		15,
-		4
+		0,
+		5
 	],
 	"./Auth/Login": [
 		"./resources/js/Pages/Auth/Login.js",
-		15,
-		6
+		0,
+		11
 	],
 	"./Auth/Login.js": [
 		"./resources/js/Pages/Auth/Login.js",
-		15,
-		6
+		0,
+		11
 	],
 	"./Auth/Register": [
 		"./resources/js/Pages/Auth/Register.js",
-		15,
-		7
+		0,
+		12
 	],
 	"./Auth/Register.js": [
 		"./resources/js/Pages/Auth/Register.js",
-		15,
-		7
+		0,
+		12
 	],
 	"./Auth/ResetPassword": [
 		"./resources/js/Pages/Auth/ResetPassword.js",
-		15,
-		5
+		0,
+		6
 	],
 	"./Auth/ResetPassword.js": [
 		"./resources/js/Pages/Auth/ResetPassword.js",
-		15,
-		5
+		0,
+		6
 	],
 	"./Auth/VerifyEmail": [
 		"./resources/js/Pages/Auth/VerifyEmail.js",
-		15,
-		8
+		0,
+		13
 	],
 	"./Auth/VerifyEmail.js": [
 		"./resources/js/Pages/Auth/VerifyEmail.js",
-		15,
-		8
+		0,
+		13
 	],
 	"./Components/PasswordEditCard": [
 		"./resources/js/Pages/Components/PasswordEditCard.js",
-		15,
-		17,
-		11
+		0,
+		2
 	],
 	"./Components/PasswordEditCard.js": [
 		"./resources/js/Pages/Components/PasswordEditCard.js",
-		15,
-		17,
-		11
+		0,
+		2
 	],
 	"./Components/ProfileEditCard": [
 		"./resources/js/Pages/Components/ProfileEditCard.js",
-		15,
-		17,
-		12
+		0,
+		22,
+		19
 	],
 	"./Components/ProfileEditCard.js": [
 		"./resources/js/Pages/Components/ProfileEditCard.js",
-		15,
-		17,
-		12
+		0,
+		22,
+		19
 	],
 	"./Dashboard/Home": [
 		"./resources/js/Pages/Dashboard/Home.js",
-		15,
+		0,
 		1,
-		13
+		20
 	],
 	"./Dashboard/Home.js": [
 		"./resources/js/Pages/Dashboard/Home.js",
-		15,
+		0,
 		1,
-		13
+		20
 	],
 	"./Dashboard/User/Profile": [
 		"./resources/js/Pages/Dashboard/User/Profile.js",
-		15,
+		0,
 		1,
-		17,
-		9
+		22,
+		16
 	],
 	"./Dashboard/User/Profile.js": [
 		"./resources/js/Pages/Dashboard/User/Profile.js",
-		15,
+		0,
 		1,
-		17,
-		9
+		22,
+		16
 	],
 	"./Welcome": [
 		"./resources/js/Pages/Welcome.js",
-		14
+		21
 	],
 	"./Welcome.js": [
 		"./resources/js/Pages/Welcome.js",
-		14
+		21
 	]
 };
 function webpackAsyncContext(req) {
