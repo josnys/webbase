@@ -48500,13 +48500,13 @@ var map = {
 		"./resources/js/Pages/Admin/Security/AssignPermission.js",
 		0,
 		1,
-		7
+		8
 	],
 	"./Admin/Security/AssignPermission.js": [
 		"./resources/js/Pages/Admin/Security/AssignPermission.js",
 		0,
 		1,
-		7
+		8
 	],
 	"./Admin/Security/CreatePermission": [
 		"./resources/js/Pages/Admin/Security/CreatePermission.js",
@@ -48536,73 +48536,73 @@ var map = {
 		"./resources/js/Pages/Admin/Security/EditPermission.js",
 		0,
 		1,
-		8
+		9
 	],
 	"./Admin/Security/EditPermission.js": [
 		"./resources/js/Pages/Admin/Security/EditPermission.js",
 		0,
 		1,
-		8
+		9
 	],
 	"./Admin/Security/EditRole": [
 		"./resources/js/Pages/Admin/Security/EditRole.js",
 		0,
 		1,
-		9
+		10
 	],
 	"./Admin/Security/EditRole.js": [
 		"./resources/js/Pages/Admin/Security/EditRole.js",
 		0,
 		1,
-		9
+		10
 	],
 	"./Admin/Security/Index": [
 		"./resources/js/Pages/Admin/Security/Index.js",
 		0,
 		1,
-		14
+		16
 	],
 	"./Admin/Security/Index.js": [
 		"./resources/js/Pages/Admin/Security/Index.js",
 		0,
 		1,
-		14
+		16
 	],
 	"./Admin/User/Edit": [
 		"./resources/js/Pages/Admin/User/Edit.js",
 		0,
 		1,
-		23
+		11
 	],
 	"./Admin/User/Edit.js": [
 		"./resources/js/Pages/Admin/User/Edit.js",
 		0,
 		1,
-		23
+		11
 	],
 	"./Admin/User/Index": [
 		"./resources/js/Pages/Admin/User/Index.js",
 		0,
 		1,
-		15
+		17
 	],
 	"./Admin/User/Index.js": [
 		"./resources/js/Pages/Admin/User/Index.js",
 		0,
 		1,
-		15
+		17
 	],
 	"./Admin/User/Role": [
 		"./resources/js/Pages/Admin/User/Role.js",
 		0,
 		1,
-		10
+		12
 	],
 	"./Admin/User/Role.js": [
 		"./resources/js/Pages/Admin/User/Role.js",
 		0,
 		1,
-		10
+		12
 	],
 	"./Auth/ForgotPassword": [
 		"./resources/js/Pages/Auth/ForgotPassword.js",
@@ -48617,22 +48617,22 @@ var map = {
 	"./Auth/Login": [
 		"./resources/js/Pages/Auth/Login.js",
 		0,
-		11
+		13
 	],
 	"./Auth/Login.js": [
 		"./resources/js/Pages/Auth/Login.js",
 		0,
-		11
+		13
 	],
 	"./Auth/Register": [
 		"./resources/js/Pages/Auth/Register.js",
 		0,
-		12
+		14
 	],
 	"./Auth/Register.js": [
 		"./resources/js/Pages/Auth/Register.js",
 		0,
-		12
+		14
 	],
 	"./Auth/ResetPassword": [
 		"./resources/js/Pages/Auth/ResetPassword.js",
@@ -48647,68 +48647,68 @@ var map = {
 	"./Auth/VerifyEmail": [
 		"./resources/js/Pages/Auth/VerifyEmail.js",
 		0,
-		13
+		15
 	],
 	"./Auth/VerifyEmail.js": [
 		"./resources/js/Pages/Auth/VerifyEmail.js",
 		0,
-		13
+		15
 	],
 	"./Components/PasswordEditCard": [
 		"./resources/js/Pages/Components/PasswordEditCard.js",
 		0,
-		2
+		7
 	],
 	"./Components/PasswordEditCard.js": [
 		"./resources/js/Pages/Components/PasswordEditCard.js",
 		0,
-		2
+		7
 	],
 	"./Components/ProfileEditCard": [
 		"./resources/js/Pages/Components/ProfileEditCard.js",
 		0,
-		22,
-		19
+		2,
+		21
 	],
 	"./Components/ProfileEditCard.js": [
 		"./resources/js/Pages/Components/ProfileEditCard.js",
 		0,
-		22,
-		19
+		2,
+		21
 	],
 	"./Dashboard/Home": [
 		"./resources/js/Pages/Dashboard/Home.js",
 		0,
 		1,
-		20
+		19
 	],
 	"./Dashboard/Home.js": [
 		"./resources/js/Pages/Dashboard/Home.js",
 		0,
 		1,
-		20
+		19
 	],
 	"./Dashboard/User/Profile": [
 		"./resources/js/Pages/Dashboard/User/Profile.js",
 		0,
 		1,
-		22,
-		16
+		2,
+		18
 	],
 	"./Dashboard/User/Profile.js": [
 		"./resources/js/Pages/Dashboard/User/Profile.js",
 		0,
 		1,
-		22,
-		16
+		2,
+		18
 	],
 	"./Welcome": [
 		"./resources/js/Pages/Welcome.js",
-		21
+		20
 	],
 	"./Welcome.js": [
 		"./resources/js/Pages/Welcome.js",
-		21
+		20
 	]
 };
 function webpackAsyncContext(req) {

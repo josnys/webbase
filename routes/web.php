@@ -18,6 +18,8 @@ Route::get('/', [WelcomeController::class, 'index']);
 
 Auth::routes();
 
+Route::get('/img/{path}', [App\Http\Controllers\ImageController::class, 'show'])->where('path', '.*')->name('show.image');
+
 Route::group(['middleware' => ['auth']], function(){
      // Profile
      Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

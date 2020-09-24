@@ -20,6 +20,7 @@ const ProfileEditCard = () => {
           current_username: data.username || '',
           email: data.email || '',
           avatar: data.avatar,
+          selectedAvatar: null,
           current_email: data.email || '',
           errors: errors
      });
@@ -33,10 +34,11 @@ const ProfileEditCard = () => {
           }));
      }
 
-     function handleFileChange(file) {
+     function handleFileChange(file, path) {
           setValues(values => ({
                ...values,
-               photo: file
+               photo: file,
+               selectedAvatar: path
           }));
      }
 
@@ -73,6 +75,11 @@ const ProfileEditCard = () => {
                               <p className="mt-1 text-sm text-gray-600">
                                    Update your account's profile information and email address.
                               </p>
+                              <div className="w-full mt-3">
+                                   <h3 className="text-md text-center text-gray-700">Current Photo</h3>
+                                   {!values.avatar && (<img src={`https://ui-avatars.com/api/?name=${auth.user.name}&amp;color=7F9CF5&amp;background=EBF4FF`} className="mx-auto rounded-full h-20 w-20" />)}
+                                   {values.avatar && (<img src={`${auth.user.avatar}`} className="mx-auto rounded-full h-20 w-20" />)}
+                              </div>
                          </div>
                     </div>
                     <DataCard>
@@ -84,8 +91,7 @@ const ProfileEditCard = () => {
                                                   <span>Photo</span>
                                              </label>
                                              <div className="mt-2">
-                                                  {!values.avatar && (<img src={`https://ui-avatars.com/api/?name=${auth.user.name}&amp;color=7F9CF5&amp;background=EBF4FF`} className="rounded-full h-20 w-20" />)}
-                                                  {values.avatar && (<img src={`${auth.user.avatar}`} className="rounded-full h-20 w-20" />)}
+                                                  {values.selectedAvatar && (<img src={`${values.selectedAvatar}`} className="rounded-full h-20 w-20" />)}
                                              </div>
                                              <FileInput
                                                   className="w-full lg:w-1/2"
