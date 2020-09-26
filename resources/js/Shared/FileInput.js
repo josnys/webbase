@@ -14,6 +14,7 @@ const Button = ({ text, onClick }) => (
 export default ({ className, name, label, accept, errors = [], onChange }) => {
      const fileInput = useRef();
      const [file, setFile] = useState(null);
+     const [path, setPath] = useState(null);
 
      function browse() {
           fileInput.current.click();
@@ -21,14 +22,16 @@ export default ({ className, name, label, accept, errors = [], onChange }) => {
 
      function remove() {
           setFile(null);
-          onChange(null);
+          setPath(null);
+          onChange(null, null);
           fileInput.current.value = null;
      }
 
      function handleFileChange(e) {
           const file = e.target.files[0];
+          const path = URL.createObjectURL(event.target.files[0]);
           setFile(file);
-          onChange(file);
+          onChange(file, path);
      }
 
      return (

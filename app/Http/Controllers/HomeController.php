@@ -30,7 +30,8 @@ class HomeController extends Controller
                     'id' => Auth::user()->id,
                     'name' => Auth::user()->name,
                     'username' => Auth::user()->username,
-                    'email' => Auth::user()->email
+                    'email' => Auth::user()->email,
+                    'avatar' => (Auth::user()->profile_url) ? route('show.image', Auth::user()->profile_url) : null
                ]
           ]);
      }
@@ -39,7 +40,7 @@ class HomeController extends Controller
      {
           $mediaName = null;
           if($request->hasFile('photo')){
-               $mediaPath = $request->file('photo')->store('users');
+               $mediaPath = $request->file('photo')->store('users/');
                $index = count(explode('/', $mediaPath)) - 1;
                $mediaName = explode('/', $mediaPath)[$index];
           }

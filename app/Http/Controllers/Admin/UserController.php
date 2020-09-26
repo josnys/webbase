@@ -23,7 +23,7 @@ class UserController extends Controller
                     'name' => $user->name,
                     'username' => $user->username,
                     'email' => $user->email,
-                    'avatar' => null,
+                    'avatar' => ($user->profile_url) ? route('show.image', 'users/'.$user->profile_url) : null,
                     'roles' => $roles
                ];
           });
@@ -38,7 +38,7 @@ class UserController extends Controller
                'name' => $user->name,
                'username' => $user->username,
                'email' => $user->email,
-               'avatar' => null
+               'avatar' => ($user->profile_url) ? route('show.image', 'users/'.$user->profile_url) : null,
           ]]);
      }
 
