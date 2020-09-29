@@ -10,7 +10,7 @@ import Logo from '../../Shared/Logo';
 import FlashMessages from '../../Shared/FlashMessages';
 
 function ResetPassword() {
-     const { errors, data, app, flase } = usePage();
+     const { errors, data, app, flash } = usePage();
      const [sending, setSending] = useState(false);
      const [values, setValues] = useState({
           email: data.email,
@@ -31,6 +31,7 @@ function ResetPassword() {
      function handleSubmit(e) {
           e.preventDefault();
           setSending(true);
+          console.log(values);
           Inertia.post(route('password.update'), values).then(() => {
                setSending(false);
           });

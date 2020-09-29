@@ -80,11 +80,11 @@ var Index = function Index() {
     }, !avatar && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: "https://ui-avatars.com/api/?name=".concat(name, "&amp;color=7F9CF5&amp;background=EBF4FF"),
       alt: name,
-      className: "h-8 w-8 rounded-full"
+      className: "mx-auto h-8 w-8 rounded-full"
     }), avatar && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: avatar,
       alt: name,
-      className: "h-8 w-8 rounded-full"
+      className: "mx-auto h-8 w-8 rounded-full"
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
       className: "border px-4 py-2"
     }, name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {

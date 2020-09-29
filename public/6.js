@@ -119,7 +119,7 @@ function ResetPassword() {
       errors = _usePage.errors,
       data = _usePage.data,
       app = _usePage.app,
-      flase = _usePage.flase;
+      flash = _usePage.flash;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -147,6 +147,7 @@ function ResetPassword() {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
+    console.log(values);
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('password.update'), values).then(function () {
       setSending(false);
     });
