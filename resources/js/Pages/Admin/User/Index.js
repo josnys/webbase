@@ -39,8 +39,8 @@ const Index = () => {
                               {data.data.map(({id, name, username, email, avatar, roles}) => {
                                    return <tr key={id}>
                                         <td className="border px-4 py-2">
-                                             {!avatar && (<img src={`https://ui-avatars.com/api/?name=${name}&amp;color=7F9CF5&amp;background=EBF4FF`} alt={name} className="h-8 w-8 rounded-full" />)}
-                                             {avatar && (<img src={avatar} alt={name} className="h-8 w-8 rounded-full" />)}
+                                             {!avatar && (<img src={`https://ui-avatars.com/api/?name=${name}&amp;color=7F9CF5&amp;background=EBF4FF`} alt={name} className="mx-auto h-8 w-8 rounded-full" />)}
+                                             {avatar && (<img src={avatar} alt={name} className="mx-auto h-8 w-8 rounded-full" />)}
                                         </td>
                                         <td className="border px-4 py-2">{name}</td>
                                         <td className="border px-4 py-2">{username}</td>

@@ -16,8 +16,6 @@ use App\Http\Controllers\WelcomeController;
 
 Route::get('/', [WelcomeController::class, 'index']);
 
-Auth::routes();
-
 Route::get('/img/{path}', [App\Http\Controllers\ImageController::class, 'show'])->where('path', '.*')->name('show.image');
 
 Route::group(['middleware' => ['auth']], function(){

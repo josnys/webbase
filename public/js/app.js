@@ -48704,10 +48704,12 @@ var map = {
 	],
 	"./Welcome": [
 		"./resources/js/Pages/Welcome.js",
+		0,
 		20
 	],
 	"./Welcome.js": [
 		"./resources/js/Pages/Welcome.js",
+		0,
 		20
 	]
 };
