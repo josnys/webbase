@@ -8,7 +8,7 @@ function Welcome() {
      console.log(app);
      return (
           <React.Fragment key="app">
-               <Helmet titleTemplate={`${app.name} | %s`} />
+               <Helmet title={app.name} />
                <div className="p-6 min-h-screen flex justify-center items-center">
                     <div className="bg-white p-4 rounded text-center text-lg text-gray-600 shadow-xl w-full max-w-xl leading-loose">
                          Welcome to the <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500">Laravel 8 | Fortify | TailwindCSS | InertiaJs | Reactjs</h1>
