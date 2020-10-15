@@ -48851,8 +48851,8 @@ if (typeof window !== 'undefined' && typeof window.Ziggy !== 'undefined') {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/josnys/Documents/WebDev/webbase/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/josnys/Documents/WebDev/webbase/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /Users/josnys/Documents/WebDev/posadmin/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/josnys/Documents/WebDev/posadmin/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
