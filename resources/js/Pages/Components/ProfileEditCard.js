@@ -109,6 +109,7 @@ const ProfileEditCard = () => {
                                                    type="text"
                                                    disable={false}
                                                    readonly={false}
+                                                   must={true}
                                                    errors={values.errors.name}
                                                    value={values.name}
                                                    onChange={handleChange}
@@ -120,6 +121,7 @@ const ProfileEditCard = () => {
                                                    type="text"
                                                    disable={false}
                                                    readonly={false}
+                                                   must={true}
                                                    errors={values.errors.username}
                                                    value={values.username}
                                                    onChange={handleChange}
@@ -131,6 +133,7 @@ const ProfileEditCard = () => {
                                                    type="email"
                                                    disable={false}
                                                    readonly={false}
+                                                   must={true}
                                                    errors={values.errors.email}
                                                    value={values.email}
                                                    onChange={handleChange}

@@ -49,6 +49,7 @@ function Login() {
                               type="text"
                               disable={false}
                               readonly={false}
+                              must={false}
                               errors={errors.email}
                               value={values.email}
                               onChange={handleChange}
@@ -60,6 +61,7 @@ function Login() {
                               type="password"
                               disable={false}
                               readonly={false}
+                              must={false}
                               errors={errors.password}
                               value={values.password}
                               onChange={handleChange}
