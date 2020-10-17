@@ -53,7 +53,7 @@ class UserController extends Controller
      {
           $_roles = Role::all();
           $user_roles = array();
-          $rol_es = $user->with('roles')->first();
+          $rol_es = $user->with('roles')->find($user->id);
           foreach($rol_es->roles as $ur){
                array_push($user_roles, $ur->id);
           }

@@ -59,6 +59,7 @@ function ForgotPassword() {
                               type="email"
                               disable={false}
                               readonly={false}
+                              must={true}
                               errors={errors.email}
                               value={values.email}
                               onChange={handleChange}

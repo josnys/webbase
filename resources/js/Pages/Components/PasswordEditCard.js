@@ -70,6 +70,7 @@ const ProfileEditCard = () => {
                                                    type="password"
                                                    disable={false}
                                                    readonly={false}
+                                                   must={true}
                                                    errors={values.errors.current_password}
                                                    value={values.current_password}
                                                    onChange={handleChange}
@@ -81,6 +82,7 @@ const ProfileEditCard = () => {
                                                    type="password"
                                                    disable={false}
                                                    readonly={false}
+                                                   must={true}
                                                    errors={values.errors.password}
                                                    value={values.password}
                                                    onChange={handleChange}
@@ -92,6 +94,7 @@ const ProfileEditCard = () => {
                                                    type="password"
                                                    disable={false}
                                                    readonly={false}
+                                                   must={true}
                                                    errors={values.errors.password_confirmation}
                                                    value={values.password_confirmation}
                                                    onChange={handleChange}

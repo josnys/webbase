@@ -53,6 +53,7 @@ function ResetPassword() {
                               type="email"
                               disable={false}
                               readonly={false}
+                              must={true}
                               errors={errors.email}
                               value={values.email}
                               onChange={handleChange}
@@ -63,6 +64,7 @@ function ResetPassword() {
                               name="password"
                               type="password"
                               disable={false}
+                              must={true}
                               errors={errors.password}
                               value={values.password}
                               onChange={handleChange}
@@ -73,6 +75,7 @@ function ResetPassword() {
                               name="password_confirmation"
                               type="password"
                               disable={false}
+                              must={true}
                               errors={errors.password_confirmation}
                               value={values.password_confirmation}
                               onChange={handleChange}

@@ -63,6 +63,7 @@ const Edit = () => {
                                                    type="text"
                                                    disable={false}
                                                    readonly={false}
+                                                   must={true}
                                                    errors={errors.name}
                                                    value={values.name}
                                                    onChange={handleChange}

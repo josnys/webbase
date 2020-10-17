@@ -51,6 +51,7 @@ function Register() {
                               type="text"
                               disable={false}
                               readonly={false}
+                              must={true}
                               errors={errors.name}
                               value={values.name}
                               onChange={handleChange}
@@ -62,6 +63,7 @@ function Register() {
                               type="text"
                               disable={false}
                               readonly={false}
+                              must={true}
                               errors={errors.username}
                               value={values.username}
                               onChange={handleChange}
@@ -73,6 +75,7 @@ function Register() {
                               type="email"
                               disable={false}
                               readonly={false}
+                              must={true}
                               errors={errors.email}
                               value={values.email}
                               onChange={handleChange}
@@ -84,6 +87,7 @@ function Register() {
                               type="password"
                               disable={false}
                               readonly={false}
+                              must={true}
                               errors={errors.password}
                               value={values.password}
                               onChange={handleChange}
@@ -95,6 +99,7 @@ function Register() {
                               type="password"
                               disable={false}
                               readonly={false}
+                              must={true}
                               errors={errors.password_confirmation}
                               value={values.password_confirmation}
                               onChange={handleChange}
