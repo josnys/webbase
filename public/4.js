@@ -65,10 +65,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function CreatePermission() {
-  var _usePage = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__["usePage"])(),
-      auth = _usePage.auth,
-      errors = _usePage.errors,
-      data = _usePage.data;
+  var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__["usePage"])().props,
+      auth = _usePage$props.auth,
+      errors = _usePage$props.errors,
+      data = _usePage$props.data;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -177,6 +177,7 @@ function CreatePermission() {
     type: "text",
     disable: false,
     readonly: false,
+    must: true,
     errors: values.errors.display,
     value: values.display,
     onChange: handleChange,
@@ -437,14 +438,17 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
       errors = _ref$errors === void 0 ? [] : _ref$errors,
       disable = _ref.disable,
       readonly = _ref.readonly,
-      props = _objectWithoutProperties(_ref, ["label", "name", "className", "errors", "disable", "readonly"]);
+      must = _ref.must,
+      props = _objectWithoutProperties(_ref, ["label", "name", "className", "errors", "disable", "readonly", "must"]);
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: className
   }, label && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     className: "block font-medium text-sm text-gray-700",
     htmlFor: name
-  }, label, ":"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({
+  }, label, " ", must && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-red-700"
+  }, "*")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({
     id: name,
     name: name
   }, props, {

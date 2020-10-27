@@ -10,7 +10,7 @@ import DataCard from '../../../Shared/DataCard';
 import LoadingButton from '../../../Shared/LoadingButton';
 
 const Edit = () => {
-     const { auth, errors, data } = usePage();
+     const { auth, errors, data } = usePage().props;
      const [sending, setSending] = useState(false);
 
      const [values, setValues] = useState({

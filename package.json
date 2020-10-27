@@ -18,15 +18,16 @@
     },
     "dependencies": {
         "@babel/preset-react": "^7.12.1",
-        "@inertiajs/inertia": "^0.2.3",
-        "@inertiajs/inertia-react": "^0.2.2",
+        "@inertiajs/inertia": "^0.6.0",
+        "@inertiajs/inertia-react": "^0.4.1",
+        "@inertiajs/progress": "^0.2.0",
         "classnames": "^2.2.6",
         "postcss-import": "^12.0.1",
         "react": "^16.14.0",
         "react-dom": "^16.14.0",
         "react-helmet": "^6.1.0",
         "react-use": "^15.3.4",
-        "tailwindcss": "^1.9.5",
+        "tailwindcss": "^1.9.6",
         "ziggy-js": "^0.9.4"
     }
 }
