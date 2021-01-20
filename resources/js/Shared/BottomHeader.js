@@ -3,7 +3,7 @@ import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import Icon from './Icon';
 
 export default ({ ...props }) => {
-     const { auth } = usePage();
+     const { auth } = usePage().props;
      const [menuOpened, setMenuOpened] = useState(false);
      return (
           <div className="bg-white border-b w-full p-4 md:py-0 md:px-12 text-sm d:text-md flex justify-between items-center">
@@ -18,7 +18,7 @@ export default ({ ...props }) => {
                          </button>
                     </div>
                     <div className={menuOpened ? '' : 'hidden'}>
-                         <div className="whitespace-no-wrap absolute z-20 mt-8 left-auto top-0 right-0 py-2 shadow-xl bg-white rounded text-sm">
+                         <div className="whitespace-nowrap absolute z-20 mt-8 left-auto top-0 right-0 py-2 shadow-xl bg-white rounded text-sm">
                               <div className="block px-4 py-2 text-xs text-gray-500">Manage Account</div>
                               <div className="flex items-center px-3">
                                    <div className="font-semibold text-gray-700">{auth.user.name}</div>

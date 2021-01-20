@@ -7,7 +7,7 @@ import DropdownButton from '../../../Shared/DropdownButton';
 import Icon from '../../../Shared/Icon';
 
 const Index = () => {
-     const { auth, errors, data } = usePage();
+     const { auth, errors, data } = usePage().props;
      console.log(data.data);
      return (
           <React.Fragment key="security-index">

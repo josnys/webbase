@@ -22,10 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Welcome() {
-  var _usePage = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])(),
-      app = _usePage.app;
-
-  console.log(app);
+  var app = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props.app;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
     key: "app"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_helmet__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -33,9 +30,9 @@ function Welcome() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "p-6 min-h-screen flex justify-center items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bg-white p-4 rounded text-center text-lg text-gray-600 shadow-xl w-full max-w-xl leading-loose"
+    className: "bg-white p-4 rounded text-center text-lg text-gray-500 shadow-xl w-full max-w-xl leading-loose"
   }, "Welcome to the ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: "text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500"
+    className: "text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-purple-500"
   }, "Laravel 8 | Fortify | TailwindCSS | InertiaJs | Reactjs"), "scaffolded by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
     className: "hover:text-purple-600",
     href: "https://twitter.com/josnyS"

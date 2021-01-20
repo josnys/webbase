@@ -4,7 +4,7 @@ import MainMenuItem from './MainMenuItem';
 import { can } from '../utils';
 
 export default ({ className }) => {
-     const { auth } = usePage();
+     const { auth } = usePage().props;
      return (
           <div className={className}>
                <MainMenuItem text="Dashboard" link="home" icon="dashboard" />
