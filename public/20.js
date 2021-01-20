@@ -5,9 +5,47 @@
   !*** ./resources/js/Pages/Welcome.js ***!
   \***************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/josnys/Documents/WebDev/webbase/resources/js/Pages/Welcome.js: Unexpected token, expected \"}\" (11:35)\n\n\u001b[0m \u001b[90m  9 | \u001b[39m     \u001b[36mreturn\u001b[39m (\u001b[0m\n\u001b[0m \u001b[90m 10 | \u001b[39m          \u001b[33m<\u001b[39m\u001b[33mReact\u001b[39m\u001b[33m.\u001b[39m\u001b[33mFragment\u001b[39m key\u001b[33m=\u001b[39m\u001b[32m\"app\"\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 | \u001b[39m               \u001b[33m<\u001b[39m\u001b[33mHelmet\u001b[39m title\u001b[33m=\u001b[39m{(app)app\u001b[33m.\u001b[39mname\u001b[33m:\u001b[39m\u001b[32m''\u001b[39m} \u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 12 | \u001b[39m               \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m className\u001b[33m=\u001b[39m\u001b[32m\"p-6 min-h-screen flex justify-center items-center\"\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 13 | \u001b[39m                    \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m className\u001b[33m=\u001b[39m\u001b[32m\"bg-white p-4 rounded text-center text-lg text-gray-600 shadow-xl w-full max-w-xl leading-loose\"\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 14 | \u001b[39m                         \u001b[33mWelcome\u001b[39m to the \u001b[33m<\u001b[39m\u001b[33mh1\u001b[39m className\u001b[33m=\u001b[39m\u001b[32m\"text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500\"\u001b[39m\u001b[33m>\u001b[39m\u001b[33mLaravel\u001b[39m \u001b[35m8\u001b[39m \u001b[33m|\u001b[39m \u001b[33mFortify\u001b[39m \u001b[33m|\u001b[39m \u001b[33mTailwindCSS\u001b[39m \u001b[33m|\u001b[39m \u001b[33mInertiaJs\u001b[39m \u001b[33m|\u001b[39m \u001b[33mReactjs\u001b[39m\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mh1\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n    at Object._raise (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:799:17)\n    at Object.raiseWithData (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:792:17)\n    at Object.raise (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:786:17)\n    at Object.unexpected (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9089:16)\n    at Object.expect (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9075:28)\n    at Object.jsxParseExpressionContainer (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:4602:10)\n    at Object.jsxParseAttributeValue (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:4566:21)\n    at Object.jsxParseAttribute (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:4617:44)\n    at Object.jsxParseOpeningElementAfterName (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:4637:28)\n    at Object.jsxParseOpeningElementAt (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:4630:17)\n    at Object.jsxParseElementAt (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:4662:33)\n    at Object.jsxParseElementAt (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:4678:32)\n    at Object.jsxParseElement (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:4736:17)\n    at Object.parseExprAtom (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:4743:19)\n    at Object.parseExprSubscripts (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9976:23)\n    at Object.parseUpdate (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9956:21)\n    at Object.parseMaybeUnary (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9945:17)\n    at Object.parseExprOps (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9815:23)\n    at Object.parseMaybeConditional (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9789:23)\n    at Object.parseMaybeAssign (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9752:21)\n    at /Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9718:39\n    at Object.allowInAnd (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:11448:12)\n    at Object.parseMaybeAssignAllowIn (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9718:17)\n    at Object.parseParenAndDistinguishExpression (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:10607:28)\n    at Object.parseExprAtom (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:10311:21)\n    at Object.parseExprAtom (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:4748:20)\n    at Object.parseExprSubscripts (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9976:23)\n    at Object.parseUpdate (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9956:21)\n    at Object.parseMaybeUnary (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9945:17)\n    at Object.parseExprOps (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9815:23)\n    at Object.parseMaybeConditional (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9789:23)\n    at Object.parseMaybeAssign (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9752:21)\n    at Object.parseExpressionBase (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9696:23)\n    at /Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9690:39\n    at Object.allowInAnd (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:11442:16)\n    at Object.parseExpression (/Users/josnys/Documents/WebDev/webbase/node_modules/@babel/parser/lib/index.js:9690:17)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_helmet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
+
+
+
+
+
+function Welcome() {
+  var app = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props.app;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
+    key: "app"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_helmet__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    title: app.name
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "p-6 min-h-screen flex justify-center items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-white p-4 rounded text-center text-lg text-gray-500 shadow-xl w-full max-w-xl leading-loose"
+  }, "Welcome to the ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-purple-500"
+  }, "Laravel 8 | Fortify | TailwindCSS | InertiaJs | Reactjs"), "scaffolded by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
+    className: "hover:text-purple-600",
+    href: "https://twitter.com/josnyS"
+  }, "JosnyS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
+    className: "mr-2 text-xs hover:underline hover:text-blue-500",
+    href: route('login')
+  }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
+    className: "text-xs hover:underline hover:text-blue-500",
+    href: route('register')
+  }, "Register"))));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Welcome);
 
 /***/ })
 
