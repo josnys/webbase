@@ -1,20 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { InertiaApp } from '@inertiajs/inertia-react';
-import route from 'ziggy-js';
-import { Ziggy } from './route';
-// import * as Sentry from '@sentry/browser';
-//
-// Sentry.init({
-//   dsn: process.env.MIX_SENTRY_LARAVEL_DSN
-// });
+import { InertiaProgress } from '@inertiajs/progress';
 
-try {
-     // window.Popper = require('popper.js').default;
-     // window.$ = window.jQuery = require('jquery');
-     require('./bootstrap');
-     // require('bootstrap');
-} catch (e) {}
+InertiaProgress.init({
+     color: '#D76DE3',
+     showSpinner: true
+});
 
 const app = document.getElementById('app');
 
@@ -22,6 +14,5 @@ render(
      <InertiaApp
           initialPage={JSON.parse(app.dataset.page)}
           resolveComponent={name => import(`./Pages/${name}`).then(module => module.default)}
-     />,
-     app
+     />,app
 );

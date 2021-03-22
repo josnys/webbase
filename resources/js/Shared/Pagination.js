@@ -9,11 +9,11 @@ const PageLink = ({ active, label, url }) => {
       'px-4 py-3',
       'border rounded',
       'text-sm',
-      'hover:bg-white',
-      'focus:border-indigo-700 focus:text-indigo-700'
+      'hover:bg-gray-300',
+      'focus:border-gray-700 focus:text-gray-700'
     ],
     {
-      'bg-white': active,
+      'bg-gray-300': active,
       'ml-auto': label === 'Next'
     }
   );
@@ -29,7 +29,7 @@ const PageLink = ({ active, label, url }) => {
 // and dots, if exists (...)
 const PageInactive = ({ label }) => {
   const className = classNames(
-    'mr-1 mb-1 px-4 py-3 text-sm border rounded text-gray',
+    'mr-1 mb-1 px-4 py-3 text-sm border rounded text-gray-400 bg-gray-200',
     {
       'ml-auto': label === 'Next'
     }
@@ -41,7 +41,7 @@ export default ({ links = [] }) => {
   // dont render, if there's only 1 page (previous, 1, next)
   if (links.length === 3) return null;
   return (
-    <div className="mt-6 -mb-1 flex flex-wrap">
+    <div className="w-full flex">
       {links.map(({ active, label, url }) => {
         return url === null ? (
           <PageInactive key={label} label={label} />

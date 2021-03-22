@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Helmet from 'react-helmet';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import Layout from '../../../Shared/Layout';
+import Layout from '@/Shared/Layout';
 import ProfileEditCard from '../../Components/ProfileEditCard';
 import PasswordEditCard from '../../Components/PasswordEditCard';
 

@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import Layout from '../../../Shared/Layout';
-import ProfileCard from '../../../Shared/ProfileCard';
-import DataCard from '../../../Shared/DataCard';
-import Icon from '../../../Shared/Icon';
+import Layout from '@/Shared/Layout';
+import ProfileCard from '@/Shared/ProfileCard';
+import DataCard from '@/Shared/DataCard';
+import Icon from '@/Shared/Icon';
 import classNames from 'classnames';
-import TextInput from '../../../Shared/TextInput';
-import TextArea from '../../../Shared/TextArea';
-import LoadingButton from '../../../Shared/LoadingButton';
+import TextInput from '@/Shared/TextInput';
+import TextArea from '@/Shared/TextArea';
+import LoadingButton from '@/Shared/LoadingButton';
 import axios from 'axios';
 
 function CreateRole() {

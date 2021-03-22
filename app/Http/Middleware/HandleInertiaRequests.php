@@ -34,7 +34,11 @@ class HandleInertiaRequests extends Middleware
           return array_merge(parent::share($request), [
                'app' => function(){
                     return [
-                         'name' => config('app.name')
+                         'name' => config('app.name'),
+                         'system' => [
+                              'name' => 'Starter Template',
+                              'version' => 'v1.0'
+                         ]
                     ];
                },
                'auth' => function () {

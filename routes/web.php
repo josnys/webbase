@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\SecurityController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\WelcomeController;
 
 /*
@@ -41,9 +47,15 @@ Route::group(['middleware' => ['auth']], function(){
      Route::post('/role/{role}/assign', [App\Http\Controllers\Admin\RoleController::class, 'postAssign'])->middleware('permission:assign-permission')->name('role.post.assign');
 
      // Users
-     Route::get('/user', [App\Http\Controllers\Admin\UserController::class, 'index'])->middleware('permission:read-user')->name('user.index');
-     Route::get('/user/{user}/edit', [App\Http\Controllers\Admin\UserController::class, 'edit'])->middleware('permission:update-user')->name('user.edit');
-     Route::post('/user/{user}/edit', [App\Http\Controllers\Admin\UserController::class, 'update'])->middleware('permission:update-user')->name('user.update');
-     Route::get('/user/{user}/role', [App\Http\Controllers\Admin\UserController::class, 'getRoles'])->middleware('permission:assign-role')->name('user.get.role');
-     Route::post('/user/{user}/role', [App\Http\Controllers\Admin\UserController::class, 'postRole'])->middleware('permission:assign-role')->name('user.post.role');
+     Route::get('/user', [UserController::class, 'index'])->middleware('permission:read-user')->name('user.index');
+     Route::get('/user/create', [UserController::class, 'create'])->middleware('permission:create-user')->name('user.create');
+     Route::post('/user/create', [UserController::class, 'store'])->middleware('permission:create-user')->name('user.store');
+     Route::get('/user/{user}/edit', [UserController::class, 'edit'])->middleware('permission:update-user')->name('user.edit');
+     Route::post('/user/{user}/edit', [UserController::class, 'update'])->middleware('permission:update-user')->name('user.update');
+     Route::get('/user/{user}/role', [UserController::class, 'getRoles'])->middleware('permission:assign-role')->name('user.get.role');
+     Route::post('/user/{user}/role', [UserController::class, 'postRole'])->middleware('permission:assign-role')->name('user.post.role');
+     Route::get('/user/{user}/resetPassword', [UserController::class, 'getResetPassword'])->middleware('permission:change-password-user')->name('user.get.resetpassword');
+     Route::post('/user/{user}/resetPassword', [UserController::class, 'postResetPassword'])->middleware('permission:change-password-user')->name('user.post.resetpassword');
+     Route::get('/user/{user}/store', [UserController::class, 'getUserStore'])->middleware('permission:assign-role')->name('user.get.store');
+     Route::post('/user/{user}/store', [UserController::class, 'postUserStore'])->middleware('permission:assign-role')->name('user.post.store');
 });

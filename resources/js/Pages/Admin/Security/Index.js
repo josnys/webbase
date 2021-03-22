@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Helmet from 'react-helmet';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import Layout from '../../../Shared/Layout';
-import DataContainer from '../../../Shared/DataContainer';
-import DropdownButton from '../../../Shared/DropdownButton';
-import Icon from '../../../Shared/Icon';
-import { can } from '../../../utils';
+import Layout from '@/Shared/Layout';
+import DataContainer from '@/Shared/DataContainer';
+import DropdownButton from '@/Shared/DropdownButton';
+import Icon from '@/Shared/Icon';
+import Pagination from '@/Shared/Pagination';
+import { can } from '@/utils';
 
 const Index = () => {
      const { auth, errors, data } = usePage().props;
@@ -15,7 +16,9 @@ const Index = () => {
                     <title>Roles & Permission</title>
                </Helmet>
                <div className="max-w-7xl mx-auto p-2">
-                    <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('home')}>Dashboard</InertiaLink> | <span className="text-md text-gray-700 leading-tight">Roles & Permissions</span>
+                    <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('home')}>Dashboard</InertiaLink> |
+                    <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('user.index')}> Users</InertiaLink> |
+                    <span className="text-md text-gray-700 leading-tight"> Roles & Permissions</span>
                </div>
                <DataContainer>
                     <div className="col-span-12">
@@ -23,13 +26,17 @@ const Index = () => {
                               <Icon name={'plus'} className={'fill-current w-4 h-4 mr-2'} />
                               Add Role
                          </InertiaLink>:null}
-                         {can(auth.user, 'create-permission')?<InertiaLink href={route('permission.create')} className="float-right bg-gray-300 hover:bg-gray-400 text-gray-800 text-sm py-1 px-1 rounded inline-flex items-center">
+                         <InertiaLink href={route('user.index')} className="float-right bg-white border border-gray-400 hover:bg-gray-200 text-gray-600 text-sm py-1 px-1 ml-3 rounded inline-flex items-center">
+                              <Icon name={'back'} className={'fill-current w-4 h-4 mr-2'} />
+                              Back
+                         </InertiaLink>
+                         {(auth.user.id == 1)?<InertiaLink href={route('permission.create')} className="float-right bg-gray-300 hover:bg-gray-400 text-gray-800 text-sm py-1 px-1 rounded inline-flex items-center">
                               <Icon name={'plus'} className={'fill-current w-4 h-4 mr-2'} />
                               Permissions
                          </InertiaLink>:null}
                     </div>
-                    <table className="table-fixed col-span-12">
-                         <thead className="bg-gray-400">
+                    <table className="table-fixed col-span-12 text-sm">
+                         <thead className="bg-gray-300">
                               <tr>
                                    <th className="px-4 py-2">Display Name</th>
                                    <th className="px-4 py-2">Name</th>
@@ -60,6 +67,7 @@ const Index = () => {
                               </tr>)}
                          </tbody>
                     </table>
+                    <Pagination links={data.links} />
                </DataContainer>
           </React.Fragment>
      );

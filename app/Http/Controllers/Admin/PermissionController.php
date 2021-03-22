@@ -30,15 +30,8 @@ class PermissionController extends Controller
           $permission->display_name = $request->get('display');
           $permission->description = $request->get('description');
           $permission->save();
-          return response()->json([
-               'message' => 'Permission created successfully.',
-               'data' => [
-                    'id' => $permission->id,
-                    'name' => $permission->name,
-                    'display' => $permission->display_name,
-                    'description' => $permission->description
-               ]
-          ], 201);
+
+          return redirect()->back()->with('success', 'Permission created successfully.');
      }
 
      public function edit(Permission $permission)
@@ -57,6 +50,6 @@ class PermissionController extends Controller
           $permission->description = $request->get('description');
           $permission->update();
 
-          return redirect()->route('security.index')->with('success', 'Permission Updated.');
+          return redirect()->route('permission.create')->with('success', 'Permission Updated.');
      }
 }

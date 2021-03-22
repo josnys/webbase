@@ -41,10 +41,11 @@ function Login() {
                </Helmet>
                <Logo className="w-12 h-12" />
                <AuthCard>
-                    <form onSubmit={handleSubmit}>
+                    <h1 className="text-lg text-gray-600 font-semibold">Login</h1>
+                    <form className="mt-4" onSubmit={handleSubmit}>
                          <TextInput
                               className=""
-                              label="Email"
+                              label="Email or Username"
                               name="email"
                               type="text"
                               disable={false}
@@ -74,11 +75,13 @@ function Login() {
                               </label>
                          </div>
                          <div className="flex items-center justify-end mt-4">
-                              <InertiaLink href={route('password.request')} className="underline text-sm text-gray-600 hover:text-gray-900">Forgot your password?</InertiaLink>
                               <LoadingButton type="submit" loading={sending} className="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">Login</LoadingButton>
                          </div>
                     </form>
                </AuthCard>
+               <div className="mt-4">
+                    <p className="text-sm text-right text-gray-500 font-semibold">{app.system.name} <span className="text-xs font-base">{app.system.version}</span></p>
+               </div>
           </div>
      );
 }
