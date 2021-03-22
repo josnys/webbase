@@ -20,11 +20,6 @@ class Person extends Model
           return "{$this->firstname} {$this->lastname}";
      }
 
-     public function customer()
-     {
-          return $this->hasOne('App\Models\Customer');
-     }
-
      public static function generateCode()
      {
           $rand = mt_rand(1, 9999);
@@ -43,5 +38,10 @@ class Person extends Model
                return true;
           }
           return false;
+     }
+
+     public static function serverError()
+     {
+          return "An error has occured. Please contact developper.";
      }
 }

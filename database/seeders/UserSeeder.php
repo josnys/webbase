@@ -18,22 +18,22 @@ class UserSeeder extends Seeder
      public function run()
      {
           $person = new Person;
-          $person->firstname = 'Josny J.';
-          $person->lastname = 'Severe';
+          $person->firstname = 'Super';
+          $person->lastname = 'Admin';
           $person->code = '0001';
-          $person->dob = '1984-05-21';
+          $person->dob = '1900-01-01';
           $person->sex = 'Man';
-          $person->identification = '008-378-446-3';
-          $person->identification_type = 'CIN';
-          $person->address = 'Anndan lakay mwen';
-          $person->phone = '50948091228';
+          $person->identification = '000-000-0000-000';
+          $person->identification_type = 'SSN';
+          $person->address = '127.0.0.1';
+          $person->phone = '+1 000-000-0000';
           $person->profile_url = null;
           $person->save();
 
           $user = new User;
           $user->person_id = $person->id;
-          $user->username = 'josnys';
-          $user->email = 'dirjos2014@gmail.com';
+          $user->username = 'superadmin';
+          $user->email = 'superadmin@app.com';
           $user->pin = '1234';
           $user->multi_connect = true;
           $user->password = Hash::make('password');
