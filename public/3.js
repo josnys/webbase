@@ -87,7 +87,6 @@ function CreateRole() {
     name: '',
     display: '',
     description: '',
-    errors: errors,
     data: data.data
   }),
       _useState6 = _slicedToArray(_useState5, 2),
@@ -119,30 +118,15 @@ function CreateRole() {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    axios__WEBPACK_IMPORTED_MODULE_15___default.a.post(route('role.store'), values).then(function (response) {
-      setSaved(true);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('role.store'), values).then(function () {
       setSending(false);
-      var _data = values.data;
-
-      _data.push(response.data.data);
-
       setValues(function (values) {
         return _objectSpread(_objectSpread({}, values), {}, {
           name: '',
           display: '',
-          description: '',
-          data: _data,
-          errors: []
+          description: ''
         });
       });
-    })["catch"](function (error) {
-      // console.log(JSON.stringify(error));
-      setValues(function (values) {
-        return _objectSpread(_objectSpread({}, values), {}, {
-          errors: error.response.data.errors
-        });
-      });
-      setSending(false);
     });
   }
 
@@ -166,7 +150,7 @@ function CreateRole() {
     className: "col-span-12 text-right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__["InertiaLink"], {
     href: route('security.index'),
-    className: "bg-transparent border border-gray-500 text-sm text-gray-500 p-2 rounded focus:outline-none hover:bg-gray-600 hover:text-gray-100 inline-flex items-center"
+    className: "bg-transparent border border-gray-500 text-sm text-gray-500 p-1 rounded focus:outline-none hover:bg-gray-600 hover:text-gray-100 inline-flex items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_Icon__WEBPACK_IMPORTED_MODULE_8__["default"], {
     name: "back",
     className: iconClasses
@@ -180,7 +164,7 @@ function CreateRole() {
     disable: false,
     readonly: false,
     must: true,
-    errors: values.errors.display,
+    errors: errors.display,
     value: values.display,
     onChange: handleChange,
     onBlur: handleFocusOut
@@ -191,14 +175,15 @@ function CreateRole() {
     type: "text",
     disable: false,
     readonly: true,
-    errors: values.errors.name,
+    must: false,
+    errors: errors.name,
     value: values.name,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextArea__WEBPACK_IMPORTED_MODULE_11__["default"], {
     className: "form-input rounded-md shadow-sm mt-4 block w-full",
     label: "Description",
     name: "description",
-    errors: values.errors.description,
+    errors: errors.description,
     value: values.description,
     onChange: handleChange
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -222,9 +207,9 @@ function CreateRole() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "text-lg font-medium text-gray-900"
   }, "Roles's List")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-    className: "table-fixed col-span-12"
+    className: "table-fixed col-span-12 text-sm"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", {
-    className: "bg-gray-400"
+    className: "bg-gray-300"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     className: "px-4 py-2"
   }, "Display Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {

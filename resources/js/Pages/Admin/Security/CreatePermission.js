@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import Layout from '../../../Shared/Layout';
-import ProfileCard from '../../../Shared/ProfileCard';
-import DataCard from '../../../Shared/DataCard';
-import DataContainer from '../../../Shared/DataContainer';
-import Icon from '../../../Shared/Icon';
+import Layout from '@/Shared/Layout';
+import ProfileCard from '@/Shared/ProfileCard';
+import DataCard from '@/Shared/DataCard';
+import DataContainer from '@/Shared/DataContainer';
+import Icon from '@/Shared/Icon';
 import classNames from 'classnames';
-import TextInput from '../../../Shared/TextInput';
-import TextArea from '../../../Shared/TextArea';
-import LoadingButton from '../../../Shared/LoadingButton';
-import { createSlug } from '../../../utils';
+import TextInput from '@/Shared/TextInput';
+import TextArea from '@/Shared/TextArea';
+import LoadingButton from '@/Shared/LoadingButton';
+import { createSlug } from '@/utils';
 import axios from 'axios';
 
 function CreatePermission() {
@@ -52,26 +52,14 @@ function CreatePermission() {
      function handleSubmit(e) {
           e.preventDefault();
           setSending(true);
-          axios.post(route('permission.store'), values).then((response) => {
-               setSaved(true);
+          Inertia.post(route('permission.store'), values).then(() => {
                setSending(false);
-               let _data = values.data;
-               _data.push(response.data.data);
                setValues(values => ({
                     ...values,
                     name: '',
                     display: '',
-                    description: '',
-                    data: _data,
-                    errors: []
+                    description: ''
                }));
-          }).catch((error) => {
-               // console.log(JSON.stringify(error));
-               setValues(values => ({
-                    ...values,
-                    errors: error.response.data.errors
-               }));
-               setSending(false);
           });
      }
 
@@ -91,7 +79,7 @@ function CreatePermission() {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-3 gap-3">
                                         <div className="col-span-12 text-right">
-                                             <InertiaLink href={route('security.index')} className="bg-transparent border border-gray-500 text-sm text-gray-500 p-2 rounded focus:outline-none hover:bg-gray-600 hover:text-gray-100 inline-flex items-center">
+                                             <InertiaLink href={route('security.index')} className="bg-transparent border border-gray-500 text-sm text-gray-500 p-1 rounded focus:outline-none hover:bg-gray-600 hover:text-gray-100 inline-flex items-center">
                                                   <Icon name="back" className={iconClasses} />
                                                   Back
                                              </InertiaLink>
@@ -117,6 +105,7 @@ function CreatePermission() {
                                                    type="text"
                                                    disable={false}
                                                    readonly={true}
+                                                   must={false}
                                                    errors={values.errors.name}
                                                    value={values.name}
                                                    onChange={handleChange}
@@ -152,10 +141,10 @@ function CreatePermission() {
                </div>
                <DataContainer>
                     <div className="col-span-12">
-                         <h3 className="text-lg font-medium text-gray-900">Permission's List</h3>
+                         <h3 className="text-lg font-medium text-gray-900">Permission's List <span className="float-right text-sm text-gray-600 font-medium">{data.data.length} in total</span></h3>
                     </div>
-                    <table className="table-auto col-span-12">
-                         <thead className="bg-gray-400">
+                    <table className="table-auto col-span-12 text-sm">
+                         <thead className="bg-gray-300">
                               <tr>
                                    <th className="px-4 py-2">Display Name</th>
                                    <th className="px-4 py-2">Name</th>

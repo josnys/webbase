@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import Helmet from 'react-helmet';
-import AuthCard from '../../Shared/AuthCard';
-import TextInput from '../../Shared/TextInput';
-import LoadingButton from '../../Shared/LoadingButton';
-import Logo from '../../Shared/Logo';
-import FlashMessages from '../../Shared/FlashMessages';
+import AuthCard from '@/Shared/AuthCard';
+import TextInput from '@/Shared/TextInput';
+import LoadingButton from '@/Shared/LoadingButton';
+import Logo from '@/Shared/Logo';
+import FlashMessages from '@/Shared/FlashMessages';
 
 function ForgotPassword() {
      const { errors, app, flash } = usePage().props;

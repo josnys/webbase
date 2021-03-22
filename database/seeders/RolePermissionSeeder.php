@@ -19,7 +19,7 @@ class RolePermissionSeeder extends Seeder
                [
                     'name' => 'super-user',
                     'display_name' => 'Super User',
-                    'description' => 'Generally should be the business owner, or the technical guy(s).'
+                    'description' => 'The system creator.'
                ]
           ];
 
@@ -57,7 +57,7 @@ class RolePermissionSeeder extends Seeder
                [
                     'name' => 'read-role',
                     'display_name' => 'Read Role',
-                    'description' => 'Allow user to read role.'
+                    'description' => 'Allow user to read list of role.'
                ],
                [
                     'name' => 'update-role',
@@ -93,6 +93,11 @@ class RolePermissionSeeder extends Seeder
                     'name' => 'delete-user',
                     'display_name' => 'Delete User',
                     'description' => 'Allow user to delete user\'s accounts.'
+               ],
+               [
+                    'name' => 'change-user-password',
+                    'display_name' => 'Change User\'s Password',
+                    'description' => 'Allow user to change other user\'s password'
                ],
           ];
 
