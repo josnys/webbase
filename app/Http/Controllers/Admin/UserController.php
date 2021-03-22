@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Person;
 use App\Models\Role;
-use App\Models\Store;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
 
@@ -62,6 +61,7 @@ class UserController extends Controller
                return Inertia::render('Admin/User/Index', ['data' => $users]);
           } catch (\Exception $e) {
                Log::error('User index', ['data' => $e]);
+               return redirect()->back()->with('error', User::serverError());
           }
      }
 
@@ -74,6 +74,7 @@ class UserController extends Controller
                ]]);
           } catch (\Exception $e) {
                Log::error('User create', ['data' => $e]);
+               return redirect()->back()->with('error', User::serverError());
           }
      }
 
@@ -108,6 +109,7 @@ class UserController extends Controller
                return redirect()->route('user.index')->with('success', 'User saved successfully.');
           } catch (\Exception $e) {
                Log::error('User store', ['data' => $e]);
+               return redirect()->back()->with('error', User::serverError());
           }
      }
 
@@ -136,6 +138,7 @@ class UserController extends Controller
                ]]);
           } catch (\Exception $e) {
                Log::error('User edit', ['data' => $e]);
+               return redirect()->back()->with('error', User::serverError());
           }
      }
 
@@ -159,13 +162,14 @@ class UserController extends Controller
                return redirect()->route('user.index')->with('success', 'User updated successfully.');
           } catch (\Exception $e) {
                Log::error('User update', ['data' => $e]);
+               return redirect()->back()->with('error', User::serverError());
           }
      }
 
      public function getRoles(User $user)
      {
           try {
-               $_roles = Role::where('id', '!=', 1)->get();
+               $_roles = Role::all();
                $user_roles = array();
                $rol_es = $user->with('roles')->find($user->id);
                foreach($rol_es->roles as $ur){
@@ -197,6 +201,7 @@ class UserController extends Controller
                ]);
           } catch (\Exception $e) {
                Log::error('User get role', ['data' => $e]);
+               return redirect()->back()->with('error', User::serverError());
           }
      }
 
@@ -211,6 +216,7 @@ class UserController extends Controller
                return redirect()->route('user.index')->with('success', 'Role successfully assigned to '.$user->name);
           } catch (\Exception $e) {
                Log::error('User post role', ['data' => $e]);
+               return redirect()->back()->with('error', User::serverError());
           }
      }
 
@@ -225,6 +231,7 @@ class UserController extends Controller
                ]]);
           } catch (\Exception $e) {
                Log::error('User reset password', ['data' => $e]);
+               return redirect()->back()->with('error', User::serverError());
           }
      }
 
@@ -239,64 +246,7 @@ class UserController extends Controller
                return redirect()->route('user.index')->with('success', 'User Password changed successfully.');
           } catch (\Exception $e) {
                Log::error('User post reset password', ['data' => $e]);
-          }
-     }
-
-     public function getUserStore(User $user)
-     {
-          try {
-               $user = User::with('person')->with('roles')->with('stores')->find($user->id);
-               $roles = array();
-               foreach($user->roles as $rl){
-                    array_push($roles, $rl->display_name);
-               }
-               $storeId = array();
-               $ustores = array();
-               foreach($user->stores as $store){
-                    array_push($storeId, $store->id);
-                    array_push($ustores, [
-                         'id' => $store->id,
-                         'name' => $store->name,
-                         'type' => $store->type,
-                    ]);
-               }
-               $_stores = Store::active()->get();
-               $stores = array();
-               foreach($_stores as $store){
-                    array_push($stores, [
-                         'id' => $store->id,
-                         'name' => $store->name,
-                         'type' => $store->type,
-                         'isCheck' => in_array($store->id, $storeId)
-                    ]);
-               }
-
-               return Inertia::render('Admin/User/Store', ['data' => [
-                    'stores' => $stores,
-                    'user' => [
-                         'id' => $user->id,
-                         'name' => $user->person->name,
-                         'username' => $user->username,
-                         'roles' => $roles,
-                         'user_store' => $ustores
-                    ]
-               ]]);
-          } catch (\Exception $e) {
-               Log::error('User get stores', ['data' => $e]);
-          }
-     }
-
-     public function postUserStore(Request $request, User $user)
-     {
-          try {
-               $request->validate([
-                    'user_store' => ['required', 'array'],
-                    'user_store.*' => ['integer'],
-               ]);
-               $user->stores()->sync($request->get('user_store'));
-               return redirect()->route('user.index')->with('success', 'Store successfully assigned to '.$user->name);
-          } catch (\Exception $e) {
-               Log::error('User post stores', ['data' => $e]);
+               return redirect()->back()->with('error', User::serverError());
           }
      }
 }

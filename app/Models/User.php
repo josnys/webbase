@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -44,17 +45,17 @@ class User extends Authenticatable
 
      public function person()
      {
-          return $this->belongsTo('App\Models\Person');
-     }
-
-     public function stores()
-     {
-          return $this->belongsToMany('App\Models\Store');
+          return $this->belongsTo(Person::class);
      }
 
      public function getNameAttribute()
      {
           return "{$this->person->firstname} {$this->person->lastname}";
+     }
+
+     public function getAvatarAttribute()
+     {
+          return Storage::disk('public')->exists('users/'.$this->profile_url) ? route('show.image', 'public/users/'.$this->profile_url) : null;
      }
 
      public static function serverError()

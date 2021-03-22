@@ -6,5 +6,10 @@ use Laratrust\Models\LaratrustPermission;
 
 class Permission extends LaratrustPermission
 {
-    public $guarded = [];
+     public $guarded = [];
+
+     public static function serverError()
+     {
+          return "An error has occured. Please contact developper.";
+     }
 }
