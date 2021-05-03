@@ -14,7 +14,7 @@ class PermissionController extends Controller
      public function create()
      {
           try {
-               $permissions = Permission::paginate(100)->transform(function($permission){
+               $permissions = Permission::paginate(50)->transform(function($permission){
                     return [
                          'id' => $permission->id,
                          'name' => $permission->name,
@@ -22,7 +22,7 @@ class PermissionController extends Controller
                          'description' => $permission->description
                     ];
                });
-               return Inertia::render('Admin/Security/CreatePermission', ['data' => $permissions]);
+               return Inertia::render('Admin/Security/CreatePermission', ['info' => $permissions]);
           } catch (\Exception $e) {
                Log::error('Permission create', ['data' => $e]);
                return redirect()->back()->with('error', Permission::serverError());
@@ -48,7 +48,7 @@ class PermissionController extends Controller
      public function edit(Permission $permission)
      {
           try {
-               return Inertia::render('Admin/Security/EditPermission', ['data' => [
+               return Inertia::render('Admin/Security/EditPermission', ['info' => [
                     'id' => $permission->id,
                     'name' => $permission->name,
                     'display' => $permission->display_name,

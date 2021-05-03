@@ -19,7 +19,7 @@ class RolePermissionSeeder extends Seeder
                [
                     'name' => 'super-user',
                     'display_name' => 'Super User',
-                    'description' => 'The system creator.'
+                    'description' => 'System Super Administrator.'
                ]
           ];
 

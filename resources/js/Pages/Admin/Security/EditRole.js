@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Inertia } from '@inertiajs/inertia';
+import { useForm } from '@inertiajs/inertia-react';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import Layout from '@/Shared/Layout';
 import ProfileCard from '@/Shared/ProfileCard';
@@ -12,15 +12,13 @@ import TextArea from '@/Shared/TextArea';
 import LoadingButton from '@/Shared/LoadingButton';
 import axios from 'axios';
 
-function CreateRole() {
-     const { auth, errors, data } = usePage().props;
-     const [sending, setSending] = useState(false);
-     const [saved, setSaved] = useState(false);
-     const [values, setValues] = useState({
-          name: data.name || '',
-          display: data.display || '',
-          description: data.description || '',
-          errors: errors
+function EditRole() {
+     const { auth, info } = usePage().props;
+     const { data, setData, put, processing, reset, errors } = useForm({
+          id: info.id,
+          name: info.name || '',
+          display: info.display || '',
+          description: info.description || ''
      });
 
      const iconClasses = classNames('w-4 h-4 mr-2', {
@@ -28,21 +26,9 @@ function CreateRole() {
           'text-gray-500 hover:text-white fill-current': true
      });
 
-     function handleChange(e) {
-          const key = e.target.name;
-          const value = e.target.value;
-          setValues(values => ({
-               ...values,
-               [key]: value
-          }));
-     }
-
      function handleSubmit(e) {
           e.preventDefault();
-          setSending(true);
-          Inertia.post(route('role.update', data.id), values).then(() => {
-               setSending(false);
-          });
+          put(route('role.update', info.id));
      }
 
      return (
@@ -76,8 +62,8 @@ function CreateRole() {
                                                    readonly={false}
                                                    must={true}
                                                    errors={errors.display}
-                                                   value={values.display}
-                                                   onChange={handleChange}
+                                                   value={data.display}
+                                                   onChange={e => setData('display', e.target.value)}
                                               />
                                               <TextInput
                                                    className="form-input rounded-md shadow-sm mt-4 block w-full"
@@ -87,26 +73,21 @@ function CreateRole() {
                                                    disable={false}
                                                    readonly={true}
                                                    errors={errors.name}
-                                                   value={values.name}
+                                                   value={data.name}
                                               />
                                               <TextArea
                                                    className="form-input rounded-md shadow-sm mt-4 block w-full"
                                                    label="Description"
                                                    name="description"
                                                    errors={errors.description}
-                                                   value={values.description}
-                                                   onChange={handleChange}
+                                                   value={data.description}
+                                                   onChange={e => setData('description', e.target.value)}
                                               />
                                         </div>
                                    </div>
                               </div>
                               <div className="flex items-center justify-end px-4 py-3 bg-gray-100 text-right sm:px-6 rounded-b">
-                                   <div className="mr-3">
-                                        {!sending && saved && (<div className="text-sm text-gray-600">
-                                             Updated.
-                                        </div>)}
-                                   </div>
-                                   <LoadingButton type="submit" loading={sending} className="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">
+                                   <LoadingButton type="submit" loading={processing} className="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">
                                         Update
                                    </LoadingButton>
                               </div>
@@ -119,6 +100,6 @@ function CreateRole() {
 
 // Persisten layout
 // Docs: https://inertiajs.com/pages#persistent-layouts
-CreateRole.layout = page => <Layout children={page} header={'Create Role'} />;
+EditRole.layout = page => <Layout children={page} header={'Edit Role'} />;
 
-export default CreateRole;
+export default EditRole;

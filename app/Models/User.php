@@ -22,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
      protected $fillable = [
-          'person_id', 'username', 'email', 'password', 'pin', 'multi_connect', 'profile_url'
+          'person_id', 'username', 'email', 'password', 'pin', 'multi_connect'
      ];
 
      /**
@@ -55,7 +55,7 @@ class User extends Authenticatable
 
      public function getAvatarAttribute()
      {
-          return Storage::disk('public')->exists('users/'.$this->profile_url) ? route('show.image', 'public/users/'.$this->profile_url) : null;
+          return ($this->person->profile_url && Storage::disk('local')->exists('users/'.$this->person->profile_url)) ? route('show.image', 'users/'.$this->person->profile_url) : null;
      }
 
      public static function serverError()

@@ -28,9 +28,10 @@ export default ({ className, name, label, accept, errors = [], onChange }) => {
      }
 
      function handleFileChange(e) {
-          const file = e.target.files[0];
-          const path = URL.createObjectURL(event.target.files[0]);
+          let file = e.target.files[0];
+          let path = URL.createObjectURL(event.target.files[0]);
           setFile(file);
+          setPath(path);
           onChange(file, path);
      }
 

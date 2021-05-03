@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Inertia } from '@inertiajs/inertia';
+import { useForm } from '@inertiajs/inertia-react';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import Layout from '@/Shared/Layout';
 import ProfileCard from '@/Shared/ProfileCard';
@@ -12,54 +12,33 @@ import TextInput from '@/Shared/TextInput';
 import TextArea from '@/Shared/TextArea';
 import LoadingButton from '@/Shared/LoadingButton';
 import DropdownButton from '@/Shared/DropdownButton';
+import Pagination from '@/Shared/Pagination';
 import { createSlug } from '@/utils';
-import axios from 'axios';
 
 function CreateRole() {
-     const { auth, errors, data } = usePage().props;
-     const [sending, setSending] = useState(false);
-     const [saved, setSaved] = useState(false);
-     const [values, setValues] = useState({
+     const { auth, info } = usePage().props;
+     const { data, setData, post, processing, reset, errors } = useForm({
           id: null,
           name: '',
           display: '',
-          description: '',
-          data: data.data
+          description: ''
      });
+
 
      const iconClasses = classNames('w-4 h-4 mr-2', {
           'text-white fill-current': false,
           'text-gray-500 hover:text-white fill-current': true
      });
 
-     function handleChange(e) {
-          const key = e.target.name;
-          const value = e.target.value;
-          setValues(values => ({
-               ...values,
-               [key]: value
-          }));
-     }
-
      function handleFocusOut(e){
           const value = e.target.value;
-          setValues(values => ({
-               ...values,
-               name: createSlug(value)
-          }));
+          setData('name', createSlug(value));
      }
 
      function handleSubmit(e) {
           e.preventDefault();
-          setSending(true);
-          Inertia.post(route('role.store'), values).then(() => {
-               setSending(false);
-               setValues(values => ({
-                    ...values,
-                    name: '',
-                    display: '',
-                    description: ''
-               }));
+          post(route('role.store'), {
+               onSuccess: () => reset()
           });
      }
 
@@ -94,8 +73,8 @@ function CreateRole() {
                                                    readonly={false}
                                                    must={true}
                                                    errors={errors.display}
-                                                   value={values.display}
-                                                   onChange={handleChange}
+                                                   value={data.display}
+                                                   onChange={e => setData('display', e.target.value)}
                                                    onBlur={handleFocusOut}
                                               />
                                               <TextInput
@@ -107,27 +86,22 @@ function CreateRole() {
                                                    readonly={true}
                                                    must={false}
                                                    errors={errors.name}
-                                                   value={values.name}
-                                                   onChange={handleChange}
+                                                   value={data.name}
+                                                   onChange={e => setData('name', e.target.value)}
                                               />
                                               <TextArea
                                                    className="form-input rounded-md shadow-sm mt-4 block w-full"
                                                    label="Description"
                                                    name="description"
                                                    errors={errors.description}
-                                                   value={values.description}
-                                                   onChange={handleChange}
+                                                   value={data.description}
+                                                   onChange={e => setData('description', e.target.value)}
                                               />
                                         </div>
                                    </div>
                               </div>
                               <div className="flex items-center justify-end px-4 py-3 bg-gray-100 text-right sm:px-6 rounded-b">
-                                   <div className="mr-3">
-                                        {!sending && saved && (<div className="text-sm text-gray-600">
-                                             Saved.
-                                        </div>)}
-                                   </div>
-                                   <LoadingButton type="submit" loading={sending} className="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">
+                                   <LoadingButton type="submit" loading={processing} className="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">
                                         Save
                                    </LoadingButton>
                               </div>
@@ -153,7 +127,7 @@ function CreateRole() {
                               </tr>
                          </thead>
                          <tbody>
-                              {data.data.map(({id, name, display, description}, i) => {
+                              {info.data.map(({id, name, display, description}, i) => {
                                    return <tr key={i}>
                                         <td className="border px-4 py-2">{display}</td>
                                         <td className="border px-4 py-2">{name}</td>
@@ -172,11 +146,12 @@ function CreateRole() {
                                         </td>
                                    </tr>
                               })}
-                              {!values.data.length && (<tr>
+                              {!info.data.length && (<tr>
                                    <td colSpan="4" className="p-4 bg-blue-100 text-blue-500 text-center">No data found.</td>
                               </tr>)}
                          </tbody>
                     </table>
+                    <Pagination links={info.links} />
                </DataContainer>
           </React.Fragment>
      );

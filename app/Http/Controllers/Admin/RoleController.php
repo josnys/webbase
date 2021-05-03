@@ -15,7 +15,7 @@ class RoleController extends Controller
      public function create()
      {
           try {
-               $roles = Role::paginate(100)->transform(function($role){
+               $roles = Role::paginate(50)->transform(function($role){
                     return [
                          'id' => $role->id,
                          'name' => $role->name,
@@ -23,7 +23,7 @@ class RoleController extends Controller
                          'description' => $role->description
                     ];
                });
-               return Inertia::render('Admin/Security/CreateRole', ['data' => $roles]);
+               return Inertia::render('Admin/Security/CreateRole', ['info' => $roles]);
           } catch (\Exception $e) {
                Log::error('Role create', ['data' => $e]);
                return redirect()->back()->with('error', Role::serverError());
@@ -49,7 +49,7 @@ class RoleController extends Controller
      public function edit(Role $role)
      {
           try {
-               return Inertia::render('Admin/Security/EditRole', ['data' => [
+               return Inertia::render('Admin/Security/EditRole', ['info' => [
                     'id' => $role->id,
                     'name' => $role->name,
                     'display' => $role->display_name,
@@ -95,7 +95,7 @@ class RoleController extends Controller
                     ]);
                }
 
-               return Inertia::render('Admin/Security/AssignPermission', ['data' => [
+               return Inertia::render('Admin/Security/AssignPermission', ['info' => [
                     'role' => [
                          'id' => $role->id,
                          'display' => $role->display_name,
