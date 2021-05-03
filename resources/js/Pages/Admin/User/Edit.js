@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Helmet from 'react-helmet';
-import { Inertia } from '@inertiajs/inertia';
+import { useForm } from '@inertiajs/inertia-react';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import Layout from '@/Shared/Layout';
 import TextInput from '@/Shared/TextInput';
@@ -13,22 +13,20 @@ import Icon from '@/Shared/Icon';
 import classNames from 'classnames';
 
 const Edit = () => {
-     const { auth, errors, data } = usePage().props;
-     const [sending, setSending] = useState(false);
-
-     const [values, setValues] = useState({
-          fname: data.fname || '',
-          lname: data.lname || '',
-          code: data.code || '',
-          dob: data.dob || '',
-          sex: data.sex || '',
-          identification: data.identification || '',
-          identificationType: data.identificationType || '',
-          address: data.address || '',
-          phone: data.phone || '',
-          username: data.username || '',
-          email: data.email || '',
-          avatar: data.avatar
+     const { auth, info } = usePage().props;
+     const { data, setData, put, processing, errors } = useForm({
+          fname: info.fname || '',
+          lname: info.lname || '',
+          code: info.code || '',
+          dob: info.dob || '',
+          sex: info.sex || '',
+          identification: info.identification || '',
+          identificationType: info.identificationType || '',
+          address: info.address || '',
+          phone: info.phone || '',
+          username: info.username || '',
+          email: info.email || '',
+          avatar: info.avatar
      });
 
      const iconClasses = classNames('w-4 h-4 mr-2', {
@@ -36,21 +34,9 @@ const Edit = () => {
           'text-gray-500 hover:text-white fill-current': true
      });
 
-     function handleChange(e) {
-          const key = e.target.name;
-          const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
-          setValues(values => ({
-               ...values,
-               [key]: value
-          }));
-     }
-
      function handleSubmit(e) {
           e.preventDefault();
-          setSending(true);
-          Inertia.post(route('user.update', data.id), values).then(() => {
-               setSending(false);
-          });
+          put(route('user.update', info.id));
      }
 
      return (
@@ -87,8 +73,8 @@ const Edit = () => {
                                                   readonly={false}
                                                   must={true}
                                                   errors={errors.fname}
-                                                  value={values.fname}
-                                                  onChange={handleChange}
+                                                  value={data.fname}
+                                                  onChange={e => setData('fname', e.target.value)}
                                              />
                                              <TextInput
                                                   className="form-input rounded-md shadow-sm mt-4 block w-full"
@@ -99,20 +85,8 @@ const Edit = () => {
                                                   readonly={false}
                                                   must={true}
                                                   errors={errors.lname}
-                                                  value={values.lname}
-                                                  onChange={handleChange}
-                                             />
-                                             <TextInput
-                                                  className="form-input rounded-md shadow-sm mt-4 block w-full"
-                                                  label="Code"
-                                                  name="code"
-                                                  type="text"
-                                                  disable={true}
-                                                  readonly={true}
-                                                  must={false}
-                                                  errors={errors.code}
-                                                  value={values.code}
-                                                  onChange={handleChange}
+                                                  value={data.lname}
+                                                  onChange={e => setData('lname', e.target.value)}
                                              />
                                              <TextInput
                                                   className="form-input rounded-md shadow-sm mt-4 block w-full"
@@ -123,8 +97,8 @@ const Edit = () => {
                                                   readonly={false}
                                                   must={true}
                                                   errors={errors.dob}
-                                                  value={values.dob}
-                                                  onChange={handleChange}
+                                                  value={data.dob}
+                                                  onChange={e => setData('dob', e.target.value)}
                                              />
                                              <SelectInput
                                                   className="form-input rounded-md shadow-sm mt-4 block w-full"
@@ -132,11 +106,11 @@ const Edit = () => {
                                                   name="sex"
                                                   must={true}
                                                   errors={errors.sex}
-                                                  value={values.sex}
-                                                  onChange={handleChange}
+                                                  value={data.sex}
+                                                  onChange={e => setData('sex', e.target.value)}
                                                   >
                                                   <option value={''}>Choose Sex</option>
-                                                  {data.sexes.map(({code, name}, i) => {
+                                                  {info.sexes.map(({code, name}, i) => {
                                                        return <option key={code} value={code}>{name}</option>
                                                   })}
                                              </SelectInput>
@@ -146,11 +120,11 @@ const Edit = () => {
                                                   name="identificationType"
                                                   must={true}
                                                   errors={errors.identificationType}
-                                                  value={values.identificationType}
-                                                  onChange={handleChange}
+                                                  value={data.identificationType}
+                                                  onChange={e => setData('identificationType', e.target.value)}
                                                   >
                                                   <option value={''}>Choose Identity Type</option>
-                                                  {data.identityType.map(({code, name}, i) => {
+                                                  {info.identityType.map(({code, name}, i) => {
                                                        return <option key={code} value={code}>{name}</option>
                                                   })}
                                              </SelectInput>
@@ -163,30 +137,30 @@ const Edit = () => {
                                                   readonly={false}
                                                   must={true}
                                                   errors={errors.identification}
-                                                  value={values.identification}
-                                                  onChange={handleChange}
+                                                  value={data.identification}
+                                                  onChange={e => setData('identification', e.target.value)}
                                              />
                                              <TextInput
                                                   className="form-input rounded-md shadow-sm mt-4 block w-full"
                                                   label="Userame"
                                                   name="username"
                                                   type="text"
-                                                  disable={true}
-                                                  readonly={true}
+                                                  disable={false}
+                                                  readonly={false}
                                                   errors={errors.username}
-                                                  value={values.username}
-                                                  onChange={handleChange}
+                                                  value={data.username}
+                                                  onChange={e => setData('username', e.target.value)}
                                              />
                                              <TextInput
                                                   className="form-input rounded-md shadow-sm mt-4 block w-full"
                                                   label="Email"
                                                   name="email"
                                                   type="email"
-                                                  disable={true}
-                                                  readonly={true}
+                                                  disable={false}
+                                                  readonly={false}
                                                   errors={errors.email}
-                                                  value={values.email}
-                                                  onChange={handleChange}
+                                                  value={data.email}
+                                                  onChange={e => setData('email', e.target.value)}
                                              />
                                              <TextInput
                                                   className="form-input rounded-md shadow-sm mt-4 block w-full"
@@ -197,8 +171,8 @@ const Edit = () => {
                                                   readonly={false}
                                                   must={true}
                                                   errors={errors.phone}
-                                                  value={values.phone}
-                                                  onChange={handleChange}
+                                                  value={data.phone}
+                                                  onChange={e => setData('phone', e.target.value)}
                                              />
                                              <TextInput
                                                   className="form-input rounded-md shadow-sm mt-4 block w-full"
@@ -209,14 +183,14 @@ const Edit = () => {
                                                   readonly={false}
                                                   must={true}
                                                   errors={errors.address}
-                                                  value={values.address}
-                                                  onChange={handleChange}
+                                                  value={data.address}
+                                                  onChange={e => setData('address', e.target.value)}
                                              />
                                         </div>
                                    </div>
                               </div>
                               <div className="flex items-center justify-end px-4 py-3 bg-gray-100 text-right sm:px-6 rounded-b">
-                                   <LoadingButton type="submit" loading={sending} className="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">
+                                   <LoadingButton type="submit" loading={processing} className="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">
                                         Update
                                    </LoadingButton>
                               </div>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Inertia } from '@inertiajs/inertia';
 import { useForm } from '@inertiajs/inertia-react';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import Helmet from 'react-helmet';

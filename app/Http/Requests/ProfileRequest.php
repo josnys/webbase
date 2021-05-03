@@ -35,7 +35,7 @@ class ProfileRequest extends FormRequest
                'username' => ['required', 'exclude_if:current_username,'.auth()->user()->username, 'string', 'max:30', 'unique:users'],
                'current_email' => ['required'],
                'email' => ['required', 'exclude_if:current_email,'.auth()->user()->email, 'string', 'email', 'max:255', 'unique:users'],
-               'photo' => ['sometimes', 'exclude_if:selectedAvatar,null', 'image', 'max:2048', 'mimes:jpeg,jpg,png']
+               'avatar' => ['sometimes', 'exclude_if:selectedAvatar,null', 'image', 'max:2048', 'mimes:jpeg,jpg,png']
           ];
      }
 }

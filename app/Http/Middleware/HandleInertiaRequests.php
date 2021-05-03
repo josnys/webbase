@@ -37,7 +37,7 @@ class HandleInertiaRequests extends Middleware
                          'name' => config('app.name'),
                          'system' => [
                               'name' => 'Starter Template',
-                              'version' => 'v1.0'
+                              'version' => 'v0.0.1'
                          ]
                     ];
                },
@@ -65,7 +65,7 @@ class HandleInertiaRequests extends Middleware
                               'name' => $user->name,
                               'username' => $user->username,
                               'email' => $user->email,
-                              'avatar' => ($user->profile_url) ? route('show.image', 'users/'.$user->profile_url) : null, // (Auth::user()->profile_url) ? asset('storage/users/'.Auth::user()->profile_url) : null
+                              'avatar' => $user->avatar,
                               'roles' => ($roles) ? $roles : null,
                               'can' => ($permissions) ? $permissions : null
                          ] : null,

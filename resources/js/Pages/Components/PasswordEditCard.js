@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Helmet from 'react-helmet';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
+import { useForm } from '@inertiajs/inertia-react';
 import TextInput from '../../Shared/TextInput';
 import FileInput from '../../Shared/FileInput';
 import ProfileCard from '../../Shared/ProfileCard';
@@ -8,41 +9,27 @@ import DataCard from '../../Shared/DataCard';
 import LoadingButton from '../../Shared/LoadingButton';
 import axios from 'axios';
 
-const ProfileEditCard = () => {
-     const { auth, errors, data } = usePage().props;
-     const [sending, setSending] = useState(false);
-     const [saved, setSaved] = useState(false);
-
-     const [values, setValues] = useState({
+const PasswordEditCard = () => {
+     const { auth, user } = usePage().props;
+     const { data, setData, post, processing, errors } = useForm({
           current_password: '',
           password: '',
           password_confirmation: '',
-          errors: errors
      });
-
-     function handleChange(e) {
-          const key = e.target.name;
-          const value = e.target.value;
-          setValues(values => ({
-               ...values,
-               [key]: value
-          }));
-     }
 
      function handleSubmit(e) {
           e.preventDefault();
-          setSending(true);
-          setSaved(false);
-          axios.post(route('profile.password', data.id), values).then((response) => {
-               setSaved(true);
-               setSending(false);
-          }).catch((error) => {
-               setValues(values => ({
-                    ...values,
-                    errors: error.response.data.errors
-               }));
-               setSending(false);
-          });
+          post(route('profile.password', user.id));
+          // axios.post(route('profile.password', data.id), values).then((response) => {
+          //      setSaved(true);
+          //      setSending(false);
+          // }).catch((error) => {
+          //      setValues(values => ({
+          //           ...values,
+          //           errors: error.response.data.errors
+          //      }));
+          //      setSending(false);
+          // });
      }
      return (
           <React.Fragment key="uprofile">
@@ -71,9 +58,9 @@ const ProfileEditCard = () => {
                                                    disable={false}
                                                    readonly={false}
                                                    must={true}
-                                                   errors={values.errors.current_password}
-                                                   value={values.current_password}
-                                                   onChange={handleChange}
+                                                   errors={errors.current_password}
+                                                   value={data.current_password}
+                                                   onChange={e => setData('current_password', e.target.value)}
                                               />
                                               <TextInput
                                                    className="form-input rounded-md shadow-sm mt-4 block w-full"
@@ -83,9 +70,9 @@ const ProfileEditCard = () => {
                                                    disable={false}
                                                    readonly={false}
                                                    must={true}
-                                                   errors={values.errors.password}
-                                                   value={values.password}
-                                                   onChange={handleChange}
+                                                   errors={errors.password}
+                                                   value={data.password}
+                                                   onChange={e => setData('password', e.target.value)}
                                               />
                                               <TextInput
                                                    className="form-input rounded-md shadow-sm mt-4 block w-full"
@@ -95,20 +82,15 @@ const ProfileEditCard = () => {
                                                    disable={false}
                                                    readonly={false}
                                                    must={true}
-                                                   errors={values.errors.password_confirmation}
-                                                   value={values.password_confirmation}
-                                                   onChange={handleChange}
+                                                   errors={errors.password_confirmation}
+                                                   value={data.password_confirmation}
+                                                   onChange={e => setData('password_confirmation', e.target.value)}
                                               />
                                         </div>
                                    </div>
                               </div>
                               <div className="flex items-center justify-end px-4 py-3 bg-gray-100 text-right sm:px-6 rounded-b">
-                                   <div className="mr-3">
-                                        {!sending && saved && (<div className="text-sm text-gray-600">
-                                             Password change, please <InertiaLink className="font-semibold text-gray-700" href={route('login')}>login to continue</InertiaLink>
-                                        </div>)}
-                                   </div>
-                                   <LoadingButton type="submit" loading={sending} className="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">
+                                   <LoadingButton type="submit" loading={processing} className="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">
                                         Save
                                    </LoadingButton>
                               </div>
@@ -119,4 +101,4 @@ const ProfileEditCard = () => {
      );
 };
 
-export default ProfileEditCard;
+export default PasswordEditCard;

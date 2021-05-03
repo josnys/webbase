@@ -32,8 +32,8 @@ class UserSeeder extends Seeder
 
           $user = new User;
           $user->person_id = $person->id;
-          $user->username = 'superadmin';
-          $user->email = 'superadmin@app.com';
+          $user->username = 'admin';
+          $user->email = 'admin@app.com';
           $user->pin = '1234';
           $user->multi_connect = true;
           $user->password = Hash::make('password');

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
+import { useForm } from '@inertiajs/inertia-react';
 import Helmet from 'react-helmet';
 import AuthCard from '@/Shared/AuthCard';
 import TextInput from '@/Shared/TextInput';
@@ -10,29 +10,17 @@ import Logo from '@/Shared/Logo';
 import FlashMessages from '@/Shared/FlashMessages';
 
 function ResetPassword() {
-     const { errors, data, app, flash } = usePage().props;
-     const [sending, setSending] = useState(false);
-     const [values, setValues] = useState({
+     const { app } = usePage().props;
+     const { data, setData, post, processing, errors } = useForm({
           email: data.email,
           token: data._token,
           password: '',
           password_confirmation:''
      });
 
-     function handleChange(e) {
-          const key = e.target.name;
-          const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
-          setValues(values => ({
-               ...values,
-               [key]: value
-          }));
-     }
-
      function handleSubmit(e) {
           e.preventDefault();
-          setSending(true);
-          console.log(values);
-          Inertia.post(route('password.update'), values).then(() => {
+          post(route('password.update')).then(() => {
                setSending(false);
           });
      }
@@ -55,8 +43,8 @@ function ResetPassword() {
                               readonly={false}
                               must={true}
                               errors={errors.email}
-                              value={values.email}
-                              onChange={handleChange}
+                              value={data.email}
+                              onChange={e => setData('email', e.target.value)}
                          />
                          <TextInput
                               className="mt-4"
@@ -66,8 +54,8 @@ function ResetPassword() {
                               disable={false}
                               must={true}
                               errors={errors.password}
-                              value={values.password}
-                              onChange={handleChange}
+                              value={data.password}
+                              onChange={e => setData('password', e.target.value)}
                          />
                          <TextInput
                               className="mt-4"
@@ -77,11 +65,11 @@ function ResetPassword() {
                               disable={false}
                               must={true}
                               errors={errors.password_confirmation}
-                              value={values.password_confirmation}
-                              onChange={handleChange}
+                              value={data.password_confirmation}
+                              onChange={e => setData('password_confirmation', e.target.value)}
                          />
                          <div className="flex items-center justify-end mt-4">
-                              <LoadingButton type="submit" loading={sending} className="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">
+                              <LoadingButton type="submit" loading={processing} className="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">
                                    Reset Password
                               </LoadingButton>
                          </div>

@@ -53,7 +53,7 @@ class UserController extends Controller
                          'name' => $user->person->name,
                          'username' => $user->username,
                          'email' => $user->email,
-                         'avatar' => ($user->profile_url) ? route('show.image', 'users/'.$user->profile_url) : null,
+                         'avatar' => $user->avatar,
                          'roles' => $roles
                     ];
                });
@@ -68,7 +68,7 @@ class UserController extends Controller
      public function create()
      {
           try {
-               return Inertia::render('Admin/User/Create', ['data' => [
+               return Inertia::render('Admin/User/Create', ['info' => [
                     'sexes' => $this->userSex,
                     'identityType' => $this->identityType
                ]]);
@@ -117,7 +117,7 @@ class UserController extends Controller
      {
           try {
                $person = Person::find($user->person_id);
-               return Inertia::render('Admin/User/Edit', ['data' => [
+               return Inertia::render('Admin/User/Edit', ['info' => [
                     'id' => $user->id,
                     'fname' => $person->firstname,
                     'lname' => $person->lastname,
@@ -132,7 +132,7 @@ class UserController extends Controller
                     'multiConnect' => ($user->multi_connect) ? true : false,
                     'username' => $user->username,
                     'email' => $user->email,
-                    'avatar' => ($user->profile_url) ? route('show.image', 'users/'.$user->profile_url) : null,
+                    'avatar' => $user->avatar,
                     'sexes' => $this->userSex,
                     'identityType' => $this->identityType
                ]]);
@@ -187,7 +187,7 @@ class UserController extends Controller
                }
                $person = Person::find($user->person_id);
                return Inertia::render('Admin/User/Role', [
-                    'data' => [
+                    'info' => [
                          'roles' => $roles,
                          'user' => [
                               'id' => $user->id,
@@ -224,7 +224,7 @@ class UserController extends Controller
      {
           try {
                $person = Person::find($user->person_id);
-               return Inertia::render('Admin/User/ChangePassword', ['data' => [
+               return Inertia::render('Admin/User/ChangePassword', ['info' => [
                     'id' => $user->id,
                     'name' => $person->name,
                     'code' => $user->code,

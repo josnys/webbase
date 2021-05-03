@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Inertia } from '@inertiajs/inertia';
+import { useForm } from '@inertiajs/inertia-react';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import Layout from '@/Shared/Layout';
 import ProfileCard from '@/Shared/ProfileCard';
@@ -11,20 +11,16 @@ import classNames from 'classnames';
 import TextInput from '@/Shared/TextInput';
 import TextArea from '@/Shared/TextArea';
 import LoadingButton from '@/Shared/LoadingButton';
+import Pagination from '@/Shared/Pagination';
 import { createSlug } from '@/utils';
-import axios from 'axios';
 
 function CreatePermission() {
-     const { auth, errors, data } = usePage().props;
-     const [sending, setSending] = useState(false);
-     const [saved, setSaved] = useState(false);
-     const [values, setValues] = useState({
+     const { auth, info } = usePage().props;
+     const { data, setData, post, processing, reset, errors } = useForm({
           id: null,
           name: '',
           display: '',
           description: '',
-          errors: errors,
-          data: data.data
      });
 
      const iconClasses = classNames('w-4 h-4 mr-2', {
@@ -32,34 +28,15 @@ function CreatePermission() {
           'text-gray-500 hover:text-white fill-current': true
      });
 
-     function handleChange(e) {
-          const key = e.target.name;
-          const value = e.target.value;
-          setValues(values => ({
-               ...values,
-               [key]: value
-          }));
-     }
-
      function handleFocusOut(e){
           const value = e.target.value;
-          setValues(values => ({
-               ...values,
-               name: createSlug(value)
-          }));
+          setData('name', createSlug(value));
      }
 
      function handleSubmit(e) {
           e.preventDefault();
-          setSending(true);
-          Inertia.post(route('permission.store'), values).then(() => {
-               setSending(false);
-               setValues(values => ({
-                    ...values,
-                    name: '',
-                    display: '',
-                    description: ''
-               }));
+          post(route('permission.store'), {
+               onSuccess: () => reset()
           });
      }
 
@@ -93,9 +70,9 @@ function CreatePermission() {
                                                    disable={false}
                                                    readonly={false}
                                                    must={true}
-                                                   errors={values.errors.display}
-                                                   value={values.display}
-                                                   onChange={handleChange}
+                                                   errors={errors.display}
+                                                   value={data.display}
+                                                   onChange={e => setData('display', e.target.value)}
                                                    onBlur={handleFocusOut}
                                               />
                                               <TextInput
@@ -106,28 +83,23 @@ function CreatePermission() {
                                                    disable={false}
                                                    readonly={true}
                                                    must={false}
-                                                   errors={values.errors.name}
-                                                   value={values.name}
-                                                   onChange={handleChange}
+                                                   errors={errors.name}
+                                                   value={data.name}
+                                                   onChange={e => setData('name', e.target.value)}
                                               />
                                               <TextArea
                                                    className="form-input rounded-md shadow-sm mt-4 block w-full"
                                                    label="Description"
                                                    name="description"
-                                                   errors={values.errors.description}
-                                                   value={values.description}
-                                                   onChange={handleChange}
+                                                   errors={errors.description}
+                                                   value={data.description}
+                                                   onChange={e => setData('description', e.target.value)}
                                               />
                                         </div>
                                    </div>
                               </div>
                               <div className="flex items-center justify-end px-4 py-3 bg-gray-100 text-right sm:px-6 rounded-b">
-                                   <div className="mr-3">
-                                        {!sending && saved && (<div className="text-sm text-gray-600">
-                                             Saved.
-                                        </div>)}
-                                   </div>
-                                   <LoadingButton type="submit" loading={sending} className="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">
+                                   <LoadingButton type="submit" loading={processing} className="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">
                                         Save
                                    </LoadingButton>
                               </div>
@@ -141,7 +113,7 @@ function CreatePermission() {
                </div>
                <DataContainer>
                     <div className="col-span-12">
-                         <h3 className="text-lg font-medium text-gray-900">Permission's List <span className="float-right text-sm text-gray-600 font-medium">{data.data.length} in total</span></h3>
+                         <h3 className="text-lg font-medium text-gray-900">Permission's List <span className="float-right text-sm text-gray-600 font-medium">{info.data.length} in total</span></h3>
                     </div>
                     <table className="table-auto col-span-12 text-sm">
                          <thead className="bg-gray-300">
@@ -153,7 +125,7 @@ function CreatePermission() {
                               </tr>
                          </thead>
                          <tbody>
-                              {data.data.map(({id, name, display, description}, i) => {
+                              {info.data.map(({id, name, display, description}, i) => {
                                    return <tr key={i}>
                                         <td className="border px-4 py-2">{display}</td>
                                         <td className="border px-4 py-2">{name}</td>
@@ -166,11 +138,12 @@ function CreatePermission() {
                                         </td>
                                    </tr>
                               })}
-                              {!values.data.length && (<tr>
+                              {!info.data.length && (<tr>
                                    <td colSpan="4" className="p-4 bg-blue-100 text-blue-500 text-center">No data found.</td>
                               </tr>)}
                          </tbody>
                     </table>
+                    <Pagination links={info.links} />
                </DataContainer>
           </React.Fragment>
      );
