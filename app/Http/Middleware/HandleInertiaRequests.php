@@ -37,7 +37,7 @@ class HandleInertiaRequests extends Middleware
                          'name' => config('app.name'),
                          'system' => [
                               'name' => 'Starter Template',
-                              'version' => 'v0.0.1'
+                              'version' => 'v0.0.2'
                          ]
                     ];
                },
@@ -45,14 +45,9 @@ class HandleInertiaRequests extends Middleware
                     $user = Auth::user() ? User::with(['roles' => function($roles){
                          return $roles->with('permissions');
                     }])->find(Auth::user()->id) : null;
-                    $roles = array();
                     $permissions = array();
                     if($user){
                          foreach($user->roles as $r){
-                              array_push($roles, [
-                                   'name' => $r->name,
-                                   'display' => $r->display_name
-                              ]);
                               foreach($r->permissions as $p){
                                    array_push($permissions, $p->name);
                               }
@@ -66,14 +61,20 @@ class HandleInertiaRequests extends Middleware
                               'username' => $user->username,
                               'email' => $user->email,
                               'avatar' => $user->avatar,
-                              'roles' => ($roles) ? $roles : null,
-                              'can' => ($permissions) ? $permissions : null
+                              'roles' => $user->roles->count() ? collect($user->roles)->map(function($role){
+                                   return [
+                                        'name' => $role->name,
+                                        'display' => $role->display_name
+                                   ];
+                              }) : [],
+                              'can' => ($permissions) ? $permissions : []
                          ] : null,
                     ];
                },
                'flash' => function () {
                     return [
                          'success' => Session::get('success'),
+                         'warning' => Session::get('warning'),
                          'error' => Session::get('error'),
                     ];
                },

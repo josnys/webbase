@@ -6,6 +6,8 @@ import DataContainer from '@/Shared/DataContainer';
 import DropdownButton from '@/Shared/DropdownButton';
 import Icon from '@/Shared/Icon';
 import Pagination from '@/Shared/Pagination';
+import { BackButton } from '@/Shared/BackButton';
+import { AddButton } from '@/Shared/AddButton';
 import { can } from '@/utils';
 
 const Index = () => {
@@ -16,24 +18,19 @@ const Index = () => {
                     <title>Roles & Permission</title>
                </Helmet>
                <div className="max-w-7xl mx-auto p-2">
-                    <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('home')}>Dashboard</InertiaLink> |
-                    <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('user.index')}> Users</InertiaLink> |
-                    <span className="text-md text-gray-700 leading-tight"> Roles & Permissions</span>
+                    <InertiaLink className="font-semibold text-md text-gray-600 hover:text-gray-700 leading-tight" href={route('home')}>Dashboard</InertiaLink> |
+                    <InertiaLink className="font-semibold text-md text-gray-600 hover:text-gray-700 leading-tight" href={route('user.index')}> Users</InertiaLink> |
+                    <span className="text-md text-gray-600 leading-tight"> Roles & Permissions</span>
                </div>
                <DataContainer>
                     <div className="col-span-12">
-                         {can(auth.user, 'create-role')?<InertiaLink href={route('role.create')} className="bg-gray-300 hover:bg-gray-400 mr-2 text-gray-800 text-sm py-1 px-1 rounded inline-flex items-center">
-                              <Icon name={'plus'} className={'fill-current w-4 h-4 mr-2'} />
-                              Add Role
-                         </InertiaLink>:null}
-                         <InertiaLink href={route('user.index')} className="float-right bg-white border border-gray-400 hover:bg-gray-200 text-gray-600 text-sm py-1 px-1 ml-3 rounded inline-flex items-center">
-                              <Icon name={'back'} className={'fill-current w-4 h-4 mr-2'} />
-                              Back
-                         </InertiaLink>
-                         {(auth.user.id == 1)?<InertiaLink href={route('permission.create')} className="float-right bg-gray-300 hover:bg-gray-400 text-gray-800 text-sm py-1 px-1 rounded inline-flex items-center">
-                              <Icon name={'plus'} className={'fill-current w-4 h-4 mr-2'} />
-                              Permissions
-                         </InertiaLink>:null}
+                         {can(auth.user, 'create-role') && <AddButton caption={'Add Role'} link={'role.create'} linkParams={''} />}
+                         <div className="float-right">
+                              <BackButton link={'user.index'} linkParams={''} />
+                         </div>
+                         {(auth.user.id == 1) && <div className="float-right">
+                              {can(auth.user, 'create-role') && <AddButton caption={'Permissions'} link={'permission.create'} linkParams={''} />}
+                         </div>}
                     </div>
                     <table className="table-fixed col-span-12 text-sm">
                          <thead className="bg-gray-100">

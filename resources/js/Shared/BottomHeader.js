@@ -25,7 +25,7 @@ export default ({ ...props }) => {
                </div>
                <div className="relative">
                     <div className="text-gray-500 flex items-center cursor-pointer select-none group" onClick={() => setMenuOpened(true)}>
-                         {auth.user.username}
+                         <span className="mr-1">{auth.user.username}</span>
                          <button className="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
                               {!auth.user.avatar && (<img src={`https://ui-avatars.com/api/?name=${auth.user.name}&amp;color=7F9CF5&amp;background=EBF4FF`} alt={auth.user.name} className="h-8 w-8 rounded-full" />)}
                               {auth.user.avatar && (<img src={`${auth.user.avatar}`} alt={auth.user.name} className="h-8 w-8 rounded-full" />)}

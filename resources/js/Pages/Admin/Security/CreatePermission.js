@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import Helmet from 'react-helmet';
 import { useForm } from '@inertiajs/inertia-react';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import Layout from '@/Shared/Layout';
@@ -12,6 +12,7 @@ import TextInput from '@/Shared/TextInput';
 import TextArea from '@/Shared/TextArea';
 import LoadingButton from '@/Shared/LoadingButton';
 import Pagination from '@/Shared/Pagination';
+import { BackButton } from '@/Shared/BackButton';
 import { createSlug } from '@/utils';
 
 function CreatePermission() {
@@ -42,6 +43,9 @@ function CreatePermission() {
 
      return (
           <React.Fragment key="permission-c">
+               <Helmet>
+                    <title>Create Permission</title>
+               </Helmet>
                <ProfileCard>
                     <div className="md:col-span-1">
                          <div className="px-4 sm:px-0">
@@ -56,10 +60,7 @@ function CreatePermission() {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-3 gap-3">
                                         <div className="col-span-12 text-right">
-                                             <InertiaLink href={route('security.index')} className="bg-transparent border border-gray-500 text-sm text-gray-500 p-1 rounded focus:outline-none hover:bg-gray-600 hover:text-gray-100 inline-flex items-center">
-                                                  <Icon name="back" className={iconClasses} />
-                                                  Back
-                                             </InertiaLink>
+                                             <BackButton link={'security.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-6 sm:col-span-4">
                                              <TextInput

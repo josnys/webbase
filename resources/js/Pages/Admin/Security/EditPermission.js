@@ -10,6 +10,7 @@ import classNames from 'classnames';
 import TextInput from '@/Shared/TextInput';
 import TextArea from '@/Shared/TextArea';
 import LoadingButton from '@/Shared/LoadingButton';
+import { BackButton } from '@/Shared/BackButton';
 
 function EditPermission() {
      const { auth, info } = usePage().props;
@@ -46,10 +47,7 @@ function EditPermission() {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-3 gap-3">
                                         <div className="col-span-12 text-right">
-                                             <InertiaLink href={route('security.index')} className="bg-transparent border border-gray-500 text-sm text-gray-500 p-2 rounded focus:outline-none hover:bg-gray-600 hover:text-gray-100 inline-flex items-center">
-                                                  <Icon name="back" className={iconClasses} />
-                                                  Back
-                                             </InertiaLink>
+                                             <BackButton link={'security.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-6 sm:col-span-4">
                                              <TextInput
