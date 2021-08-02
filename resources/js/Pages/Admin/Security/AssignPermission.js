@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
-import { useForm } from '@inertiajs/inertia-react';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
+import Helmet from 'react-helmet';
+import { useForm, usePage } from '@inertiajs/inertia-react';
 import Layout from '@/Shared/Layout';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
-import Icon from '@/Shared/Icon';
-import classNames from 'classnames';
 import TextInput from '@/Shared/TextInput';
 import TextArea from '@/Shared/TextArea';
 import LoadingButton from '@/Shared/LoadingButton';
+import { BackButton } from '@/Shared/BackButton';
 
 function AssignPermission() {
      const { auth, info } = usePage().props;
@@ -17,11 +15,6 @@ function AssignPermission() {
           role_permissions: info.role_permissions || [],
           checkAll: false,
           checkAllCaption: 'Select All',
-     });
-
-     const iconClasses = classNames('w-4 h-4 mr-2', {
-          'text-white fill-current': false,
-          'text-gray-500 hover:text-white fill-current': true
      });
 
      function handleChange(e) {
@@ -55,10 +48,8 @@ function AssignPermission() {
           let perms = [];
           let caption = (value) ? 'Unselect All' : 'Select All';
           for(var i = 0; i < info.permissions.length; i++){
-               if(value){
-                    perms.push(info.permissions[i].id);
-               }
                info.permissions[i].isCheck = value;
+               perms = [...perms, info.permissions[i].id];
           }
           if(!value){
                perms = [];
@@ -74,12 +65,15 @@ function AssignPermission() {
 
      return (
           <React.Fragment key="assign-perms">
+               <Helmet>
+                    <title>Assign Permissions</title>
+               </Helmet>
                <ProfileCard>
                     <div className="md:col-span-1">
                          <div className="px-4 sm:px-0">
-                              <h3 className="text-md font-medium text-gray-900">Assign Permissions to Role :</h3>
-                              <h3 className="text-lg font-medium text-gray-700 mt-3">{info.role.display}</h3>
-                              <p className="mt-1 text-sm text-gray-600">
+                              <h3 className="text-md font-medium text-gray-700">Assign Permissions to Role :</h3>
+                              <h3 className="text-lg font-medium text-gray-600 mt-3">{info.role.display}</h3>
+                              <p className="mt-1 text-sm text-gray-500">
                                    {info.role.description}
                               </p>
                          </div>
@@ -89,10 +83,7 @@ function AssignPermission() {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-3">
                                         <div className="col-span-12 text-right">
-                                             <InertiaLink href={route('security.index')} className="bg-transparent border border-gray-500 text-sm text-gray-500 p-1 rounded focus:outline-none hover:bg-gray-600 hover:text-gray-100 inline-flex items-center">
-                                                  <Icon name="back" className={iconClasses} />
-                                                  Back
-                                             </InertiaLink>
+                                             <BackButton link={'security.index'} linkParams={''} />
                                         </div>
                                         <div className="sm:col-span-4">
                                              <div className="flex mt-4">
