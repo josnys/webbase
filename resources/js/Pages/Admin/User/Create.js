@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Helmet from 'react-helmet';
-import { useForm } from '@inertiajs/inertia-react';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
+import { InertiaLink, usePage, useForm } from '@inertiajs/inertia-react';
 import Layout from '@/Shared/Layout';
 import TextInput from '@/Shared/TextInput';
 import SelectInput from '@/Shared/SelectInput';

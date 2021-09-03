@@ -31,7 +31,7 @@ export default ({ ...props }) => {
                               {auth.user.avatar && (<img src={`${auth.user.avatar}`} alt={auth.user.name} className="h-8 w-8 rounded-full" />)}
                          </button>
                     </div>
-                    <div className={menuOpened ? '' : 'hidden'}>
+                    <div className={menuOpened ? '' : 'hidden'} onClick={() => setMenuOpened(false)}>
                          <div className="whitespace-nowrap absolute z-20 mt-8 left-auto top-0 right-0 py-2 shadow-xl bg-white rounded text-sm">
                               <div className="block px-4 py-2 text-xs text-gray-500">Manage Account</div>
                               <div className="flex items-center px-3">

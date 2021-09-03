@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import Helmet from 'react-helmet';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import { useForm } from '@inertiajs/inertia-react';
-import TextInput from '../../Shared/TextInput';
-import SelectInput from '../../Shared/SelectInput';
-import FileInput from '../../Shared/FileInput';
-import ProfileCard from '../../Shared/ProfileCard';
-import DataCard from '../../Shared/DataCard';
-import LoadingButton from '../../Shared/LoadingButton';
-import {toFormData} from '../../utils';
+import { InertiaLink, usePage, useForm } from '@inertiajs/inertia-react';
+import TextInput from '@/Shared/TextInput';
+import SelectInput from '@/Shared/SelectInput';
+import FileInput from '@/Shared/FileInput';
+import ProfileCard from '@/Shared/ProfileCard';
+import DataCard from '@/Shared/DataCard';
+import LoadingButton from '@/Shared/LoadingButton';
+import {toFormData} from '@/utils';
 
 const ProfileEditCard = () => {
      const { auth, user, info } = usePage().props;

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { useForm } from '@inertiajs/inertia-react';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
+import { InertiaLink, usePage, useForm } from '@inertiajs/inertia-react';
 import Helmet from 'react-helmet';
 import AuthCard from '../../Shared/AuthCard';
 import TextInput from '../../Shared/TextInput';
@@ -59,7 +58,7 @@ function Login() {
 
                          <div className="block mt-4">
                               <label className="flex items-center" htmlFor="perms">
-                                   <input name="remember" id="remember" className="form-checkbox" type="checkbox" checked={data.remember} onChange={e => setData('remember', e.target.checked)}/>
+                                   <input name="remember" id="remember" className="form-checkbox" type="checkbox" checked={data.remember} onChange={e => setData('remember', !data.remember)}/>
                                    <span className="ml-2 text-sm text-gray-600">Remember Me</span>
                               </label>
                          </div>

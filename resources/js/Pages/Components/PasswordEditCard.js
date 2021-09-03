@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import Helmet from 'react-helmet';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import { useForm } from '@inertiajs/inertia-react';
-import TextInput from '../../Shared/TextInput';
-import FileInput from '../../Shared/FileInput';
-import ProfileCard from '../../Shared/ProfileCard';
-import DataCard from '../../Shared/DataCard';
-import LoadingButton from '../../Shared/LoadingButton';
+import { InertiaLink, usePage, useForm } from '@inertiajs/inertia-react';
+import TextInput from '@/Shared/TextInput';
+import FileInput from '@/Shared/FileInput';
+import ProfileCard from '@/Shared/ProfileCard';
+import DataCard from '@/Shared/DataCard';
+import LoadingButton from '@/Shared/LoadingButton';
 import axios from 'axios';
 
 const PasswordEditCard = () => {
@@ -20,16 +19,6 @@ const PasswordEditCard = () => {
      function handleSubmit(e) {
           e.preventDefault();
           post(route('profile.password', user.id));
-          // axios.post(route('profile.password', data.id), values).then((response) => {
-          //      setSaved(true);
-          //      setSending(false);
-          // }).catch((error) => {
-          //      setValues(values => ({
-          //           ...values,
-          //           errors: error.response.data.errors
-          //      }));
-          //      setSending(false);
-          // });
      }
      return (
           <React.Fragment key="uprofile">
