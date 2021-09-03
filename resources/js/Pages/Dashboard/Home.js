@@ -5,7 +5,6 @@ import Layout from '@/Shared/Layout';
 
 const Home = () => {
      const { auth } = usePage().props;
-     console.log(auth.user);
      return (
           <div>
                <Helmet>
