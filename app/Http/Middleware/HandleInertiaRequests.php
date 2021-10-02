@@ -37,7 +37,7 @@ class HandleInertiaRequests extends Middleware
                          'name' => config('app.name'),
                          'system' => [
                               'name' => 'Starter Template',
-                              'version' => 'v0.0.2'
+                              'version' => 'v1.0'
                          ]
                     ];
                },
