@@ -8,6 +8,7 @@ import Icon from '@/Shared/Icon';
 import classNames from 'classnames';
 import TextInput from '@/Shared/TextInput';
 import TextArea from '@/Shared/TextArea';
+import { BackButton } from '@/Shared/BackButton';
 import LoadingButton from '@/Shared/LoadingButton';
 import axios from 'axios';
 
@@ -90,10 +91,7 @@ function Role() {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-3">
                                         <div className="col-span-12 text-right">
-                                             <InertiaLink href={route('user.index')} className="bg-transparent border border-gray-500 text-sm text-gray-500 p-2 rounded focus:outline-none hover:bg-gray-600 hover:text-gray-100 inline-flex items-center">
-                                                  <Icon name="back" className={iconClasses} />
-                                                  Back
-                                             </InertiaLink>
+                                             <BackButton link={'user.index'} linkParams={''} />
                                         </div>
                                         <div className="sm:col-span-4">
                                              <div className="flex mt-4">

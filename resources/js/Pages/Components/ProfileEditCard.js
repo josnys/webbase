@@ -167,7 +167,7 @@ const ProfileEditCard = () => {
                                               />
                                               <TextInput
                                                    className="form-input rounded-md shadow-sm mt-4 block w-full"
-                                                   label="address"
+                                                   label="Address"
                                                    name="address"
                                                    type="text"
                                                    disable={false}

@@ -23,8 +23,8 @@
     },
     "dependencies": {
         "@babel/preset-react": "^7.12.13",
-        "@inertiajs/inertia": "^0.10.0",
-        "@inertiajs/inertia-react": "^0.7.0",
+        "@inertiajs/inertia": "^0.8.6",
+        "@inertiajs/inertia-react": "^0.5.5",
         "@inertiajs/progress": "^0.2.4",
         "classnames": "^2.2.6",
         "postcss-import": "^14.0.2",

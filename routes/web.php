@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth']], function(){
      // Profile
      Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
      Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
-     Route::post('/profile/{user}', [App\Http\Controllers\HomeController::class, 'postProfile'])->name('profile.save');
+     Route::post('/profile/{user}/edit', [App\Http\Controllers\HomeController::class, 'postProfile'])->name('profile.save');
      Route::post('/profile/{user}/password', [App\Http\Controllers\HomeController::class, 'postProfilePassword'])->name('profile.password');
 
      // Security -- Roles & Permissions
@@ -56,6 +56,4 @@ Route::group(['middleware' => ['auth']], function(){
      Route::post('/user/{user}/role', [UserController::class, 'postRole'])->middleware('permission:assign-role')->name('user.post.role');
      Route::get('/user/{user}/resetPassword', [UserController::class, 'getResetPassword'])->middleware('permission:change-user-password')->name('user.get.resetpassword');
      Route::post('/user/{user}/resetPassword', [UserController::class, 'postResetPassword'])->middleware('permission:change-user-password')->name('user.post.resetpassword');
-     // Route::get('/user/{user}/store', [UserController::class, 'getUserStore'])->middleware('permission:assign-role')->name('user.get.store');
-     // Route::post('/user/{user}/store', [UserController::class, 'postUserStore'])->middleware('permission:assign-role')->name('user.post.store');
 });

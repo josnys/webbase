@@ -8,6 +8,7 @@ import FileInput from '@/Shared/FileInput';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
 import LoadingButton from '@/Shared/LoadingButton';
+import { BackButton } from '@/Shared/BackButton';
 import Icon from '@/Shared/Icon';
 import classNames from 'classnames';
 
@@ -57,10 +58,7 @@ const Edit = () => {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-6 gap-6">
                                         <div className="col-span-12 text-right">
-                                             <InertiaLink href={route('user.index')} className="bg-transparent border border-gray-500 text-sm text-gray-500 p-2 rounded focus:outline-none hover:bg-gray-600 hover:text-gray-100 inline-flex items-center">
-                                                  <Icon name="back" className={iconClasses} />
-                                                  Back
-                                             </InertiaLink>
+                                             <BackButton link={'user.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-12">
                                              <TextInput
