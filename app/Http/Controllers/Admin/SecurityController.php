@@ -22,8 +22,10 @@ class SecurityController extends Controller
                          'description' => $role->description
                     ];
                });
-               // return Inertia::render('Dashboard/Home');
-               return Inertia::render('Admin/Security/Index', ['data' => $roles]);
+               return Inertia::render('Admin/Security/Index', ['info' => [
+                    'roles' => $roles,
+                    'header' => ['Display Name', 'Name', 'Description', ''],
+               ]]);
           } catch (\Exception $e) {
                Log::error('Security index', ['data' => $e]);
                return redirect()->back()->with('error', Role::serverError());

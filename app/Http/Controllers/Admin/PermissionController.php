@@ -22,7 +22,10 @@ class PermissionController extends Controller
                          'description' => $permission->description
                     ];
                });
-               return Inertia::render('Admin/Security/CreatePermission', ['info' => $permissions]);
+               return Inertia::render('Admin/Security/CreatePermission', ['info' => [
+                    'permissions' => $permissions,
+                    'header' => ['Display Name', 'Name', 'Description', ''],
+               ]]);
           } catch (\Exception $e) {
                Log::error('Permission create', ['data' => $e]);
                return redirect()->back()->with('error', Permission::serverError());

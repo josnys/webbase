@@ -1,15 +1,19 @@
 module.exports = {
      mode: 'jit',
-     purge: [
-          './resources/**/*.js',
+     content: [
+          './resources/**/*.jsx',
           './src/**/*.{js,jsx,ts,tsx,vue}',
+          './resources/views/**/*.blade.php',
      ],
-     darkMode: false, // or 'media' or 'class'
+     darkMode: 'class', // or 'media' or 'class'
      theme: {
           extend: {},
      },
      variants: {
           extend: {},
      },
-     plugins: [],
+     plugins: [
+          require('@tailwindcss/typography'),
+          require('@tailwindcss/forms'),
+     ],
 }
