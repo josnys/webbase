@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
           $person = new Person;
           $person->firstname = 'Super';
           $person->lastname = 'Admin';
-          $person->code = '0001';
+          $person->code = '0000';
           $person->dob = '1900-01-01';
           $person->sex = 'Man';
           $person->identification = '000-000-0000-000';

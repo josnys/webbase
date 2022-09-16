@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\UserRequest;
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\PasswordRequest;
+use App\Actions\Users\CreateUserAction;
+use App\Actions\Users\UpdateUserAction;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Person;
@@ -58,7 +59,10 @@ class UserController extends Controller
                     ];
                });
 
-               return Inertia::render('Admin/User/Index', ['data' => $users]);
+               return Inertia::render('Admin/User/Index', ['info' => [
+                    'users' => $users,
+                    'header' => ['', 'Code', 'Name', 'Username', 'E-mail', 'Roles', ''],
+               ]]);
           } catch (\Exception $e) {
                Log::error('User index', ['data' => $e]);
                return redirect()->back()->with('error', User::serverError());
@@ -78,34 +82,13 @@ class UserController extends Controller
           }
      }
 
-     public function store(CreateUserRequest $request)
+     public function store(CreateUserRequest $request, CreateUserAction $action)
      {
           try {
-               DB::transaction(function() use ($request){
-                    $code = Person::generateCode();
-                    $person = new Person;
-                    $person->firstname = $request->get('fname');
-                    $person->lastname = $request->get('lname');
-                    $person->code = $code;
-                    $person->dob = $request->get('dob');
-                    $person->sex = $request->get('sex');
-                    $person->identification = $request->get('identification');
-                    $person->identification_type = $request->get('identificationType');
-                    $person->address = $request->get('address');
-                    $person->phone = $request->get('phone');
-                    $person->save();
-                    $pid = $person->id;
-
-                    $user = new User;
-                    $user->person_id = $pid;
-                    $user->username = $request->get('username');
-                    $user->email = $request->get('email');
-                    $user->password = Hash::make($request->get('password'));
-                    if($request->get('pin') != null){
-                         $user->pin = $request->get('pin');
-                    }
-                    $user->save();
-               });
+               $user = $action->handle($request->validated());
+               if(!$user){
+                    return redirect()->back()->with('error', 'Something went wrong, try again later.');
+               }
                return redirect()->route('user.index')->with('success', 'User saved successfully.');
           } catch (\Exception $e) {
                Log::error('User store', ['data' => $e]);
@@ -142,23 +125,13 @@ class UserController extends Controller
           }
      }
 
-     public function update(UserRequest $request, User $user)
+     public function update(UpdateUserRequest $request, User $user, UpdateUserAction $action)
      {
           try {
-               DB::transaction(function() use ($request, &$user){
-                    $person = Person::find($user->person_id);
-                    $person->firstname = $request->get('fname');
-                    $person->lastname = $request->get('lname');
-                    $person->dob = $request->get('dob');
-                    $person->sex = $request->get('sex');
-                    $person->identification = $request->get('identification');
-                    $person->identification_type = $request->get('identificationType');
-                    $person->address = $request->get('address');
-                    $person->phone = $request->get('phone');
-                    $person->update();
-
-                    $user->update();
-               });
+               $user = $action->handle($request->validated(), $user);
+               if(!$user){
+                    return redirect()->back()->with('error', 'Something went wrong, try again later.');
+               }
                return redirect()->route('user.index')->with('success', 'User updated successfully.');
           } catch (\Exception $e) {
                Log::error('User update', ['data' => $e]);

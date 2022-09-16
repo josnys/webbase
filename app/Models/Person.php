@@ -22,22 +22,8 @@ class Person extends Model
 
      public static function generateCode()
      {
-          $rand = mt_rand(1, 9999);
-          $rand = Str::padLeft($rand, 5, 0);
-          while(self::codeExists($rand)){
-               $rand = mt_rand(1, 9999);
-               $rand = Str::padLeft($rand, 5, 0);
-          }
-          return $rand;
-     }
-
-     public static function codeExists($code)
-     {
-          $person = DB::select('select * from people where code = ?', [$code]);
-          if(count($person) > 0){
-               return true;
-          }
-          return false;
+          $code = DB::select('select * from people')->count();
+          return Str::padLeft($code, 4, 0);
      }
 
      public static function serverError()

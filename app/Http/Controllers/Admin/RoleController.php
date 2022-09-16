@@ -23,7 +23,10 @@ class RoleController extends Controller
                          'description' => $role->description
                     ];
                });
-               return Inertia::render('Admin/Security/CreateRole', ['info' => $roles]);
+               return Inertia::render('Admin/Security/CreateRole', ['info' => [
+                    'roles' => $roles,
+                    'header' => ['Display Name', 'Name', 'Description', ''],
+               ]]);
           } catch (\Exception $e) {
                Log::error('Role create', ['data' => $e]);
                return redirect()->back()->with('error', Role::serverError());
@@ -39,7 +42,7 @@ class RoleController extends Controller
                $role->description = $request->get('description');
                $role->save();
 
-               return redirect()->back()->with('success', 'Role created successfully.');
+               return redirect()->route('security.index')->with('success', 'Role created successfully.');
           } catch (\Exception $e) {
                Log::error('Role store', ['data' => $e]);
                return redirect()->back()->with('error', Role::serverError());

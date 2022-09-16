@@ -24,7 +24,7 @@ Route::get('/', [WelcomeController::class, 'index']);
 
 Route::get('/img/{path}', [App\Http\Controllers\ImageController::class, 'show'])->where('path', '.*')->name('show.image');
 
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['auth', 'verified']], function(){
      // Profile
      Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
      Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
