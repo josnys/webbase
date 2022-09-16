@@ -1,5 +1,5 @@
 # webbase
-I created a scaffolding of Laravel 8, Inertia/React using fortify.
+I created a scaffolding of Laravel 9, Inertia/React with Vite using fortify.
 This repository also contains user role base functionality added to it with profile management. All with Inertia/React.
 
 Any suggestion is welcome
