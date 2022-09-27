@@ -42,17 +42,11 @@ class HandleInertiaRequests extends Middleware
                     ];
                },
                'auth' => function () {
-                    $user = Auth::user() ? User::with(['roles' => function($roles){
-                         return $roles->with('permissions');
-                    }])->find(Auth::user()->id) : null;
-                    $permissions = array();
-                    if($user){
-                         foreach($user->roles as $r){
-                              foreach($r->permissions as $p){
-                                   array_push($permissions, $p->name);
-                              }
-                         }
-                    }
+                    $user = Auth::user() ? User::find(auth()->id()) : null;
+                    $permissions = [
+                         'users' => $user ? auth()->user()->isAbleTo('read-user') : null,
+                         'admin' => $user ? auth()->user()->isAbleTo('admin-access') : null,
+                    ];
 
                     return [
                          'user' => $user ? [

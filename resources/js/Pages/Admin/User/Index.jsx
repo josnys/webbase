@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { InertiaLink, usePage, Head } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Layout';
+import Layout from '@/Shared/Admin/Layout';
 import FlashMessages from '@/Shared/FlashMessages';
 import DataContainer from '@/Shared/DataContainer';
 import { ButtonLinkSimple } from '@/Shared/Buttons';
@@ -8,7 +8,6 @@ import DataTable from '@/Shared/Admin/DataTable';
 import DropdownButton from '@/Shared/DropdownButton';
 import Icon from '@/Shared/Icon';
 import Pagination from '@/Shared/Pagination';
-import { can } from '@/utils';
 
 const Index = () => {
      const { auth, info } = usePage().props;
@@ -25,8 +24,8 @@ const Index = () => {
                          <FlashMessages />
                     </div>
                     <div className="col-span-12">
-                         {can(auth.user, 'create-user') && (<ButtonLinkSimple caption={'Add User'} icon="plus" link={'user.create'} linkParams={''} />)}
-                         {can(auth.user, 'read-role') && (<div className="float-right">
+                         {info.access.create && (<ButtonLinkSimple caption={'Add User'} icon="plus" link={'user.create'} linkParams={''} />)}
+                         {info.access.role_group && (<div className="float-right">
                               <ButtonLinkSimple caption={'Roles & Permissions'} icon="key" link={'security.index'} linkParams={''} />
                          </div>)}
                     </div>
@@ -44,15 +43,15 @@ const Index = () => {
                                    <td className="border px-2 py-1">{roles.join(', ')}</td>
                                    <td className="border px-2 py-1">
                                         <DropdownButton caption="Actions" color="blue">
-                                             {can(auth.user, 'update-user') && (<InertiaLink href={route('user.edit', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                             {info.access.edit && (<InertiaLink href={route('user.edit', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                   <Icon name={'edit'} className={'fill-current w-5 h-5 mr-2'} />
                                                   Edit
                                              </InertiaLink>)}
-                                             {can(auth.user, 'change-user-password') && (<InertiaLink href={route('user.get.resetpassword', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                             {info.access.change_pass && (<InertiaLink href={route('user.get.resetpassword', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                   <Icon name={'key'} className={'fill-current w-5 h-5 mr-2'} />
                                                   Change Password
                                              </InertiaLink>)}
-                                             {can(auth.user, 'assign-role') && (<InertiaLink href={route('user.get.role', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                             {info.access.assign_role && (<InertiaLink href={route('user.get.role', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                   <Icon name={'cheveron-right'} className={'fill-current w-5 h-5 mr-2'} />
                                                   Assign Role
                                              </InertiaLink>)}

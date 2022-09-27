@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm, usePage, Head } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Layout';
+import Layout from '@/Shared/Admin/Layout';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
 import { TextInputSimple, TextAreaSimple, CheckInput } from '@/Shared/Inputs';

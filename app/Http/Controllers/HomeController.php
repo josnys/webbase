@@ -25,8 +25,9 @@ class HomeController extends Controller
           $this->identityType = [['code' => 'SSN', 'name' => 'SSN'], ['code' => 'CIN', 'name' => 'CIN'], ['code' => 'Passport', 'name' => 'Passport'], ['code' => 'Driver License', 'name' => 'Driver License']];
      }
 
-     public function index()
+     public function index(Request $request)
      {
+          Inertia::setRootView('app');
           return Inertia::render('Dashboard/Home');
      }
 

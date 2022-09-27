@@ -97,7 +97,12 @@ class RolePermissionSeeder extends Seeder
                [
                     'name' => 'change-user-password',
                     'display_name' => 'Change User\'s Password',
-                    'description' => 'Allow user to change other user\'s password'
+                    'description' => 'Allow user to change other user\'s password.'
+               ],
+               [
+                    'name' => 'admin-access',
+                    'display_name' => 'Admin Access',
+                    'description' => 'Allow user to access the administration.'
                ],
           ];
 

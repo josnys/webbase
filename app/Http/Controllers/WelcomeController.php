@@ -9,6 +9,7 @@ class WelcomeController extends Controller
 {
      public function index()
      {
+          Inertia::setRootView('app');
           return Inertia::render('Welcome');
      }
 }

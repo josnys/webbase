@@ -25,6 +25,9 @@ class PermissionController extends Controller
                return Inertia::render('Admin/Security/CreatePermission', ['info' => [
                     'permissions' => $permissions,
                     'header' => ['Display Name', 'Name', 'Description', ''],
+                    'access' => [
+                         'edit' => auth()->user()->isAbleTo('update-permission'),
+                    ],
                ]]);
           } catch (\Exception $e) {
                Log::error('Permission create', ['data' => $e]);

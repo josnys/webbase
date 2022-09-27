@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { InertiaLink, usePage, useForm, Head } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Layout';
+import Layout from '@/Shared/Admin/Layout';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
 import DataContainer from '@/Shared/DataContainer';
@@ -113,10 +113,10 @@ function CreatePermission() {
                                    <td className="border px-2 py-1">{name}</td>
                                    <td className="border px-2 py-1">{description}</td>
                                    <td className="border px-2 py-1">
-                                        <InertiaLink href={route('permission.edit', id)} className="bg-slate-200 hover:bg-slate-300 mr-2 text-slate-600 text-sm py-1 px-1 rounded inline-flex items-center">
+                                        {info.access.edit && (<InertiaLink href={route('permission.edit', id)} className="bg-slate-200 hover:bg-slate-300 mr-2 text-slate-600 text-sm py-1 px-1 rounded inline-flex items-center">
                                              <Icon name={'edit'} className={'fill-current w-4 h-4 mr-2'} />
                                              Edit
-                                        </InertiaLink>
+                                        </InertiaLink>)}
                                    </td>
                               </tr>
                          })}
