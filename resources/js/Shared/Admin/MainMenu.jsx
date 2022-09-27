@@ -6,7 +6,8 @@ export default ({ className }) => {
      const { auth } = usePage().props;
      return (
           <div className={className}>
-               <MainMenuItem text="Dashboard" link="home" icon="dashboard" />
+               <MainMenuItem text="Dashboard" link="dashboard" icon="dashboard" />
+               {auth.user.can.users && (<MainMenuItem text="Users" link="user.index" icon="user-group" />)}
           </div>
      );
 };

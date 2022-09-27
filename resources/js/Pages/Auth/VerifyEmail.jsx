@@ -8,13 +8,17 @@ import Logo from '@/Shared/Logo';
 
 function VerifyEmail() {
      const { app } = usePage().props;
+     const [sent, setSent] = useState(false);
      const { data, setData, post, processing, errors } = useForm({
           email: '',
      });
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('verification.send'));
+          setSent(false);
+          post(route('verification.send'), {
+               onSuccess: () => setSent(true)
+          });
      }
 
      return (
@@ -24,23 +28,18 @@ function VerifyEmail() {
                </Head>
                <Logo className="w-12 h-12" />
                <AuthCard>
+                    {!sent && (<div className="mb-4 text-sm text-gray-600 text-justify">
+                      Thanks for signing up! Before getting started, could you verify your
+                      email address by clicking on the link we just emailed to you? If you
+                      didn't receive the email, we will gladly send you another.
+                    </div>)}
+                    {sent && (<div className="mb-4 font-medium text-sm text-green-600 text-justify">
+                      A new verification link has been sent to the email address you
+                      provided during registration.
+                    </div>)}
                     <form onSubmit={handleSubmit}>
-                         <TextInputSimple
-                              className=""
-                              label="Email"
-                              name="email"
-                              type="email"
-                              placeholder="your@email.com"
-                              disable={false}
-                              readonly={false}
-                              must={true}
-                              focus={true}
-                              errors={errors.email}
-                              value={data.email}
-                              onChange={e => setData('email', e.target.value)}
-                         />
-                         <div className="flex items-center justify-end mt-4">
-                              <ButtonSubmitSimple caption="Send Reset Link" loading={processing} icon={null} />
+                         <div className="flex items-center justify-center mt-4">
+                              <ButtonSubmitSimple caption="Resend Verification Email" loading={processing} icon={null} />
                          </div>
                     </form>
                </AuthCard>

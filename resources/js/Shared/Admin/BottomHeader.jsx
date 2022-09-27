@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import Icon from './Icon';
-import Indicator from './Indicator';
+import Icon from '@/Shared/Icon';
+import Indicator from '@/Shared/Indicator';
 
 export default ({ ...props }) => {
      const { auth, app } = usePage().props;
@@ -29,8 +29,8 @@ export default ({ ...props }) => {
                                    My Profile
                               </InertiaLink>
                               <div className="border-t border-gray-200"></div>
-                              {auth.user.can.admin && (<InertiaLink href={route('dashboard')} className="block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
-                                   Administration
+                              {auth.user.can.admin && (<InertiaLink href={route('home')} className="block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                   Back Home
                               </InertiaLink>)}
                               <div className="border-t border-gray-200"></div>
                               <InertiaLink href={route('logout')} className="w-full block px-6 py-2 text-gray-600 hover:bg-red-300 hover:text-red-700 hover:font-semibold" as="button" method="post">

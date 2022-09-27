@@ -62,6 +62,14 @@ class UserController extends Controller
                return Inertia::render('Admin/User/Index', ['info' => [
                     'users' => $users,
                     'header' => ['', 'Code', 'Name', 'Username', 'E-mail', 'Roles', ''],
+                    'access' => [
+                         'create' => auth()->user()->isAbleTo('create-user'),
+                         'edit' => auth()->user()->isAbleTo('update-user'),
+                         'change_pass' => auth()->user()->isAbleTo('change-user-password'),
+                         'assign_role' => auth()->user()->isAbleTo('assign-role'),
+                         // 'filter' => auth()->user()->isAbleTo('filter-user'),
+                         'role_group' => auth()->user()->isAbleTo('create-role'),
+                    ],
                ]]);
           } catch (\Exception $e) {
                Log::error('User index', ['data' => $e]);
