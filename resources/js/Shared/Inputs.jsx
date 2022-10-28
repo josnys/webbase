@@ -121,7 +121,6 @@ export function FileInputShowImage({className, name, label, accept, errors = [],
           <label clasNames="block">
                <span className="sr-only">Choose photo</span>
                <input
-                    type="file"
                     className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-slate-200 file:text-slate-600 hover:file:bg-slate-100"
                     id={name}
                     ref={fileInput}

@@ -6,9 +6,9 @@
           <link rel="manifest" href="/manifest.json" />
 
           @viteReactRefresh
-          @vite('resources/js/admin.jsx')
+          @vite('resources/js/user.jsx')
 
-          @routes('admin')
+          @routes('user')
      </head>
      <body class="font-sans text-slate-900 dark:text-slate-50 antialiased">
           @inertia

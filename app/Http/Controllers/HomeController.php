@@ -27,15 +27,20 @@ class HomeController extends Controller
 
      public function index(Request $request)
      {
-          Inertia::setRootView('app');
-          return Inertia::render('Dashboard/Home');
+          Inertia::setRootView('user');
+          return Inertia::render('User/Home');
+     }
+
+     public function adminIndex()
+     {
+          return redirect()->route('admin.dashboard');
      }
 
      public function Profile()
      {
           try {
                $user = User::with('person')->find(Auth::user()->id);
-               return Inertia::render('Dashboard/User/Profile', [
+               return Inertia::render('User/User/Profile', [
                     'user' => [
                          'id' => $user->id,
                          'fname' => $user->person->firstname,
@@ -86,7 +91,7 @@ class HomeController extends Controller
                $user->username = $request->get('username');
                $user->email = $request->get('email');
                $user->update();
-               return redirect()->route('profile')->with('success', 'Profile updated successfully.');
+               return redirect()->route('user.profile')->with('success', 'Profile updated successfully.');
           } catch (\Exception $e) {
                Log::error('Home post profile', ['data' => $e]);
                return redirect()->back()->with('error', User::serverError());

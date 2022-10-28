@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { InertiaLink, usePage, useForm, Head } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Admin/Layout';
+import AdminLayout from '@/Shared/AdminLayout';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
 import DataContainer from '@/Shared/DataContainer';
@@ -28,7 +28,7 @@ function CreatePermission() {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('permission.store'), {
+          post(route('admin.permission.store'), {
                onSuccess: () => reset()
           });
      }
@@ -52,7 +52,7 @@ function CreatePermission() {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-3 gap-3">
                                         <div className="col-span-12 text-right">
-                                             <ButtonLinkSimple caption={'Back'} icon="back" link={'security.index'} linkParams={''} />
+                                             <ButtonLinkSimple caption={'Back'} icon="back" link={'admin.security.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-12">
                                              <TextInputSimple
@@ -113,7 +113,7 @@ function CreatePermission() {
                                    <td className="border px-2 py-1">{name}</td>
                                    <td className="border px-2 py-1">{description}</td>
                                    <td className="border px-2 py-1">
-                                        {info.access.edit && (<InertiaLink href={route('permission.edit', id)} className="bg-slate-200 hover:bg-slate-300 mr-2 text-slate-600 text-sm py-1 px-1 rounded inline-flex items-center">
+                                        {info.access.edit && (<InertiaLink href={route('admin.permission.edit', id)} className="bg-slate-200 hover:bg-slate-300 mr-2 text-slate-600 text-sm py-1 px-1 rounded inline-flex items-center">
                                              <Icon name={'edit'} className={'fill-current w-4 h-4 mr-2'} />
                                              Edit
                                         </InertiaLink>)}
@@ -129,6 +129,6 @@ function CreatePermission() {
 
 // Persisten layout
 // Docs: https://inertiajs.com/pages#persistent-layouts
-CreatePermission.layout = page => <Layout children={page} header={'Create Permission'} />;
+CreatePermission.layout = page => <AdminLayout children={page} header={'Create Permission'} />;
 
 export default CreatePermission;

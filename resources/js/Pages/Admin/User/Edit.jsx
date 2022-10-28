@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { InertiaLink, usePage, useForm, Head } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Admin/Layout';
+import AdminLayout from '@/Shared/AdminLayout';
 import FileInput from '@/Shared/FileInput';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
@@ -33,7 +33,7 @@ const Edit = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          put(route('user.update', info.id));
+          put(route('admin.user.update', info.id));
      }
 
      return (
@@ -55,7 +55,7 @@ const Edit = () => {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-6 gap-6">
                                         <div className="col-span-12 text-right">
-                                             <ButtonLinkSimple caption={'Back'} icon="back" link={'user.index'} linkParams={''} />
+                                             <ButtonLinkSimple caption={'Back'} icon="back" link={'admin.user.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-12">
                                              <TextInputSimple
@@ -202,6 +202,6 @@ const Edit = () => {
 
 // Persisten layout
 // Docs: https://inertiajs.com/pages#persistent-layouts
-Edit.layout = page => <Layout children={page} header={'Edit User'} />;
+Edit.layout = page => <AdminLayout children={page} header={'Edit User'} />;
 
 export default Edit;

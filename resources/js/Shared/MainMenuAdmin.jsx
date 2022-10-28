@@ -1,12 +1,13 @@
 import React from 'react';
 import { usePage } from '@inertiajs/inertia-react';
-import MainMenuItem from './MainMenuItem';
+import MainMenuAdminItem from './MainMenuAdminItem';
 
 export default ({ className }) => {
      const { auth } = usePage().props;
      return (
           <div className={className}>
-               <MainMenuItem text="Dashboard" link="user.home" icon="dashboard" />
+               <MainMenuAdminItem text="Dashboard" link="admin.dashboard" icon="dashboard" />
+               <MainMenuAdminItem text="Users" link="admin.user.index" icon="users" />
           </div>
      );
 };

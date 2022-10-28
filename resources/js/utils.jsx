@@ -120,3 +120,8 @@ export function can(user, permission){
      }
      return false;
 }
+
+export function isAdminURl(){
+     let url = window.location.href.toString().split(window.location.host)[1].split('/')[1];
+     return (url == 'admin') ? true : false;
+}
