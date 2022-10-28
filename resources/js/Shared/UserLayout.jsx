@@ -5,7 +5,7 @@ import TopHeader from './TopHeader';
 import BottomHeader from './BottomHeader';
 import ErrorBoundary from './ErrorBoundary';
 
-export default function Layout({ children, header }) {
+export default function UserLayout({ children, header }) {
      const { app } = usePage().props;
      return (
           <React.Fragment key="layout">

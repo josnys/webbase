@@ -14,4 +14,9 @@ class HomeController extends Controller
           Inertia::setRootView('admin');
           return Inertia::render('Admin/Home');
      }
+
+     public function toUser(Request $request)
+     {
+          return redirect()->route('user.home');
+     }
 }

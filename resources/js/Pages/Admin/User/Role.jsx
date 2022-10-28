@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { InertiaLink, usePage, useForm, Head } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Admin/Layout';
+import AdminLayout from '@/Shared/AdminLayout';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
 import { TextInputSimple, TextAreaSimple, CheckInput } from '@/Shared/Inputs';
@@ -60,7 +60,7 @@ function Role() {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('user.post.role', info.user.id));
+          post(route('admin.user.post.role', info.user.id));
      }
 
      return (
@@ -80,7 +80,7 @@ function Role() {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-3">
                                         <div className="col-span-12 text-right">
-                                             <ButtonLinkSimple caption={'Back'} icon="back" link={'user.index'} linkParams={''} />
+                                             <ButtonLinkSimple caption={'Back'} icon="back" link={'admin.user.index'} linkParams={''} />
                                         </div>
                                         <div className="sm:col-span-4">
                                              <div className="flex mt-4">
@@ -109,6 +109,6 @@ function Role() {
 
 // Persisten layout
 // Docs: https://inertiajs.com/pages#persistent-layouts
-Role.layout = page => <Layout children={page} header={'Assign Role'} />;
+Role.layout = page => <AdminLayout children={page} header={'Assign Role'} />;
 
 export default Role;

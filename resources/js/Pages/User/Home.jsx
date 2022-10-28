@@ -1,6 +1,6 @@
 import React from 'react';
 import { InertiaLink, usePage, Head } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Layout';
+import UserLayout from '@/Shared/UserLayout';
 
 const Home = () => {
      const { auth } = usePage().props;
@@ -16,6 +16,6 @@ const Home = () => {
 
 // Persisten layout
 // Docs: https://inertiajs.com/pages#persistent-layouts
-Home.layout = page => <Layout children={page} header={'Dashboard'} />;
+Home.layout = page => <UserLayout children={page} header={'Dashboard'} />;
 
 export default Home;

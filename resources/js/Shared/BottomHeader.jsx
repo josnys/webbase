@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import Icon from './Icon';
 import Indicator from './Indicator';
+import { isAdminURl } from '../utils';
 
 export default ({ ...props }) => {
      const { auth, app } = usePage().props;
      const [menuOpened, setMenuOpened] = useState(false);
      return (
-          <div className="w-full p-4 md:py-0 md:px-12 text-sm d:text-md flex justify-between items-center">
+          <div className="w-full p-4 md:py-0 md:px-6 text-sm d:text-md flex justify-between items-center">
                <div className="mt-1 mr-4">
                     <span className="font-semibold text-md text-gray-700 leading-tight">{ props.children }</span>
                </div>
@@ -25,12 +26,15 @@ export default ({ ...props }) => {
                               <div className="flex items-center px-3">
                                    <div className="font-semibold text-gray-700">{auth.user.name}</div>
                               </div>
-                              <InertiaLink href={route('profile')} className="block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                              <InertiaLink href={route('user.profile')} className="block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                    My Profile
                               </InertiaLink>
                               <div className="border-t border-gray-200"></div>
-                              {auth.user.can.admin && (<InertiaLink href={route('dashboard')} className="block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                              {auth.user.can.admin && !isAdminURl() && (<InertiaLink href={route('user.admin')} className="block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700" as="button" method="post">
                                    Administration
+                              </InertiaLink>)}
+                              {isAdminURl() && (<InertiaLink href={route('admin.to.user')} className="block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700" as="button" method="post">
+                                   Return Home
                               </InertiaLink>)}
                               <div className="border-t border-gray-200"></div>
                               <InertiaLink href={route('logout')} className="w-full block px-6 py-2 text-gray-600 hover:bg-red-300 hover:text-red-700 hover:font-semibold" as="button" method="post">

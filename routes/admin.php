@@ -21,8 +21,9 @@ use App\Http\Controllers\Admin\UserController;
 
 Route::get('/img/{path}', [ImageController::class, 'show'])->where('path', '.*')->name('show.image');
 
-Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'verified', 'permission:admin-access']], function(){
+Route::group(['prefix' => 'admin/', 'as' => 'admin.', 'middleware' => ['auth', 'verified', 'permission:admin-access']], function(){
      Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
+     Route::post('to_user', [HomeController::class, 'toUser'])->name('to.user');
      // Security -- Roles & Permissions
      Route::get('/security', [SecurityController::class, 'index'])->name('security.index');
      // Permissions

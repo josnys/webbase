@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { InertiaLink, usePage, useForm, Head } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Admin/Layout';
+import AdminLayout from '@/Shared/AdminLayout';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
 import { ButtonSubmitSimple, ButtonLinkSimple } from '@/Shared/Buttons';
@@ -18,7 +18,7 @@ const ChangePassword = () => {
      function handleSubmit(e) {
           e.preventDefault();
           setSending(true);
-          put(route('user.post.resetpassword', info.id));
+          put(route('admin.user.post.resetpassword', info.id));
      }
 
      return (
@@ -40,7 +40,7 @@ const ChangePassword = () => {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-6 gap-6">
                                         <div className="col-span-12 text-right">
-                                             <ButtonLinkSimple caption={'Back'} icon="back" link={'user.index'} linkParams={''} />
+                                             <ButtonLinkSimple caption={'Back'} icon="back" link={'admin.user.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-12">
                                              <TextInputSimple
@@ -97,6 +97,6 @@ const ChangePassword = () => {
 
 // Persisten layout
 // Docs: https://inertiajs.com/pages#persistent-layouts
-ChangePassword.layout = page => <Layout children={page} header={'Change User Password'} />;
+ChangePassword.layout = page => <AdminLayout children={page} header={'Change User Password'} />;
 
 export default ChangePassword;

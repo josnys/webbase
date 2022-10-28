@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { InertiaLink, usePage, useForm, Head } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Admin/Layout';
+import AdminLayout from '@/Shared/AdminLayout';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
 import DataContainer from '@/Shared/DataContainer';
@@ -24,7 +24,7 @@ function CreateRole() {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('role.store'), {
+          post(route('admin.role.store'), {
                onSuccess: () => reset()
           });
      }
@@ -48,7 +48,7 @@ function CreateRole() {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-3 gap-3">
                                         <div className="col-span-12 text-right">
-                                             <ButtonLinkSimple caption={'Back'} icon="back" link={'security.index'} linkParams={''} />
+                                             <ButtonLinkSimple caption={'Back'} icon="back" link={'admin.security.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-12">
                                              <TextInputSimple
@@ -103,6 +103,6 @@ function CreateRole() {
 
 // Persisten layout
 // Docs: https://inertiajs.com/pages#persistent-layouts
-CreateRole.layout = page => <Layout children={page} header={'Create Role'} />;
+CreateRole.layout = page => <AdminLayout children={page} header={'Create Role'} />;
 
 export default CreateRole;

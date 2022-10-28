@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { InertiaLink, usePage, useForm, Head } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Admin/Layout';
+import AdminLayout from '@/Shared/AdminLayout';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
 import { TextInputSimple, TextAreaSimple } from '@/Shared/Inputs';
@@ -18,7 +18,7 @@ function EditPermission() {
 
      function handleSubmit(e) {
           e.preventDefault();
-          put(route('permission.update', info.id));
+          put(route('admin.permission.update', info.id));
      }
 
      return (
@@ -40,7 +40,7 @@ function EditPermission() {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-3 gap-3">
                                         <div className="col-span-12 text-right">
-                                             <ButtonLinkSimple caption={'Back'} icon="back" link={'security.index'} linkParams={''} />
+                                             <ButtonLinkSimple caption={'Back'} icon="back" link={'admin.security.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-6 sm:col-span-4">
                                              <TextInputSimple
@@ -94,6 +94,6 @@ function EditPermission() {
 
 // Persisten layout
 // Docs: https://inertiajs.com/pages#persistent-layouts
-EditPermission.layout = page => <Layout children={page} header={'Edit Permission'} />;
+EditPermission.layout = page => <AdminLayout children={page} header={'Edit Permission'} />;
 
 export default EditPermission;

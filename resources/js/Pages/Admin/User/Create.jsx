@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { InertiaLink, usePage, useForm, Head } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Admin/Layout';
+import AdminLayout from '@/Shared/AdminLayout';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
 import { ButtonSubmitSimple, ButtonLinkSimple } from '@/Shared/Buttons';
@@ -27,7 +27,7 @@ const Create = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('user.store'));
+          post(route('admin.user.store'));
      }
 
      return (
@@ -49,7 +49,7 @@ const Create = () => {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-6 gap-6">
                                         <div className="col-span-12 text-right">
-                                             <ButtonLinkSimple caption={'Back'} icon="back" link={'user.index'} linkParams={''} />
+                                             <ButtonLinkSimple caption={'Back'} icon="back" link={'admin.user.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-12">
                                              <TextInputSimple
@@ -254,6 +254,6 @@ const Create = () => {
 
 // Persisten layout
 // Docs: https://inertiajs.com/pages#persistent-layouts
-Create.layout = page => <Layout children={page} header={'Create User'} />;
+Create.layout = page => <AdminLayout children={page} header={'Create User'} />;
 
 export default Create;

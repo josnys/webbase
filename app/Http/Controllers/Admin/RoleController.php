@@ -42,7 +42,7 @@ class RoleController extends Controller
                $role->description = $request->get('description');
                $role->save();
 
-               return redirect()->route('security.index')->with('success', 'Role created successfully.');
+               return redirect()->route('admin.security.index')->with('success', 'Role created successfully.');
           } catch (\Exception $e) {
                Log::error('Role store', ['data' => $e]);
                return redirect()->back()->with('error', Role::serverError());
@@ -71,7 +71,7 @@ class RoleController extends Controller
                $role->description = $request->get('description');
                $role->update();
 
-               return redirect()->route('security.index')->with('success', 'Role Updated.');
+               return redirect()->route('admin.security.index')->with('success', 'Role Updated.');
           } catch (\Exception $e) {
                Log::error('Role update', ['data' => $e]);
                return redirect()->back()->with('error', Role::serverError());
@@ -122,7 +122,7 @@ class RoleController extends Controller
                     'role_permissions.*' => ['integer'],
                ]);
                $role->syncPermissions($request->get('role_permissions'));
-               return redirect()->route('security.index')->with('success', 'Permissions successfully assigned to '.$role->display_name);
+               return redirect()->route('admin.security.index')->with('success', 'Permissions successfully assigned to '.$role->display_name);
           } catch (\Exception $e) {
                Log::error('Role post assign', ['data' => $e]);
                return redirect()->back()->with('error', Role::serverError());

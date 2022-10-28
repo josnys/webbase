@@ -5,7 +5,7 @@ import Icon from './Icon';
 
 export default ({ icon, link, text }) => {
      const { url } = usePage();
-     const isActive = url.startsWith('/'+link.split('.')[0]);
+     const isActive = url.startsWith('/user/'+link.split('.')[1]);
 
      console.log(url, link);
 

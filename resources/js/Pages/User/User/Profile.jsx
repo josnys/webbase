@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { InertiaLink, usePage, Head } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Layout';
+import UserLayout from '@/Shared/UserLayout';
 import ProfileEditCard from '@/Pages/Components/ProfileEditCard';
 import PasswordEditCard from '@/Pages/Components/PasswordEditCard';
 import Separator from '@/Shared/Admin/Separator';
@@ -21,6 +21,6 @@ const Profile = () => {
 
 // Persisten layout
 // Docs: https://inertiajs.com/pages#persistent-layouts
-Profile.layout = page => <Layout children={page} header={'Profile'} />;
+Profile.layout = page => <UserLayout children={page} header={'Profile'} />;
 
 export default Profile;
