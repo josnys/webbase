@@ -1,5 +1,4 @@
 import React from 'react';
-import AuthCard from './AuthCard';
 
 export default class ErrorBoundary extends React.Component {
      constructor(props) {

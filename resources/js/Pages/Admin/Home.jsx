@@ -1,5 +1,5 @@
 import React from 'react';
-import { InertiaLink, usePage, Head } from '@inertiajs/inertia-react';
+import { usePage, Head } from '@inertiajs/inertia-react';
 import AdminLayout from '@/Shared/AdminLayout';
 
 const Home = () => {
