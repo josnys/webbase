@@ -19,7 +19,7 @@ Route::get('/img/{path}', [ImageController::class, 'show'])->where('path', '.*')
 
 Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth', 'verified']], function(){
      // To the admin page
-     Route::post('/admin', [HomeController::class, 'adminIndex'])->name('admin');
+     Route::get('/admin', [HomeController::class, 'adminIndex'])->name('admin');
      // Profile
      Route::get('/home', [HomeController::class, 'index'])->name('home');
      Route::get('/profile', [HomeController::class, 'profile'])->name('profile');

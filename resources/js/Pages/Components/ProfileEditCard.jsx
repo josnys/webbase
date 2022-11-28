@@ -33,7 +33,7 @@ const ProfileEditCard = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('profile.save', user.id));
+          post(route('user.profile.save', user.id));
      }
      return (
           <React.Fragment key="uprofile">
@@ -45,9 +45,9 @@ const ProfileEditCard = () => {
                                    Update your account's profile information and email address.
                               </p>
                               <div className="w-full mt-3">
-                                   <h3 className="text-md text-center text-gray-700">Current Photo</h3>
-                                   {!user.currentAvatar && (<img src={`https://ui-avatars.com/api/?name=${auth.user.name}&amp;color=7F9CF5&amp;background=EBF4FF`} className="mx-auto rounded-full h-20 w-20" />)}
-                                   {user.currentAvatar && (<img src={`${user.currentAvatar}`} className="mx-auto rounded-full h-20 w-20" />)}
+                                   <h3 className="text-center text-gray-700 text-md">Current Photo</h3>
+                                   {!user.currentAvatar && (<img src={`https://ui-avatars.com/api/?name=${auth.user.name}&amp;color=7F9CF5&amp;background=EBF4FF`} className="w-20 h-20 mx-auto rounded-full" />)}
+                                   {user.currentAvatar && (<img src={`${user.currentAvatar}`} className="w-20 h-20 mx-auto rounded-full" />)}
                               </div>
                          </div>
                     </div>
@@ -56,11 +56,11 @@ const ProfileEditCard = () => {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-12">
                                         <div className="col-span-12">
-                                             <label className="block font-medium text-sm text-gray-700" htmlFor="avatar">
+                                             <label className="block text-sm font-medium text-gray-700" htmlFor="avatar">
                                                   <span>Avatar {data.selectedAvatar}</span>
                                              </label>
                                              <div className="mt-2">
-                                                  {data.selectedAvatar && (<img src={`${data.selectedAvatar}`} className="rounded-full h-20 w-20" />)}
+                                                  {data.selectedAvatar && (<img src={`${data.selectedAvatar}`} className="w-20 h-20 rounded-full" />)}
                                              </div>
                                              <FileInputShowImage
                                                   className="w-full lg:w-1/2"
@@ -72,7 +72,7 @@ const ProfileEditCard = () => {
                                                   onChange={handleFileChange}
                                               />
                                               <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="First Name"
                                                   name="fname"
                                                   type="text"
@@ -86,7 +86,7 @@ const ProfileEditCard = () => {
                                                   onChange={e => setData('fname', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Last Name"
                                                   name="lname"
                                                   type="text"
@@ -99,7 +99,7 @@ const ProfileEditCard = () => {
                                                   onChange={e => setData('lname', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Date of Birth"
                                                   name="dob"
                                                   type="date"
@@ -111,7 +111,7 @@ const ProfileEditCard = () => {
                                                   onChange={e => setData('dob', e.target.value)}
                                              />
                                              <SelectInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Sex"
                                                   name="sex"
                                                   must={true}
@@ -125,7 +125,7 @@ const ProfileEditCard = () => {
                                                   })}
                                              </SelectInputSimple>
                                              <SelectInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Identity Type"
                                                   name="identificationType"
                                                   must={true}
@@ -139,7 +139,7 @@ const ProfileEditCard = () => {
                                                   })}
                                              </SelectInputSimple>
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Identity Number"
                                                   name="identification"
                                                   type="text"
@@ -151,7 +151,7 @@ const ProfileEditCard = () => {
                                                   onChange={e => setData('identification', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Userame"
                                                   name="username"
                                                   type="text"
@@ -163,7 +163,7 @@ const ProfileEditCard = () => {
                                                   onChange={e => setData('username', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Email"
                                                   name="email"
                                                   type="email"
@@ -175,7 +175,7 @@ const ProfileEditCard = () => {
                                                   onChange={e => setData('email', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Phone Number"
                                                   name="phone"
                                                   type="text"
@@ -188,7 +188,7 @@ const ProfileEditCard = () => {
                                                   onChange={e => setData('phone', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Address"
                                                   name="address"
                                                   type="text"
@@ -203,7 +203,7 @@ const ProfileEditCard = () => {
                                         </div>
                                    </div>
                               </div>
-                              <div className="flex items-center justify-end px-4 py-3 bg-slate-100 text-right sm:px-6 rounded-b">
+                              <div className="flex items-center justify-end px-4 py-3 text-right rounded-b bg-slate-100 sm:px-6">
                                    <ButtonSubmitSimple caption="Save" loading={processing} icon={null} />
                               </div>
                          </form>
