@@ -7,8 +7,6 @@ export default ({ icon, link, text }) => {
      const { url } = usePage();
      const isActive = url.startsWith('/'+link.split('.')[0]);
 
-     console.log(url, link);
-
      const iconClasses = classNames('w-4 h-4 mr-2', {
           'stroke-slate-500 stroke-1 fill-slate-500': false,
           'stroke-slate-500 stroke-1 fill-slate-500 hover:stroke-slate-500': true

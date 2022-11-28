@@ -16,7 +16,7 @@ const PasswordEditCard = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('profile.password', user.id));
+          post(route('user.profile.password', user.id));
      }
      return (
           <React.Fragment key="uprofile">
@@ -35,7 +35,7 @@ const PasswordEditCard = () => {
                                    <div className="grid grid-cols-12">
                                         <div className="col-span-12">
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Current Password"
                                                   name="current_password"
                                                   type="password"
@@ -48,7 +48,7 @@ const PasswordEditCard = () => {
                                                   onChange={e => setData('current_password', e.target.value)}
                                              />
                                               <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Password"
                                                   name="password"
                                                   type="password"
@@ -61,7 +61,7 @@ const PasswordEditCard = () => {
                                                   onChange={e => setData('password', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Confirm Password"
                                                   name="password_confirmation"
                                                   type="password"
@@ -76,7 +76,7 @@ const PasswordEditCard = () => {
                                         </div>
                                    </div>
                               </div>
-                              <div className="flex items-center justify-end px-4 py-3 bg-slate-100 text-right sm:px-6 rounded-b">
+                              <div className="flex items-center justify-end px-4 py-3 text-right rounded-b bg-slate-100 sm:px-6">
                                    <ButtonSubmitSimple caption="Save" loading={processing} icon={null} />
                               </div>
                          </form>

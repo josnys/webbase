@@ -18,7 +18,7 @@ export function TextInputSimple ({label, className, name, placeText, errors = []
 
      return (<div className={className}>
           {label && (
-               <label className="block font-medium text-sm text-slate-600" htmlFor={name}>
+               <label className="block text-sm font-medium text-slate-600" htmlFor={name}>
                     {label} {(must == true) && (<span className="text-red-700">*</span>)}
                </label>
           )}
@@ -33,7 +33,7 @@ export function TextInputSimple ({label, className, name, placeText, errors = []
                readOnly={readonly}
                autoComplete={autocomplete?'on':'off'}
           />
-          {errors && <div className="text-red-500 text-xs italic">{errors[0]}</div>}
+          {errors && <div className="text-xs italic text-red-500">{errors[0]}</div>}
      </div>)
 }
 
@@ -47,7 +47,7 @@ export function TextInputIcon ({label, icon, className, name, placeText, errors 
 
      return (<div className={className}>
           {label && (
-               <label className="block font-medium text-sm text-slate-600" htmlFor={name}>
+               <label className="block text-sm font-medium text-slate-600" htmlFor={name}>
                     {label} {(must == true) && (<span className="text-red-700">*</span>)}
                </label>
           )}
@@ -66,7 +66,7 @@ export function TextInputIcon ({label, icon, className, name, placeText, errors 
                     readOnly={readonly}
                     autoComplete={autocomplete?'on':'off'}
                />
-               {errors && <div className="text-red-500 text-xs italic">{errors[0]}</div>}
+               {errors && <div className="text-xs italic text-red-500">{errors[0]}</div>}
           </label>
      </div>);
 }
@@ -75,7 +75,7 @@ export function TextAreaSimple({label, name, className, placeText, errors = [], 
      return (
           <div className={className}>
                {label && (
-                    <label className="block font-medium text-sm text-slate-600" htmlFor={name}>
+                    <label className="block text-sm font-medium text-slate-600" htmlFor={name}>
                          {label}:
                     </label>
                )}
@@ -85,7 +85,7 @@ export function TextAreaSimple({label, name, className, placeText, errors = [], 
                     {...props}
                     className={`shadow-none appearance-none block p-2 w-full text-sm text-slate-600 rounded border border-slate-300 placeholder:italic placeholder:text-slate-400 focus:outline-none focus:shadow focus:ring-sky-500 focus:border-sky-500 ${errors.length ? 'border border-red-500' : ''}`}
                ></textarea>
-               {errors && <div className="text-red-500 text-xs italic">{errors[0]}</div>}
+               {errors && <div className="text-xs italic text-red-500">{errors[0]}</div>}
           </div>
      );
 }
@@ -116,9 +116,9 @@ export function FileInputShowImage({className, name, label, accept, errors = [],
 
      return (<div className="flex items-center space-x-6">
           {path && (<div className="shrink-0">
-               <img className="h-16 w-16 object-cover rounded-full" src={path} alt="Current image" />
+               <img className="object-cover w-16 h-16 rounded-full" src={path} alt="Current image" />
           </div>)}
-          <label clasNames="block">
+          <label className="block">
                <span className="sr-only">Choose photo</span>
                <input
                     className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-slate-200 file:text-slate-600 hover:file:bg-slate-100"
@@ -129,7 +129,7 @@ export function FileInputShowImage({className, name, label, accept, errors = [],
                     onChange={handleFileChange}
                />
           </label>
-          {errors.length > 0 && <div className="text-red-500 text-xs italic">{errors[0]}</div>}
+          {errors.length > 0 && <div className="text-xs italic text-red-500">{errors[0]}</div>}
      </div>);
 }
 
@@ -142,14 +142,14 @@ export function CheckInput ({label, className, errors = [], ...props}) {
                {...props}
           />
           <label htmlFor="checkbox-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{label}</label>
-          {errors && <div className="text-red-500 text-xs italic">{errors[0]}</div>}
+          {errors && <div className="text-xs italic text-red-500">{errors[0]}</div>}
      </div>);
 }
 
 export function SelectInputSimple({label, name, className, must, children, errors = [], ...props}){
      return (<div className={className}>
           {label && (
-               <label className="block font-medium text-sm text-slate-700" htmlFor={name}>
+               <label className="block text-sm font-medium text-slate-700" htmlFor={name}>
                     {label} {must && (<span className="text-red-700">*</span>)}
                </label>
           )}

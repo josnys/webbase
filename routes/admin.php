@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\HomeController as UserHomeController;
 use App\Http\Controllers\Admin\SecurityController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
@@ -21,9 +22,15 @@ use App\Http\Controllers\Admin\UserController;
 
 Route::get('/img/{path}', [ImageController::class, 'show'])->where('path', '.*')->name('show.image');
 
+Route::group(['prefix' =>'user', 'as' => 'user.', 'middleware' => ['auth', 'verified']], function () {
+     // Profile
+     Route::post('/profile/{user}/edit', [UserHomeController::class, 'postProfile'])->name('profile.save');
+     Route::post('/profile/{user}/password', [UserHomeController::class, 'postProfilePassword'])->name('profile.password');
+});
+
 Route::group(['prefix' => 'admin/', 'as' => 'admin.', 'middleware' => ['auth', 'verified', 'permission:admin-access']], function(){
      Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
-     Route::post('to_user', [HomeController::class, 'toUser'])->name('to.user');
+     Route::get('to_user', [HomeController::class, 'toUser'])->name('to.user');
      // Security -- Roles & Permissions
      Route::get('/security', [SecurityController::class, 'index'])->name('security.index');
      // Permissions
