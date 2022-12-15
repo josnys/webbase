@@ -29,7 +29,7 @@ class RoleController extends Controller
                ]]);
           } catch (\Exception $e) {
                Log::error('Role create', ['data' => $e]);
-               return redirect()->back()->with('error', Role::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 
@@ -45,7 +45,7 @@ class RoleController extends Controller
                return redirect()->route('admin.security.index')->with('success', 'Role created successfully.');
           } catch (\Exception $e) {
                Log::error('Role store', ['data' => $e]);
-               return redirect()->back()->with('error', Role::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 
@@ -60,7 +60,7 @@ class RoleController extends Controller
                ]]);
           } catch (\Exception $e) {
                Log::error('Role edit', ['data' => $e]);
-               return redirect()->back()->with('error', Role::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 
@@ -74,7 +74,7 @@ class RoleController extends Controller
                return redirect()->route('admin.security.index')->with('success', 'Role Updated.');
           } catch (\Exception $e) {
                Log::error('Role update', ['data' => $e]);
-               return redirect()->back()->with('error', Role::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 
@@ -110,22 +110,24 @@ class RoleController extends Controller
                ]]);
           } catch (\Exception $e) {
                Log::error('Role get assign', ['data' => $e]);
-               return redirect()->back()->with('error', Role::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 
      public function postAssign(Request $request, Role $role)
      {
           try {
-               $request->validate([
+               $input = $request->validate([
                     'role_permissions' => ['required', 'array'],
                     'role_permissions.*' => ['integer'],
                ]);
-               $role->syncPermissions($request->get('role_permissions'));
+
+               $role->syncPermissions($input['role_permissions']);
+
                return redirect()->route('admin.security.index')->with('success', 'Permissions successfully assigned to '.$role->display_name);
           } catch (\Exception $e) {
                Log::error('Role post assign', ['data' => $e]);
-               return redirect()->back()->with('error', Role::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 }

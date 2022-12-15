@@ -1,5 +1,5 @@
 import React from 'react';
-import { InertiaLink } from '@inertiajs/inertia-react';
+import { Link } from '@inertiajs/inertia-react';
 import Icon from '@/Shared/Icon';
 import classNames from 'classnames';
 
@@ -10,9 +10,9 @@ const iconClasses = classNames('w-4 h-4 mr-2', {
 
 export function BackButton({link, linkParams, ...props}){
      return (<React.Fragment>
-          <InertiaLink href={linkParams?route(link, linkParams):route(link)} className="bg-transparent border border-gray-400 text-sm text-gray-400 p-1 rounded focus:outline-none hover:bg-gray-400 hover:text-gray-100 inline-flex items-center">
+          <Link href={linkParams?route(link, linkParams):route(link)} className="inline-flex items-center p-1 text-sm text-gray-400 bg-transparent border border-gray-400 rounded focus:outline-none hover:bg-gray-400 hover:text-gray-100">
                <Icon name="back" className={iconClasses} />
                Back
-          </InertiaLink>
+          </Link>
      </React.Fragment>);
 }

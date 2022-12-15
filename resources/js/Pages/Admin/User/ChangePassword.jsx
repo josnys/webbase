@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { InertiaLink, usePage, useForm, Head } from '@inertiajs/inertia-react';
+import React from 'react';
+import { usePage, useForm, Head } from '@inertiajs/inertia-react';
 import AdminLayout from '@/Shared/AdminLayout';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
 import { ButtonSubmitSimple, ButtonLinkSimple } from '@/Shared/Buttons';
-import { TextInputSimple, CheckInput, SelectInputSimple } from '@/Shared/Inputs';
+import { TextInputSimple } from '@/Shared/Inputs';
 
 const ChangePassword = () => {
      const { auth, info } = usePage().props;
@@ -17,7 +17,6 @@ const ChangePassword = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          setSending(true);
           put(route('admin.user.post.resetpassword', info.id));
      }
 
@@ -44,7 +43,7 @@ const ChangePassword = () => {
                                         </div>
                                         <div className="col-span-12">
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Password"
                                                   name="password"
                                                   type="password"
@@ -57,7 +56,7 @@ const ChangePassword = () => {
                                                   onChange={e => setData('password', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Confirm Password"
                                                   name="password_confirmation"
                                                   type="password"
@@ -70,7 +69,7 @@ const ChangePassword = () => {
                                                   onChange={e => setData('password_confirmation', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="PIN"
                                                   name="pin"
                                                   type="text"
@@ -85,7 +84,7 @@ const ChangePassword = () => {
                                         </div>
                                    </div>
                               </div>
-                              <div className="flex items-center justify-end px-4 py-3 bg-slate-100 text-right sm:px-6 rounded-b">
+                              <div className="flex items-center justify-end px-4 py-3 text-right rounded-b bg-slate-100 sm:px-6">
                                    <ButtonSubmitSimple caption="Change Password" loading={processing} icon={null} />
                               </div>
                          </form>

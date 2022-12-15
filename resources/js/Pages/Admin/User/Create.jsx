@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { InertiaLink, usePage, useForm, Head } from '@inertiajs/inertia-react';
+import React from 'react';
+import { usePage, useForm, Head } from '@inertiajs/inertia-react';
 import AdminLayout from '@/Shared/AdminLayout';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
 import { ButtonSubmitSimple, ButtonLinkSimple } from '@/Shared/Buttons';
-import { TextInputSimple, CheckInput, SelectInputSimple } from '@/Shared/Inputs';
+import { TextInputSimple, SelectInputSimple } from '@/Shared/Inputs';
 import Separator from '@/Shared/Admin/Separator';
 
 const Create = () => {
@@ -67,7 +67,7 @@ const Create = () => {
                                                   onChange={e => setData('fname', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Last Name"
                                                   name="lname"
                                                   type="text"
@@ -80,7 +80,7 @@ const Create = () => {
                                                   onChange={e => setData('lname', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Date of Birth"
                                                   name="dob"
                                                   type="date"
@@ -92,7 +92,7 @@ const Create = () => {
                                                   onChange={e => setData('dob', e.target.value)}
                                              />
                                              <SelectInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Sex"
                                                   name="sex"
                                                   must={true}
@@ -106,7 +106,7 @@ const Create = () => {
                                                   })}
                                              </SelectInputSimple>
                                              <SelectInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Identity Type"
                                                   name="identificationType"
                                                   must={true}
@@ -120,7 +120,7 @@ const Create = () => {
                                                   })}
                                              </SelectInputSimple>
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Identity Number"
                                                   name="identification"
                                                   type="text"
@@ -132,7 +132,7 @@ const Create = () => {
                                                   onChange={e => setData('identification', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Userame"
                                                   name="username"
                                                   type="text"
@@ -144,7 +144,7 @@ const Create = () => {
                                                   onChange={e => setData('username', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Email"
                                                   name="email"
                                                   type="email"
@@ -156,7 +156,7 @@ const Create = () => {
                                                   onChange={e => setData('email', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Phone Number"
                                                   name="phone"
                                                   type="text"
@@ -169,7 +169,7 @@ const Create = () => {
                                                   onChange={e => setData('phone', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Address"
                                                   name="address"
                                                   type="text"
@@ -201,7 +201,7 @@ const Create = () => {
                                    <div className="grid grid-cols-6 gap-6">
                                         <div className="col-span-6 sm:col-span-4">
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Password"
                                                   name="password"
                                                   type="password"
@@ -214,7 +214,7 @@ const Create = () => {
                                                   onChange={e => setData('password', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Confirm Password"
                                                   name="password_confirmation"
                                                   type="password"
@@ -227,7 +227,7 @@ const Create = () => {
                                                   onChange={e => setData('password_confirmation', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="PIN"
                                                   name="pin"
                                                   type="text"
@@ -242,7 +242,7 @@ const Create = () => {
                                         </div>
                                    </div>
                               </div>
-                              <div className="flex items-center justify-end px-4 py-3 bg-slate-100 text-right sm:px-6 rounded-b">
+                              <div className="flex items-center justify-end px-4 py-3 text-right rounded-b bg-slate-100 sm:px-6">
                                    <ButtonSubmitSimple caption="Save" loading={processing} icon={null} />
                               </div>
                          </DataCard>

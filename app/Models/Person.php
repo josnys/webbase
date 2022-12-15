@@ -13,7 +13,7 @@ class Person extends Model
      use HasFactory;
      use SoftDeletes;
 
-     protected $fillable = ['firstname', 'lastname', 'code', 'dob', 'sex', 'identification', 'identification_type', 'address', 'phone'];
+     protected $fillable = ['firstname', 'lastname', 'code', 'dob', 'sex', 'identification', 'identification_type', 'address', 'phone', 'profile_url'];
 
      public function getNameAttribute()
      {
@@ -22,12 +22,10 @@ class Person extends Model
 
      public static function generateCode()
      {
-          $code = DB::select('select * from people')->count();
+          $code = DB::table('people')->select([
+               DB::raw('COUNT(id) as `code`'),
+          ])->get()->count();
+          
           return Str::padLeft($code, 4, 0);
-     }
-
-     public static function serverError()
-     {
-          return "An error has occured. Please contact developper.";
      }
 }

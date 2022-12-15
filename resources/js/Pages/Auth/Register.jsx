@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
-import { InertiaLink, usePage, useForm, Head } from '@inertiajs/inertia-react';
+import React from 'react';
+import { Link, usePage, useForm, Head } from '@inertiajs/inertia-react';
 import AuthCard from '@/Shared/AuthCard';
 import { ButtonSubmitSimple } from '@/Shared/Buttons';
-import { TextInputSimple, TextInputIcon, CheckInput } from '@/Shared/Inputs';
+import { TextInputSimple } from '@/Shared/Inputs';
 import Logo from '@/Shared/Logo';
 
 function Register() {
@@ -23,7 +22,7 @@ function Register() {
      }
 
      return (
-          <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
+          <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0">
                <Head>
                     <title>Register</title>
                </Head>
@@ -110,7 +109,7 @@ function Register() {
                               onChange={e => setData('password_confirmation', e.target.value)}
                          />
                          <div className="flex items-center justify-between mt-4">
-                              <span className="text-sm text-slate-500">Already registered ? <InertiaLink className="text-slate-600 font-base hover:underline" href={route('login')}>Login</InertiaLink> </span>
+                              <span className="text-sm text-slate-500">Already registered ? <Link className="text-slate-600 font-base hover:underline" href={route('login')}>Login</Link> </span>
                               <ButtonSubmitSimple caption="Register" loading={processing} icon={null} />
                          </div>
                     </form>

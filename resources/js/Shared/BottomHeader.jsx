@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import Icon from './Icon';
-import Indicator from './Indicator';
+import { Link, usePage } from '@inertiajs/inertia-react';
 import { isAdminURl } from '../utils';
 
 export default ({ ...props }) => {
@@ -26,9 +24,9 @@ export default ({ ...props }) => {
                               <div className="flex items-center px-3">
                                    <div className="font-semibold text-gray-700">{auth.user.name}</div>
                               </div>
-                              <InertiaLink href={route('user.profile')} className="block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                              <Link href={route('user.profile')} className="block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                    My Profile
-                              </InertiaLink>
+                              </Link>
                               <div className="border-t border-gray-200"></div>
                               {auth.user.can.admin && !isAdminURl() && (<a href={route('user.admin')} className="block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                    Administration
@@ -37,9 +35,9 @@ export default ({ ...props }) => {
                                    Return Home
                               </a>)}
                               <div className="border-t border-gray-200"></div>
-                              <InertiaLink href={route('logout')} className="block w-full px-6 py-2 text-gray-600 hover:bg-red-300 hover:text-red-700 hover:font-semibold" as="button" method="post">
+                              <Link href={route('logout')} className="block w-full px-6 py-2 text-gray-600 hover:bg-red-300 hover:text-red-700 hover:font-semibold" as="button" method="post">
                                    Logout
-                              </InertiaLink>
+                              </Link>
                          </div>
                          <div
                               onClick={() => {

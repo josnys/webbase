@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
-import { InertiaLink, usePage, useForm, Head } from '@inertiajs/inertia-react';
+import React from 'react';
+import { usePage, useForm } from '@inertiajs/inertia-react';
 import AdminLayout from '@/Shared/AdminLayout';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
-import { TextInputSimple, TextAreaSimple, CheckInput } from '@/Shared/Inputs';
+import { CheckInput } from '@/Shared/Inputs';
 import { ButtonSubmitSimple, ButtonLinkSimple } from '@/Shared/Buttons';
 
 function Role() {
@@ -68,8 +67,8 @@ function Role() {
                <ProfileCard>
                     <div className="md:col-span-1">
                          <div className="px-4 sm:px-0">
-                              <h3 className="text-md font-medium text-gray-900">Assign Role to User :</h3>
-                              <h3 className="text-lg font-medium text-gray-700 mt-3">{info.user.name}</h3>
+                              <h3 className="font-medium text-gray-900 text-md">Assign Role to User :</h3>
+                              <h3 className="mt-3 text-lg font-medium text-gray-700">{info.user.name}</h3>
                               <p className="mt-1 text-sm text-gray-600">
                                    Assigning roles to user will provide them with ability to manage different aspect of the business
                               </p>
@@ -86,18 +85,18 @@ function Role() {
                                              <div className="flex mt-4">
                                                   <CheckInput className="" label={data.checkAllCaption} checked={data.chekcAll} onChange={handleAll} />
                                              </div>
-                                             <ul className="overflow-auto h-64 list-none pt-2 mt-2">
+                                             <ul className="h-64 pt-2 mt-2 overflow-auto list-none">
                                                   {info.roles.map(({id, display, description, isCheck}) => {
-                                                       return <li key={id} className={`p-2 mt-2 rounded hover:bg-gray-200 hover:shadow-md ${(isCheck?'bg-blue-200':'')}`} key={id}>
+                                                       return <li key={id} className={`p-2 mt-2 rounded hover:bg-gray-200 hover:shadow-md ${(isCheck?'bg-blue-200':'')}`}>
                                                             <CheckInput className="" value={id} label={display} checked={isCheck} onChange={handleChange} />
-                                                            <p className="text-sm text-gray-500 pl-6">{description}</p>
+                                                            <p className="pl-6 text-sm text-gray-500">{description}</p>
                                                        </li>
                                                   })}
                                              </ul>
                                         </div>
                                    </div>
                               </div>
-                              <div className="flex items-center justify-end px-4 py-3 bg-slate-100 text-right sm:px-6 rounded-b">
+                              <div className="flex items-center justify-end px-4 py-3 text-right rounded-b bg-slate-100 sm:px-6">
                                    <ButtonSubmitSimple caption="Assign Roles" loading={processing} icon={null} />
                               </div>
                          </form>

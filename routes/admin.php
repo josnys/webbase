@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\HomeController as UserHomeController;
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\Admin\SecurityController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
@@ -24,8 +24,8 @@ Route::get('/img/{path}', [ImageController::class, 'show'])->where('path', '.*')
 
 Route::group(['prefix' =>'user', 'as' => 'user.', 'middleware' => ['auth', 'verified']], function () {
      // Profile
-     Route::post('/profile/{user}/edit', [UserHomeController::class, 'postProfile'])->name('profile.save');
-     Route::post('/profile/{user}/password', [UserHomeController::class, 'postProfilePassword'])->name('profile.password');
+     Route::post('/profile/{user}/edit', [ProfileController::class, 'updateProfile'])->name('profile.save');
+     Route::post('/profile/{user}/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
 });
 
 Route::group(['prefix' => 'admin/', 'as' => 'admin.', 'middleware' => ['auth', 'verified', 'permission:admin-access']], function(){
@@ -55,5 +55,5 @@ Route::group(['prefix' => 'admin/', 'as' => 'admin.', 'middleware' => ['auth', '
      Route::get('/user/{user}/role', [UserController::class, 'getRoles'])->middleware('permission:assign-role')->name('user.get.role');
      Route::post('/user/{user}/role', [UserController::class, 'postRole'])->middleware('permission:assign-role')->name('user.post.role');
      Route::get('/user/{user}/resetPassword', [UserController::class, 'getResetPassword'])->middleware('permission:change-user-password')->name('user.get.resetpassword');
-     Route::post('/user/{user}/resetPassword', [UserController::class, 'postResetPassword'])->middleware('permission:change-user-password')->name('user.post.resetpassword');
+     Route::put('/user/{user}/resetPassword', [UserController::class, 'postResetPassword'])->middleware('permission:change-user-password')->name('user.post.resetpassword');
 });

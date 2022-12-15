@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { InertiaLink, usePage, Head } from '@inertiajs/inertia-react';
+import React from 'react';
+import { Link, usePage, Head } from '@inertiajs/inertia-react';
 import AdminLayout from '@/Shared/AdminLayout';
 import DataContainer from '@/Shared/DataContainer';
 import DropdownButton from '@/Shared/DropdownButton';
@@ -18,11 +18,11 @@ const Index = () => {
                </Head>
                <DataContainer>
                     <div className="col-span-12 p-2 border-b">
-                         <InertiaLink className="font-semibold text-md text-gray-600 hover:text-gray-700 leading-tight" href={route('admin.dashboard')}>Dashboard</InertiaLink> |
-                         <InertiaLink className="font-semibold text-md text-gray-600 hover:text-gray-700 leading-tight" href={route('admin.user.index')}> Users</InertiaLink> |
-                         <span className="text-md text-gray-600 leading-tight"> Roles & Permissions</span>
+                         <Link className="font-semibold leading-tight text-gray-600 text-md hover:text-gray-700" href={route('admin.dashboard')}>Dashboard</Link> |
+                         <Link className="font-semibold leading-tight text-gray-600 text-md hover:text-gray-700" href={route('admin.user.index')}> Users</Link> |
+                         <span className="leading-tight text-gray-600 text-md"> Roles & Permissions</span>
                     </div>
-                    <div className="col-span-12 items-center">
+                    <div className="items-center col-span-12">
                          <FlashMessages />
                     </div>
                     <div className="col-span-12">
@@ -37,17 +37,17 @@ const Index = () => {
                     <DataTable header={info.header} showNoData={info.roles.data.length}>
                          {info.roles.data.map(({id, name, display, description}) => {
                               return <tr key={id}>
-                                   <td className="border px-2 py-1">{display}</td>
-                                   <td className="border px-2 py-1">{name}</td>
-                                   <td className="border px-2 py-1">{description}</td>
-                                   <td className="border px-2 py-1">
+                                   <td className="px-2 py-1 border">{display}</td>
+                                   <td className="px-2 py-1 border">{name}</td>
+                                   <td className="px-2 py-1 border">{description}</td>
+                                   <td className="px-2 py-1 border">
                                         <DropdownButton caption="Actions" color="blue">
-                                             {info.access.update_role && (<InertiaLink href={route('admin.role.edit', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                             {info.access.update_role && (<Link href={route('admin.role.edit', id)} className="flex px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                   <Icon name={'edit'} className={'fill-current w-5 h-5 mr-2'} /> Edit
-                                             </InertiaLink>)}
-                                             {info.access.assign_permission && (<InertiaLink href={route('admin.role.get.assign', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                             </Link>)}
+                                             {info.access.assign_permission && (<Link href={route('admin.role.get.assign', id)} className="flex px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                   <Icon name={'cheveron-right'} className={'fill-current w-5 h-5 mr-2'} /> Assign Permission
-                                             </InertiaLink>)}
+                                             </Link>)}
                                         </DropdownButton>
                                    </td>
                               </tr>

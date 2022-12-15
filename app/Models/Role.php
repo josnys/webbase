@@ -12,9 +12,4 @@ class Role extends LaratrustRole
      {
           return $this->belongsToMany('App\Models\Permission', 'permission_role');
      }
-
-     public static function serverError()
-     {
-          return "An error has occured. Please contact developper.";
-     }
 }

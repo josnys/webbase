@@ -10,4 +10,9 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function error500FullText()
+    {
+        return "An error has occured. Please Contact Developer.";
+    }
 }

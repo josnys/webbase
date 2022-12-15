@@ -49,16 +49,16 @@ export default () => {
 
   return (
     <div className="flex items-center w-full max-w-md mr-4">
-      <div className="relative flex w-full bg-white shadow rounded">
+      <div className="relative flex w-full bg-white rounded shadow">
         <div
           style={{ top: '100%' }}
           className={`absolute ${opened ? '' : 'hidden'}`}
         >
           <div
             onClick={() => setOpened(false)}
-            className="bg-black opacity-25 fixed inset-0 z-20"
+            className="fixed inset-0 z-20 bg-black opacity-25"
           ></div>
-          <div className="relative w-64 mt-2 px-4 py-6 shadow-lg bg-white rounded z-30">
+          <div className="relative z-30 w-64 px-4 py-6 mt-2 bg-white rounded shadow-lg">
             {filters.hasOwnProperty('role') && (
               <SelectInput
                 className="mb-4"
@@ -86,12 +86,12 @@ export default () => {
         </div>
         <button
           onClick={() => setOpened(true)}
-          className="px-4 md:px-6 rounded-l border-r hover:bg-gray-100 focus:outline-none focus:border-white focus:ring focus:z-10"
+          className="px-4 border-r rounded-l md:px-6 hover:bg-gray-100 focus:outline-none focus:border-white focus:ring focus:z-10"
         >
           <div className="flex items-baseline">
-            <span className="text-gray-700 hidden md:inline">Filter</span>
+            <span className="hidden text-gray-700 md:inline">Filter</span>
             <svg
-              className="w-2 h-2 fill-current text-gray-700 md:ml-2"
+              className="w-2 h-2 text-gray-700 fill-current md:ml-2"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 961.243 599.998"
             >
@@ -103,7 +103,6 @@ export default () => {
           className="relative w-full px-6 py-3 rounded-r focus:ring"
           autoComplete="off"
           type="text"
-          name="search"
           name="search"
           value={values.search}
           onChange={handleChange}

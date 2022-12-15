@@ -1,5 +1,5 @@
 import React from 'react';
-import { InertiaLink } from '@inertiajs/inertia-react';
+import { Link } from '@inertiajs/inertia-react';
 import Icon from '@/Shared/Icon';
 import classNames from 'classnames';
 
@@ -10,9 +10,9 @@ const iconClasses = classNames('w-4 h-4 mr-2', {
 
 export function AddButton({caption, link, linkParams, ...props}){
      return (<React.Fragment>
-          <InertiaLink href={linkParams?route(link, linkParams):route(link)} className="bg-gray-300 hover:bg-gray-400 mr-2 text-gray-800 text-sm py-1 px-1 rounded inline-flex items-center">
+          <Link href={linkParams?route(link, linkParams):route(link)} className="inline-flex items-center px-1 py-1 mr-2 text-sm text-gray-800 bg-gray-300 rounded hover:bg-gray-400">
                <Icon name="plus" className={iconClasses} />
                {caption}
-          </InertiaLink>
+          </Link>
      </React.Fragment>);
 }
