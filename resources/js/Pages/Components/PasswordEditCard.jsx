@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { InertiaLink, usePage, useForm } from '@inertiajs/inertia-react';
+import React from 'react';
+import { usePage, useForm, Link } from '@inertiajs/inertia-react';
 import { ButtonSubmitSimple } from '@/Shared/Buttons';
 import { TextInputSimple } from '@/Shared/Inputs';
+import FlashMessages from '@/Shared/FlashMessages';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
-import axios from 'axios';
 
 const PasswordEditCard = () => {
      const { auth, user } = usePage().props;
@@ -16,7 +16,7 @@ const PasswordEditCard = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('user.profile.password', user.id));
+          post(route('user.password.save', user.id));
      }
      return (
           <React.Fragment key="uprofile">
@@ -27,9 +27,11 @@ const PasswordEditCard = () => {
                               <p className="mt-1 text-sm text-gray-600">
                                    Ensure your account is using a long, random password to stay secure.
                               </p>
+                              <Link href={route('user.profile')} className="mt-4 text-sm font-semibold text-slate-600 hover:underline">Back to Profile</Link>
                          </div>
                     </div>
                     <DataCard>
+                         <FlashMessages />
                          <form onSubmit={handleSubmit}>
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-12">

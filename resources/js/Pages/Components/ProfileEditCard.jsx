@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { InertiaLink, usePage, useForm } from '@inertiajs/inertia-react';
-import { ButtonSubmitSimple, ButtonLinkSimple } from '@/Shared/Buttons';
-import { TextInputSimple, CheckInput, SelectInputSimple, FileInputShowImage } from '@/Shared/Inputs';
+import React from 'react';
+import { usePage, useForm, Link } from '@inertiajs/inertia-react';
+import { ButtonSubmitSimple } from '@/Shared/Buttons';
+import { TextInputSimple, SelectInputSimple, FileInputShowImage } from '@/Shared/Inputs';
+import FlashMessages from '@/Shared/FlashMessages';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
-import {toFormData} from '@/utils';
 
 const ProfileEditCard = () => {
      const { auth, user, info } = usePage().props;
@@ -20,10 +20,10 @@ const ProfileEditCard = () => {
           username: user.username || '',
           current_username: user.username || '',
           email: user.email || '',
+          current_email: user.email || '',
           avatar: null,
           selectedAvatar: null,
           currentAvatar: user.avatar,
-          current_email: user.email || '',
      });
 
      function handleFileChange(file, path) {
@@ -40,23 +40,24 @@ const ProfileEditCard = () => {
                <ProfileCard>
                     <div className="md:col-span-1">
                          <div className="px-4 sm:px-0">
-                              <h3 className="text-lg font-medium text-gray-900">Profile Information</h3>
-                              <p className="mt-1 text-sm text-gray-600">
-                                   Update your account's profile information and email address.
+                              <h3 className="text-lg font-medium text-slate-900">Profile Information</h3>
+                              <p className="mt-1 text-sm text-slate-600">
+                                   Update your account's profile information and email address. You may change your password <Link href={route('user.password')} className="font-semibold hover:underline">here.</Link>
                               </p>
                               <div className="w-full mt-3">
-                                   <h3 className="text-center text-gray-700 text-md">Current Photo</h3>
+                                   <h3 className="text-center text-slate-700 text-md">Current Photo</h3>
                                    {!user.currentAvatar && (<img src={`https://ui-avatars.com/api/?name=${auth.user.name}&amp;color=7F9CF5&amp;background=EBF4FF`} className="w-20 h-20 mx-auto rounded-full" />)}
                                    {user.currentAvatar && (<img src={`${user.currentAvatar}`} className="w-20 h-20 mx-auto rounded-full" />)}
                               </div>
                          </div>
                     </div>
                     <DataCard>
+                         <FlashMessages />
                          <form onSubmit={handleSubmit}>
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-12">
                                         <div className="col-span-12">
-                                             <label className="block text-sm font-medium text-gray-700" htmlFor="avatar">
+                                             <label className="block text-sm font-medium text-slate-700" htmlFor="avatar">
                                                   <span>Avatar {data.selectedAvatar}</span>
                                              </label>
                                              <div className="mt-2">
@@ -152,7 +153,7 @@ const ProfileEditCard = () => {
                                              />
                                              <TextInputSimple
                                                   className="block w-full mt-4"
-                                                  label="Userame"
+                                                  label="Username"
                                                   name="username"
                                                   type="text"
                                                   placeholder="jdoe"
@@ -164,7 +165,7 @@ const ProfileEditCard = () => {
                                              />
                                              <TextInputSimple
                                                   className="block w-full mt-4"
-                                                  label="Email"
+                                                  label="E-mail"
                                                   name="email"
                                                   type="email"
                                                   placeholder="jdoe@app.com"

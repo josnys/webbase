@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\PasswordRequest;
 use App\Actions\Users\CreateUserAction;
 use App\Actions\Users\UpdateUserAction;
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Person;
 use App\Models\Role;
@@ -73,7 +72,7 @@ class UserController extends Controller
                ]]);
           } catch (\Exception $e) {
                Log::error('User index', ['data' => $e]);
-               return redirect()->back()->with('error', User::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 
@@ -86,7 +85,7 @@ class UserController extends Controller
                ]]);
           } catch (\Exception $e) {
                Log::error('User create', ['data' => $e]);
-               return redirect()->back()->with('error', User::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 
@@ -100,7 +99,7 @@ class UserController extends Controller
                return redirect()->route('admin.user.index')->with('success', 'User saved successfully.');
           } catch (\Exception $e) {
                Log::error('User store', ['data' => $e]);
-               return redirect()->back()->with('error', User::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 
@@ -129,7 +128,7 @@ class UserController extends Controller
                ]]);
           } catch (\Exception $e) {
                Log::error('User edit', ['data' => $e]);
-               return redirect()->back()->with('error', User::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 
@@ -143,7 +142,7 @@ class UserController extends Controller
                return redirect()->route('admin.user.index')->with('success', 'User updated successfully.');
           } catch (\Exception $e) {
                Log::error('User update', ['data' => $e]);
-               return redirect()->back()->with('error', User::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 
@@ -182,22 +181,24 @@ class UserController extends Controller
                ]);
           } catch (\Exception $e) {
                Log::error('User get role', ['data' => $e]);
-               return redirect()->back()->with('error', User::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 
      public function postRole(Request $request, User $user)
      {
           try {
-               $request->validate([
+               $input = $request->validate([
                     'user_roles' => ['required', 'array'],
                     'user_roles.*' => ['integer'],
                ]);
-               $user->syncRoles($request->get('user_roles'));
+               
+               $user->syncRoles($input['user_roles']);
+
                return redirect()->route('admin.user.index')->with('success', 'Role successfully assigned to '.$user->name);
           } catch (\Exception $e) {
                Log::error('User post role', ['data' => $e]);
-               return redirect()->back()->with('error', User::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 
@@ -212,22 +213,27 @@ class UserController extends Controller
                ]]);
           } catch (\Exception $e) {
                Log::error('User reset password', ['data' => $e]);
-               return redirect()->back()->with('error', User::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 
      public function postResetPassword(PasswordRequest $request, User $user)
      {
           try {
-               $user->password = Hash::make($request->get('password'));
-               if($request->get('pin') != null){
-                    $user->pin = $request->get('pin');
+               $input = $request->validated();
+               
+               $user->password = Hash::make($input['password']);
+
+               if(!is_null($input['pin'])){
+                    $user->pin = $input['pin'];
                }
+
                $user->update();
+               
                return redirect()->route('admin.user.index')->with('success', 'User Password changed successfully.');
           } catch (\Exception $e) {
                Log::error('User post reset password', ['data' => $e]);
-               return redirect()->back()->with('error', User::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 }

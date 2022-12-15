@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
-import { InertiaLink, usePage, useForm, Head } from '@inertiajs/inertia-react';
+import { usePage, useForm, Head } from '@inertiajs/inertia-react';
 import AuthCard from '@/Shared/AuthCard';
 import { ButtonSubmitSimple } from '@/Shared/Buttons';
-import { TextInputSimple } from '@/Shared/Inputs';
 import Logo from '@/Shared/Logo';
 
 function VerifyEmail() {
@@ -22,18 +20,18 @@ function VerifyEmail() {
      }
 
      return (
-          <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
+          <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0">
                <Head>
                     <title>Verify Email</title>
                </Head>
                <Logo className="w-12 h-12" />
                <AuthCard>
-                    {!sent && (<div className="mb-4 text-sm text-gray-600 text-justify">
+                    {!sent && (<div className="mb-4 text-sm text-justify text-gray-600">
                       Thanks for signing up! Before getting started, could you verify your
                       email address by clicking on the link we just emailed to you? If you
                       didn't receive the email, we will gladly send you another.
                     </div>)}
-                    {sent && (<div className="mb-4 font-medium text-sm text-green-600 text-justify">
+                    {sent && (<div className="mb-4 text-sm font-medium text-justify text-green-600">
                       A new verification link has been sent to the email address you
                       provided during registration.
                     </div>)}

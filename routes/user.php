@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth', 'ver
      Route::get('/admin', [HomeController::class, 'adminIndex'])->name('admin');
      // Profile
      Route::get('/home', [HomeController::class, 'index'])->name('home');
-     Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
-     Route::post('/profile/{user}/edit', [HomeController::class, 'postProfile'])->name('profile.save');
-     Route::post('/profile/{user}/password', [HomeController::class, 'postProfilePassword'])->name('profile.password');
+     Route::get('/profile', [ProfileController::class, 'editProfile'])->name('profile');
+     Route::post('/profile/{user}/edit', [ProfileController::class, 'updateProfile'])->name('profile.save');
+     Route::get('/password', [ProfileController::class, 'editPassword'])->name('password');
+     Route::post('/password/{user}/password', [ProfileController::class, 'updatePassword'])->name('password.save');
 });

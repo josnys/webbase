@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
-import { InertiaLink, usePage, useForm, Head } from '@inertiajs/inertia-react';
+import React from 'react';
+import { usePage, useForm, Head } from '@inertiajs/inertia-react';
 import AuthCard from '@/Shared/AuthCard';
 import { ButtonSubmitSimple } from '@/Shared/Buttons';
 import { TextInputSimple } from '@/Shared/Inputs';
@@ -24,7 +23,7 @@ function ResetPassword() {
      }
 
      return (
-          <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
+          <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0">
                <Head>
                     <title>Reset Password</title>
                </Head>

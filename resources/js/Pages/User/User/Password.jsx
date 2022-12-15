@@ -1,24 +1,22 @@
 import React from 'react';
 import { usePage, Head } from '@inertiajs/inertia-react';
 import UserLayout from '@/Shared/UserLayout';
-import ProfileEditCard from '@/Pages/Components/ProfileEditCard';
 import PasswordEditCard from '@/Pages/Components/PasswordEditCard';
-import Separator from '@/Shared/Admin/Separator';
 
-const Profile = () => {
+const Password = () => {
      const { auth, errors } = usePage().props;
      return (
           <React.Fragment key="uprofile">
                <Head>
-                    <title>Profile</title>
+                    <title>Change Password</title>
                </Head>
-               <ProfileEditCard />
+               <PasswordEditCard />
           </React.Fragment>
      );
 };
 
 // Persisten layout
 // Docs: https://inertiajs.com/pages#persistent-layouts
-Profile.layout = page => <UserLayout children={page} header={'Profile'} />;
+Password.layout = page => <UserLayout children={page} header={'Change Password'} />;
 
-export default Profile;
+export default Password;

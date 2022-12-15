@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { InertiaLink, usePage, Head } from '@inertiajs/inertia-react';
+import React from 'react';
+import { Link, usePage, Head } from '@inertiajs/inertia-react';
 import AdminLayout from '@/Shared/AdminLayout';
 import FlashMessages from '@/Shared/FlashMessages';
 import DataContainer from '@/Shared/DataContainer';
@@ -18,9 +18,9 @@ const Index = () => {
                </Head>
                <DataContainer>
                     <div className="col-span-12 p-2 border-b">
-                         <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('admin.dashboard')}>Dashboard</InertiaLink> | <span className="text-md text-gray-700 leading-tight">Users</span>
+                         <Link className="font-semibold leading-tight text-gray-700 text-md hover:text-gray-800" href={route('admin.dashboard')}>Dashboard</Link> | <span className="leading-tight text-gray-700 text-md">Users</span>
                     </div>
-                    <div className="col-span-12 items-center">
+                    <div className="items-center col-span-12">
                          <FlashMessages />
                     </div>
                     <div className="col-span-12">
@@ -32,29 +32,29 @@ const Index = () => {
                     <DataTable header={info.header} showNoData={info.users.data.length}>
                          {info.users.data.map(({id, code, name, username, email, avatar, roles}) => {
                               return <tr key={id}>
-                                   <td className="border px-2 py-1">
-                                        {!avatar && (<img src={`https://ui-avatars.com/api/?name=${name}&amp;color=7F9CF5&amp;background=EBF4FF`} alt={name} className="mx-auto h-4 w-4 rounded-full" />)}
-                                        {avatar && (<img src={avatar} alt={name} className="mx-auto h-4 w-4 rounded-full" />)}
+                                   <td className="px-2 py-1 border">
+                                        {!avatar && (<img src={`https://ui-avatars.com/api/?name=${name}&amp;color=7F9CF5&amp;background=EBF4FF`} alt={name} className="w-4 h-4 mx-auto rounded-full" />)}
+                                        {avatar && (<img src={avatar} alt={name} className="w-4 h-4 mx-auto rounded-full" />)}
                                    </td>
-                                   <td className="border px-2 py-1">{code}</td>
-                                   <td className="border px-2 py-1">{name}</td>
-                                   <td className="border px-2 py-1">{username}</td>
-                                   <td className="border px-2 py-1">{email}</td>
-                                   <td className="border px-2 py-1">{roles.join(', ')}</td>
-                                   <td className="border px-2 py-1">
+                                   <td className="px-2 py-1 border">{code}</td>
+                                   <td className="px-2 py-1 border">{name}</td>
+                                   <td className="px-2 py-1 border">{username}</td>
+                                   <td className="px-2 py-1 border">{email}</td>
+                                   <td className="px-2 py-1 border">{roles.join(', ')}</td>
+                                   <td className="px-2 py-1 border">
                                         <DropdownButton caption="Actions" color="blue">
-                                             {info.access.edit && (<InertiaLink href={route('admin.user.edit', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                             {info.access.edit && (<Link href={route('admin.user.edit', id)} className="flex px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                   <Icon name={'edit'} className={'fill-current w-5 h-5 mr-2'} />
                                                   Edit
-                                             </InertiaLink>)}
-                                             {info.access.change_pass && (<InertiaLink href={route('admin.user.get.resetpassword', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                             </Link>)}
+                                             {info.access.change_pass && (<Link href={route('admin.user.get.resetpassword', id)} className="flex px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                   <Icon name={'key'} className={'fill-current w-5 h-5 mr-2'} />
                                                   Change Password
-                                             </InertiaLink>)}
-                                             {info.access.assign_role && (<InertiaLink href={route('admin.user.get.role', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                             </Link>)}
+                                             {info.access.assign_role && (<Link href={route('admin.user.get.role', id)} className="flex px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                   <Icon name={'cheveron-right'} className={'fill-current w-5 h-5 mr-2'} />
                                                   Assign Role
-                                             </InertiaLink>)}
+                                             </Link>)}
                                         </DropdownButton>
                                    </td>
                               </tr>

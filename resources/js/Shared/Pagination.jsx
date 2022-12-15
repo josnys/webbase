@@ -1,5 +1,5 @@
 import React from 'react';
-import { InertiaLink } from '@inertiajs/inertia-react';
+import { Link } from '@inertiajs/inertia-react';
 import classNames from 'classnames';
 
 const PageLink = ({ active, label, url }) => {
@@ -18,9 +18,9 @@ const PageLink = ({ active, label, url }) => {
     }
   );
   return (
-    <InertiaLink className={className} href={url}>
+    <Link className={className} href={url}>
       {label}
-    </InertiaLink>
+    </Link>
   );
 };
 
@@ -41,7 +41,7 @@ export default ({ links = [] }) => {
   // dont render, if there's only 1 page (previous, 1, next)
   if (links.length === 3) return null;
   return (
-    <div className="w-full flex">
+    <div className="flex w-full">
       {links.map(({ active, label, url }) => {
         return url === null ? (
           <PageInactive key={label} label={label} />

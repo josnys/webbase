@@ -31,7 +31,7 @@ class PermissionController extends Controller
                ]]);
           } catch (\Exception $e) {
                Log::error('Permission create', ['data' => $e]);
-               return redirect()->back()->with('error', Permission::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 
@@ -47,7 +47,7 @@ class PermissionController extends Controller
                return redirect()->back()->with('success', 'Permission created successfully.');
           } catch (\Exception $e) {
                Log::error('Permission store', ['data' => $e]);
-               return redirect()->back()->with('error', Permission::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 
@@ -62,7 +62,7 @@ class PermissionController extends Controller
                ]]);
           } catch (\Exception $e) {
                Log::error('Permission edit', ['data' => $e]);
-               return redirect()->back()->with('error', Permission::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 
@@ -76,7 +76,7 @@ class PermissionController extends Controller
                return redirect()->route('admin.permission.create')->with('success', 'Permission Updated.');
           } catch (\Exception $e) {
                Log::error('Permission update', ['data' => $e]);
-               return redirect()->back()->with('error', Permission::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 }

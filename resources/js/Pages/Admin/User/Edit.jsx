@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-import { InertiaLink, usePage, useForm, Head } from '@inertiajs/inertia-react';
+import React from 'react';
+import { usePage, useForm, Head } from '@inertiajs/inertia-react';
 import AdminLayout from '@/Shared/AdminLayout';
-import FileInput from '@/Shared/FileInput';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
 import { ButtonSubmitSimple, ButtonLinkSimple } from '@/Shared/Buttons';
-import { TextInputSimple, TextInputIcon, CheckInput, SelectInputSimple } from '@/Shared/Inputs';
-import Icon from '@/Shared/Icon';
+import { TextInputSimple, SelectInputSimple } from '@/Shared/Inputs';
 import classNames from 'classnames';
 
 const Edit = () => {
@@ -73,7 +71,7 @@ const Edit = () => {
                                                   onChange={e => setData('fname', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Last Name"
                                                   name="lname"
                                                   type="text"
@@ -86,7 +84,7 @@ const Edit = () => {
                                                   onChange={e => setData('lname', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Date of Birth"
                                                   name="dob"
                                                   type="date"
@@ -98,7 +96,7 @@ const Edit = () => {
                                                   onChange={e => setData('dob', e.target.value)}
                                              />
                                              <SelectInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Sex"
                                                   name="sex"
                                                   must={true}
@@ -112,7 +110,7 @@ const Edit = () => {
                                                   })}
                                              </SelectInputSimple>
                                              <SelectInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Identity Type"
                                                   name="identificationType"
                                                   must={true}
@@ -126,7 +124,7 @@ const Edit = () => {
                                                   })}
                                              </SelectInputSimple>
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Identity Number"
                                                   name="identification"
                                                   type="text"
@@ -138,7 +136,7 @@ const Edit = () => {
                                                   onChange={e => setData('identification', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Userame"
                                                   name="username"
                                                   type="text"
@@ -150,7 +148,7 @@ const Edit = () => {
                                                   onChange={e => setData('username', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Email"
                                                   name="email"
                                                   type="email"
@@ -162,7 +160,7 @@ const Edit = () => {
                                                   onChange={e => setData('email', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Phone Number"
                                                   name="phone"
                                                   type="text"
@@ -175,7 +173,7 @@ const Edit = () => {
                                                   onChange={e => setData('phone', e.target.value)}
                                              />
                                              <TextInputSimple
-                                                  className="mt-4 block w-full"
+                                                  className="block w-full mt-4"
                                                   label="Address"
                                                   name="address"
                                                   type="text"
@@ -190,7 +188,7 @@ const Edit = () => {
                                         </div>
                                    </div>
                               </div>
-                              <div className="flex items-center justify-end px-4 py-3 bg-slate-100 text-right sm:px-6 rounded-b">
+                              <div className="flex items-center justify-end px-4 py-3 text-right rounded-b bg-slate-100 sm:px-6">
                                    <ButtonSubmitSimple caption="Update" loading={processing} icon={null} />
                               </div>
                          </form>

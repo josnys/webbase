@@ -34,7 +34,7 @@ class SecurityController extends Controller
                ]]);
           } catch (\Exception $e) {
                Log::error('Security index', ['data' => $e]);
-               return redirect()->back()->with('error', Role::serverError());
+               return redirect()->back()->with('error', $this->error500FullText());
           }
      }
 }

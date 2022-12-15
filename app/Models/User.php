@@ -57,9 +57,4 @@ class User extends Authenticatable implements MustVerifyEmail
      {
           return ($this->person->profile_url && Storage::disk('local')->exists('users/'.$this->person->profile_url)) ? route('show.image', 'users/'.$this->person->profile_url) : null;
      }
-
-     public static function serverError()
-     {
-          return "An error has occured. Please contact developper.";
-     }
 }

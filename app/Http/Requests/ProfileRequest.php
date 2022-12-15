@@ -32,10 +32,11 @@ class ProfileRequest extends FormRequest
                'identificationType' => ['required', 'string'],
                'phone' => ['required'],
                'current_username' => ['required'],
-               'username' => ['required', 'exclude_if:current_username,'.auth()->user()->username, 'string', 'max:30', 'unique:users'],
+               'username' => ['required', 'exclude_if:current_username,'.$this->username, 'string', 'max:30', 'unique:users'],
                'current_email' => ['required'],
-               'email' => ['required', 'exclude_if:current_email,'.auth()->user()->email, 'string', 'email', 'max:255', 'unique:users'],
-               'avatar' => ['sometimes', 'exclude_if:selectedAvatar,null', 'image', 'max:2048', 'mimes:jpeg,jpg,png']
+               'email' => ['required', 'exclude_if:current_email,'.$this->email, 'string', 'email', 'max:255', 'unique:users'],
+               'avatar' => ['sometimes', 'exclude_if:selectedAvatar,null', 'image', 'max:2048', 'mimes:jpeg,jpg,png'],
+               'address' => ['sometimes', 'string', 'max:120'],
           ];
      }
 }
