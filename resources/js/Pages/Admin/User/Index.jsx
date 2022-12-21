@@ -8,9 +8,10 @@ import DataTable from '@/Shared/Admin/DataTable';
 import DropdownButton from '@/Shared/DropdownButton';
 import Icon from '@/Shared/Icon';
 import Pagination from '@/Shared/Pagination';
+import { joinValueByKey } from '@/utils';
 
 const Index = () => {
-     const { auth, info } = usePage().props;
+     const { info } = usePage().props;
      return (
           <React.Fragment key="security-index">
                <Head>
@@ -30,17 +31,17 @@ const Index = () => {
                          </div>)}
                     </div>
                     <DataTable header={info.header} showNoData={info.users.data.length}>
-                         {info.users.data.map(({id, code, name, username, email, avatar, roles}) => {
+                         {info.users.data.map(({id, person, username, email, roles}) => {
                               return <tr key={id}>
                                    <td className="px-2 py-1 border">
-                                        {!avatar && (<img src={`https://ui-avatars.com/api/?name=${name}&amp;color=7F9CF5&amp;background=EBF4FF`} alt={name} className="w-4 h-4 mx-auto rounded-full" />)}
-                                        {avatar && (<img src={avatar} alt={name} className="w-4 h-4 mx-auto rounded-full" />)}
+                                        {!person.avatar && (<img src={`https://ui-avatars.com/api/?name=${person.name}&amp;color=7F9CF5&amp;background=EBF4FF`} alt={person.name} className="w-4 h-4 mx-auto rounded-full" />)}
+                                        {person.avatar && (<img src={person.avatar} alt={person.name} className="w-4 h-4 mx-auto rounded-full" />)}
                                    </td>
-                                   <td className="px-2 py-1 border">{code}</td>
-                                   <td className="px-2 py-1 border">{name}</td>
+                                   <td className="px-2 py-1 border">{person.code}</td>
+                                   <td className="px-2 py-1 border">{person.name}</td>
                                    <td className="px-2 py-1 border">{username}</td>
                                    <td className="px-2 py-1 border">{email}</td>
-                                   <td className="px-2 py-1 border">{roles.join(', ')}</td>
+                                   <td className="px-2 py-1 border">{joinValueByKey(roles, 'display_name')}</td>
                                    <td className="px-2 py-1 border">
                                         <DropdownButton caption="Actions" color="blue">
                                              {info.access.edit && (<Link href={route('admin.user.edit', id)} className="flex px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
@@ -60,7 +61,7 @@ const Index = () => {
                               </tr>
                          })}
                     </DataTable>
-                    <Pagination links={info.users.links} />
+                    <Pagination links={info.users.meta.links} />
                </DataContainer>
           </React.Fragment>
      );

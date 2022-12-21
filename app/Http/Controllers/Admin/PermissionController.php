@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 
 class PermissionController extends Controller
 {
-     public function create()
+     public function create(Request $request)
      {
           try {
                $permissions = Permission::paginate(50)->transform(function($permission){
@@ -26,7 +26,7 @@ class PermissionController extends Controller
                     'permissions' => $permissions,
                     'header' => ['Display Name', 'Name', 'Description', ''],
                     'access' => [
-                         'edit' => auth()->user()->isAbleTo('update-permission'),
+                         'edit' => $request->user()->isAbleTo('update-permission'),
                     ],
                ]]);
           } catch (\Exception $e) {

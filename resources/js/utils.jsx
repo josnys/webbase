@@ -114,14 +114,11 @@ export function isPar(a){
      }
 }
 
-export function can(user, permission){
-     if(user.can.indexOf(permission) > -1){
-          return true;
-     }
-     return false;
-}
-
 export function isAdminURl(){
      let url = window.location.href.toString().split(window.location.host)[1].split('/')[1];
      return (url == 'admin') ? true : false;
+}
+
+export function joinValueByKey(array, key){
+     return array.map((val) => val[key]).join(', ');
 }

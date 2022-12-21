@@ -83,10 +83,7 @@ class RoleController extends Controller
           try {
                $role = $role->with('permissions')->find($role->id);
                $_permissions = Permission::all();
-               $role_permission = array();
-               foreach($role->permissions as $rp){
-                    array_push($role_permission, $rp->id);
-               }
+               $role_permission = $role->permissions->pluck('id')->toArray();
 
                $permissions = array();
                foreach($_permissions as $permission){

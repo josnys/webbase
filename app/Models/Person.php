@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class Person extends Model
 {
@@ -18,6 +19,11 @@ class Person extends Model
      public function getNameAttribute()
      {
           return "{$this->firstname} {$this->lastname}";
+     }
+
+     public function getAvatarAttribute()
+     {
+          return ($this->profile_url && Storage::disk('local')->exists('users/' . $this->profile_url)) ? route('show.image', 'users/' . $this->profile_url) : null;
      }
 
      public static function generateCode()

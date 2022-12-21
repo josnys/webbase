@@ -8,22 +8,22 @@ import DataCard from '@/Shared/DataCard';
 
 const ProfileEditCard = () => {
      const { auth, user, info } = usePage().props;
-     const { data, setData, post, processing, errors, transform } = useForm({
-          fname: user.fname || '',
-          lname: user.lname || '',
-          dob: user.dob || '',
-          sex: user.sex || '',
-          identification: user.identification || '',
-          identificationType: user.identificationType || '',
-          phone: user.phone || '',
-          address: user.address || '',
-          username: user.username || '',
-          current_username: user.username || '',
-          email: user.email || '',
-          current_email: user.email || '',
+     const { data, setData, put, processing, errors, transform } = useForm({
+          fname: user.data.person.firstname || '',
+          lname: user.data.person.lastname || '',
+          dob: user.data.person.dob || '',
+          sex: user.data.person.sex || '',
+          identification: user.data.person.gov_id.number || '',
+          identificationType: user.data.person.gov_id.type || '',
+          phone: user.data.person.phone || '',
+          address: user.data.person.address || '',
+          username: user.data.username || '',
+          current_username: user.data.username || '',
+          email: user.data.email || '',
+          current_email: user.data.email || '',
           avatar: null,
           selectedAvatar: null,
-          currentAvatar: user.avatar,
+          currentAvatar: user.data.person.avatar,
      });
 
      function handleFileChange(file, path) {
@@ -33,7 +33,7 @@ const ProfileEditCard = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('user.profile.save', user.id));
+          put(route('user.profile.save', user.data.id));
      }
      return (
           <React.Fragment key="uprofile">
@@ -42,7 +42,7 @@ const ProfileEditCard = () => {
                          <div className="px-4 sm:px-0">
                               <h3 className="text-lg font-medium text-slate-900">Profile Information</h3>
                               <p className="mt-1 text-sm text-slate-600">
-                                   Update your account's profile information and email address. You may change your password <Link href={route('user.password')} className="font-semibold hover:underline">here.</Link>
+                                   Update your account's profile information and email address. You may change your password <Link href={route('user.password.edit')} className="font-semibold hover:underline">here.</Link>
                               </p>
                               <div className="w-full mt-3">
                                    <h3 className="text-center text-slate-700 text-md">Current Photo</h3>

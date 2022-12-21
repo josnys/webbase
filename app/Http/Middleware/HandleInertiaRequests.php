@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Inertia\Middleware;
+use App\Services\Admin\UserService;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -31,6 +32,8 @@ class HandleInertiaRequests extends Middleware
      */
      public function share(Request $request)
      {
+          $user_service = new UserService;
+
           return array_merge(parent::share($request), [
                'app' => function(){
                     return [
@@ -41,26 +44,21 @@ class HandleInertiaRequests extends Middleware
                          ]
                     ];
                },
-               'auth' => function () {
-                    $user = Auth::user() ? User::find(auth()->id()) : null;
+               'auth' => function () use ($user_service, $request) {
+                    $user = Auth::user() ? $user_service->findId(auth()->id()) : null;
                     $permissions = [
-                         'users' => $user ? auth()->user()->isAbleTo('read-user') : null,
-                         'admin' => $user ? auth()->user()->isAbleTo('admin-access') : null,
+                         'users' => $user ? $request->user()->isAbleTo('read-user') : null,
+                         'admin' => $user ? $request->user()->isAbleTo('admin-access') : null,
                     ];
 
                     return [
                          'user' => $user ? [
                               'id' => $user->id,
-                              'name' => $user->name,
+                              'name' => $user->person->name,
                               'username' => $user->username,
                               'email' => $user->email,
-                              'avatar' => $user->avatar,
-                              'roles' => $user->roles->count() ? collect($user->roles)->map(function($role){
-                                   return [
-                                        'name' => $role->name,
-                                        'display' => $role->display_name
-                                   ];
-                              }) : [],
+                              'avatar' => $user->person->avatar,
+                              'roles' => $user->roles->pluck('displa_name')->toArray(),
                               'can' => ($permissions) ? $permissions : []
                          ] : null,
                     ];

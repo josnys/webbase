@@ -8,7 +8,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -53,8 +52,8 @@ class User extends Authenticatable implements MustVerifyEmail
           return "{$this->person->firstname} {$this->person->lastname}";
      }
 
-     public function getAvatarAttribute()
+     public function scopeAccess($query)
      {
-          return ($this->person->profile_url && Storage::disk('local')->exists('users/'.$this->person->profile_url)) ? route('show.image', 'users/'.$this->person->profile_url) : null;
+          return (auth()->user()->id !== 1) ? $query->where('id', '!==', 1) : $query;
      }
 }
