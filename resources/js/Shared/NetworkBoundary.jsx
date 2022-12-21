@@ -4,7 +4,6 @@ export default function NetworkBoundary({...props}) {
      const [isOnline, setIsOnline] = useState(true);
 
      const onlineStatus = () => {
-          console.log(navigator.onLine);
           setIsOnline(navigator.onLine);
      }
 
@@ -19,8 +18,8 @@ export default function NetworkBoundary({...props}) {
      }, []);
 
      return (<>
-          {(!isOnline) && <div className="w-1/2 m-auto h-full flex flex-col justify-center items-center">
-               <h2 className="bg-red-100 p-4 text-red-600 rounded">Seems that you no longer have an internet connection.</h2>
+          {(!isOnline) && <div className="flex flex-col items-center justify-center w-1/2 h-full m-auto">
+               <h2 className="p-4 text-red-600 bg-red-100 rounded">Seems that you no longer have an internet connection.</h2>
                <p>{`Please, wait till your connection is back :)`}</p>
           </div>}
 

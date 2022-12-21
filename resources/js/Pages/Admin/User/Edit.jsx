@@ -8,30 +8,26 @@ import { TextInputSimple, SelectInputSimple } from '@/Shared/Inputs';
 import classNames from 'classnames';
 
 const Edit = () => {
-     const { auth, info } = usePage().props;
+     const { info } = usePage().props;
+     
      const { data, setData, put, processing, errors } = useForm({
-          fname: info.fname || '',
-          lname: info.lname || '',
-          code: info.code || '',
-          dob: info.dob || '',
-          sex: info.sex || '',
-          identification: info.identification || '',
-          identificationType: info.identificationType || '',
-          address: info.address || '',
-          phone: info.phone || '',
-          username: info.username || '',
-          email: info.email || '',
-          avatar: info.avatar
-     });
-
-     const iconClasses = classNames('w-4 h-4 mr-2', {
-          'text-white fill-current': false,
-          'text-gray-500 hover:text-white fill-current': true
+          fname: info.user.data.person.firstname || '',
+          lname: info.user.data.person.lastname || '',
+          code: info.user.data.person.code || '',
+          dob: info.user.data.person.dob || '',
+          sex: info.user.data.person.sex || '',
+          identification: info.user.data.person.gov_id.number || '',
+          identificationType: info.user.data.person.gov_id.type || '',
+          address: info.user.data.person.address || '',
+          phone: info.user.data.person.phone || '',
+          username: info.user.data.username || '',
+          email: info.user.data.email || '',
+          avatar: info.user.data.person.avatar
      });
 
      function handleSubmit(e) {
           e.preventDefault();
-          put(route('admin.user.update', info.id));
+          put(route('admin.user.update', info.user.data.id));
      }
 
      return (

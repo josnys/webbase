@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Admin;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Admin\PersonResource;
+use App\Http\Resources\Admin\RoleCollection;
 
 class UserResource extends JsonResource
 {
@@ -16,13 +18,10 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'code' => $this->person ? $this->person->code : null,
-            'fname' => $this->person ? $this->person->firstname : null,
-            'lname' => $this->person ? $this->person->lastname : null,
-            'name' => $this->person ? $this->name : null,
+            'person' => PersonResource::make($this->whenLoaded('person')),
             'username' => $this->username,
             'email' => $this->email,
-            'avatar' => $this->person ? $this->avatar : null,
+            'roles' => RoleCollection::make($this->whenLoaded('roles')),
         ];
     }
 }

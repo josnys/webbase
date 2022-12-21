@@ -5,7 +5,7 @@ import ProfileEditCard from '@/Pages/Components/ProfileEditCard';
 import PasswordEditCard from '@/Pages/Components/PasswordEditCard';
 import Separator from '@/Shared/Admin/Separator';
 
-const Profile = () => {
+const Edit = () => {
      const { auth, errors } = usePage().props;
      return (
           <React.Fragment key="uprofile">
@@ -19,6 +19,6 @@ const Profile = () => {
 
 // Persisten layout
 // Docs: https://inertiajs.com/pages#persistent-layouts
-Profile.layout = page => <UserLayout children={page} header={'Profile'} />;
+Edit.layout = page => <UserLayout children={page} header={'Profile'} />;
 
-export default Profile;
+export default Edit;

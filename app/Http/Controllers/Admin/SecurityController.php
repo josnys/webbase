@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 
 class SecurityController extends Controller
 {
-     public function index()
+     public function index(Request $request)
      {
           try {
                $roles = Role::paginate(20)->transform(function($role){
@@ -26,10 +26,10 @@ class SecurityController extends Controller
                     'roles' => $roles,
                     'header' => ['Display Name', 'Name', 'Description', ''],
                     'access' => [
-                         'create_role' => auth()->user()->isAbleTo('create-role'),
-                         'update_role' => auth()->user()->isAbleTo('update-role'),
-                         'create_permission' => auth()->user()->isAbleTo('create-permission') && (auth()->id() === 1),
-                         'assign_permission' => auth()->user()->isAbleTo('assign-permission'),
+                         'create_role' => $request->user()->isAbleTo('create-role'),
+                         'update_role' => $request->user()->isAbleTo('update-role'),
+                         'create_permission' => $request->user()->isAbleTo('create-permission') && ($request->id() === 1),
+                         'assign_permission' => $request->user()->isAbleTo('assign-permission'),
                     ],
                ]]);
           } catch (\Exception $e) {

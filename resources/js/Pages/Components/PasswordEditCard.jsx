@@ -7,8 +7,8 @@ import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
 
 const PasswordEditCard = () => {
-     const { auth, user } = usePage().props;
-     const { data, setData, post, processing, errors } = useForm({
+     const { info } = usePage().props;
+     const { data, setData, put, processing, errors } = useForm({
           current_password: '',
           password: '',
           password_confirmation: '',
@@ -16,7 +16,7 @@ const PasswordEditCard = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('user.password.save', user.id));
+          put(route('user.password.update', info.id));
      }
      return (
           <React.Fragment key="uprofile">

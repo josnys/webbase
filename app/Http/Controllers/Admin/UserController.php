@@ -4,15 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use App\Http\Requests\PasswordRequest;
 use App\Actions\Users\CreateUserAction;
 use App\Actions\Users\UpdateUserAction;
+use App\Services\Admin\UserService;
 use App\Models\User;
-use App\Models\Person;
-use App\Models\Role;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
 
@@ -20,6 +17,7 @@ class UserController extends Controller
 {
      protected $userSex;
      protected $identityType;
+     protected $user_service;
 
      public function __construct()
      {
@@ -32,42 +30,23 @@ class UserController extends Controller
                ['code' => 'Passport', 'name' => 'Passport'],
                ['code' => 'Driver License', 'name' => 'Driver License']
           ];
+
+          $this->user_service = new UserService();
      }
 
-     public function index()
+     public function index(Request $request)
      {
           try {
-               $su = (auth()->user()->id == 1) ? 1 : null;
-               $users = User::with('person')->with('roles')->when($su, function($query){
-                    return $query;
-               }, function($query){
-                    return $query->where('id', '!=', 1);
-               })->paginate(20)->transform(function($user){
-                    $roles = array();
-                    foreach($user->roles as $rl){
-                         array_push($roles, $rl->display_name);
-                    }
-                    return [
-                         'id' => $user->id,
-                         'code' => $user->person->code,
-                         'name' => $user->person->name,
-                         'username' => $user->username,
-                         'email' => $user->email,
-                         'avatar' => $user->avatar,
-                         'roles' => $roles
-                    ];
-               });
-
                return Inertia::render('Admin/User/Index', ['info' => [
-                    'users' => $users,
+                    'users' => $this->user_service->getAll(),
                     'header' => ['', 'Code', 'Name', 'Username', 'E-mail', 'Roles', ''],
                     'access' => [
-                         'create' => auth()->user()->isAbleTo('create-user'),
-                         'edit' => auth()->user()->isAbleTo('update-user'),
-                         'change_pass' => auth()->user()->isAbleTo('change-user-password'),
-                         'assign_role' => auth()->user()->isAbleTo('assign-role'),
-                         // 'filter' => auth()->user()->isAbleTo('filter-user'),
-                         'role_group' => auth()->user()->isAbleTo('create-role'),
+                         'create' => $request->user()->isAbleTo('create-user'),
+                         'edit' => $request->user()->isAbleTo('update-user'),
+                         'change_pass' => $request->user()->isAbleTo('change-user-password'),
+                         'assign_role' => $request->user()->isAbleTo('assign-role'),
+                         // 'filter' => $request->user()->isAbleTo('filter-user'),
+                         'role_group' => $request->user()->isAbleTo('create-role'),
                     ],
                ]]);
           } catch (\Exception $e) {
@@ -106,23 +85,8 @@ class UserController extends Controller
      public function edit(User $user)
      {
           try {
-               $person = Person::find($user->person_id);
                return Inertia::render('Admin/User/Edit', ['info' => [
-                    'id' => $user->id,
-                    'fname' => $person->firstname,
-                    'lname' => $person->lastname,
-                    'code' => $person->code,
-                    'dob' => $person->dob,
-                    'sex' => $person->sex,
-                    'identification' => $person->identification,
-                    'identificationType' => $person->identification_type,
-                    'address' => $person->address,
-                    'phone' => $person->phone,
-                    'pin' => $user->pin,
-                    'multiConnect' => ($user->multi_connect) ? true : false,
-                    'username' => $user->username,
-                    'email' => $user->email,
-                    'avatar' => $user->avatar,
+                    'user' => $this->user_service->findId($user->id),
                     'sexes' => $this->userSex,
                     'identityType' => $this->identityType
                ]]);
@@ -142,97 +106,6 @@ class UserController extends Controller
                return redirect()->route('admin.user.index')->with('success', 'User updated successfully.');
           } catch (\Exception $e) {
                Log::error('User update', ['data' => $e]);
-               return redirect()->back()->with('error', $this->error500FullText());
-          }
-     }
-
-     public function getRoles(User $user)
-     {
-          try {
-               $_roles = Role::all();
-               $user_roles = array();
-               $rol_es = $user->with('roles')->find($user->id);
-               foreach($rol_es->roles as $ur){
-                    array_push($user_roles, $ur->id);
-               }
-
-               $roles = array();
-               foreach($_roles as $rl){
-                    array_push($roles, [
-                         'id' => $rl->id,
-                         'display' => $rl->display_name,
-                         'description' => $rl->description,
-                         'isCheck' => in_array($rl->id, $user_roles)
-                    ]);
-               }
-               $person = Person::find($user->person_id);
-               return Inertia::render('Admin/User/Role', [
-                    'info' => [
-                         'roles' => $roles,
-                         'user' => [
-                              'id' => $user->id,
-                              'name' => $person->name,
-                              'username' => $user->username,
-                              'email' => $user->email,
-                              'avatar' => null
-                         ],
-                         'user_roles' => $user_roles
-                    ]
-               ]);
-          } catch (\Exception $e) {
-               Log::error('User get role', ['data' => $e]);
-               return redirect()->back()->with('error', $this->error500FullText());
-          }
-     }
-
-     public function postRole(Request $request, User $user)
-     {
-          try {
-               $input = $request->validate([
-                    'user_roles' => ['required', 'array'],
-                    'user_roles.*' => ['integer'],
-               ]);
-               
-               $user->syncRoles($input['user_roles']);
-
-               return redirect()->route('admin.user.index')->with('success', 'Role successfully assigned to '.$user->name);
-          } catch (\Exception $e) {
-               Log::error('User post role', ['data' => $e]);
-               return redirect()->back()->with('error', $this->error500FullText());
-          }
-     }
-
-     public function getResetPassword(User $user)
-     {
-          try {
-               $person = Person::find($user->person_id);
-               return Inertia::render('Admin/User/ChangePassword', ['info' => [
-                    'id' => $user->id,
-                    'name' => $person->name,
-                    'code' => $user->code,
-               ]]);
-          } catch (\Exception $e) {
-               Log::error('User reset password', ['data' => $e]);
-               return redirect()->back()->with('error', $this->error500FullText());
-          }
-     }
-
-     public function postResetPassword(PasswordRequest $request, User $user)
-     {
-          try {
-               $input = $request->validated();
-               
-               $user->password = Hash::make($input['password']);
-
-               if(!is_null($input['pin'])){
-                    $user->pin = $input['pin'];
-               }
-
-               $user->update();
-               
-               return redirect()->route('admin.user.index')->with('success', 'User Password changed successfully.');
-          } catch (\Exception $e) {
-               Log::error('User post reset password', ['data' => $e]);
                return redirect()->back()->with('error', $this->error500FullText());
           }
      }

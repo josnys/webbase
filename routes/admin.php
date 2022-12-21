@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\SecurityController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\PasswordController;
+use App\Http\Controllers\Admin\UserRoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,8 +54,8 @@ Route::group(['prefix' => 'admin/', 'as' => 'admin.', 'middleware' => ['auth', '
      Route::post('/user/create', [UserController::class, 'store'])->middleware('permission:create-user')->name('user.store');
      Route::get('/user/{user}/edit', [UserController::class, 'edit'])->middleware('permission:update-user')->name('user.edit');
      Route::put('/user/{user}/edit', [UserController::class, 'update'])->middleware('permission:update-user')->name('user.update');
-     Route::get('/user/{user}/role', [UserController::class, 'getRoles'])->middleware('permission:assign-role')->name('user.get.role');
-     Route::post('/user/{user}/role', [UserController::class, 'postRole'])->middleware('permission:assign-role')->name('user.post.role');
-     Route::get('/user/{user}/resetPassword', [UserController::class, 'getResetPassword'])->middleware('permission:change-user-password')->name('user.get.resetpassword');
-     Route::put('/user/{user}/resetPassword', [UserController::class, 'postResetPassword'])->middleware('permission:change-user-password')->name('user.post.resetpassword');
+     Route::get('/user/{user}/role', [UserRoleController::class, 'edit'])->middleware('permission:assign-role')->name('user.get.role');
+     Route::post('/user/{user}/role', [UserRoleController::class, 'update'])->middleware('permission:assign-role')->name('user.post.role');
+     Route::get('/user/{user}/resetPassword', [PasswordController::class, 'edit'])->middleware('permission:change-user-password')->name('user.get.resetpassword');
+     Route::put('/user/{user}/resetPassword', [PasswordController::class, 'update'])->middleware('permission:change-user-password')->name('user.post.resetpassword');
 });
