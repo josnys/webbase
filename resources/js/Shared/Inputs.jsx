@@ -108,7 +108,7 @@ export function FileInputShowImage({className, name, label, accept, errors = [],
 
      function handleFileChange(e) {
           let file = e.target.files[0];
-          let path = URL.createObjectURL(event.target.files[0]);
+          let path = URL.createObjectURL(e.target.files[0]);
           setFile(file);
           setPath(path);
           onChange(file, path);
@@ -117,6 +117,7 @@ export function FileInputShowImage({className, name, label, accept, errors = [],
      return (<div className="flex items-center space-x-6">
           {path && (<div className="shrink-0">
                <img className="object-cover w-16 h-16 rounded-full" src={path} alt="Current image" />
+               <div className="text-xs text-center text-slate-500">{filesize(file.size)}</div>
           </div>)}
           <label className="block">
                <span className="sr-only">Choose photo</span>

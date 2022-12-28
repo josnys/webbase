@@ -28,7 +28,7 @@ class SecurityController extends Controller
                     'access' => [
                          'create_role' => $request->user()->isAbleTo('create-role'),
                          'update_role' => $request->user()->isAbleTo('update-role'),
-                         'create_permission' => $request->user()->isAbleTo('create-permission') && ($request->id() === 1),
+                         'create_permission' => $request->user()->isAbleTo('create-permission') && (auth()->id() === 1),
                          'assign_permission' => $request->user()->isAbleTo('assign-permission'),
                     ],
                ]]);

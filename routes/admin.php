@@ -26,8 +26,8 @@ Route::get('/img/{path}', [ImageController::class, 'show'])->where('path', '.*')
 
 Route::group(['prefix' =>'user', 'as' => 'user.', 'middleware' => ['auth', 'verified']], function () {
      // Profile
-     Route::post('/profile/{user}/edit', [ProfileController::class, 'updateProfile'])->name('profile.save');
-     Route::post('/profile/{user}/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
+     Route::post('/profile/{user}/edit', [ProfileController::class, 'update'])->name('profile.save');
+     Route::put('/profile/{user}/password', [ProfileController::class, 'update'])->name('password.update');
 });
 
 Route::group(['prefix' => 'admin/', 'as' => 'admin.', 'middleware' => ['auth', 'verified', 'permission:admin-access']], function(){
