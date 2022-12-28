@@ -3,6 +3,7 @@ import { usePage, useForm } from '@inertiajs/inertia-react';
 import { TextInputSimple, TextAreaSimple } from '@/Shared/Inputs';
 import { ButtonSubmitSimple, ButtonLinkSimple } from '@/Shared/Buttons';
 import { createSlug } from '@/utils';
+import FlashMessages from '@/Shared/FlashMessages';
 
 const RoleForm = () => {
      const { info } = usePage().props;
@@ -42,6 +43,9 @@ const RoleForm = () => {
                     <div className="grid grid-cols-3 gap-3">
                          <div className="col-span-12 text-right">
                               <ButtonLinkSimple caption={'Back'} icon="back" link={'admin.security.index'} linkParams={''} />
+                         </div>
+                         <div className="items-center col-span-12">
+                              <FlashMessages />
                          </div>
                          <div className="col-span-12">
                               <TextInputSimple

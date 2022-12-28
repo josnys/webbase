@@ -5,6 +5,7 @@ import DataCard from '@/Shared/DataCard';
 import { TextInputSimple, TextAreaSimple } from '@/Shared/Inputs';
 import { ButtonSubmitSimple, ButtonLinkSimple } from '@/Shared/Buttons';
 import { createSlug } from '@/utils';
+import FlashMessages from '@/Shared/FlashMessages';
 
 const PermissionForm = () => {
      const { info } = usePage().props;
@@ -56,6 +57,9 @@ const PermissionForm = () => {
                                         <div className="col-span-12 text-right">
                                              {data.id && (<ButtonLinkSimple caption={'Back'} icon="back" link={back_btn} linkParams={''} />)}
                                              {!data.id && (<ButtonLinkSimple caption={'Back'} icon="back" link={back_btn} linkParams={''} />)}
+                                        </div>
+                                        <div className="items-center col-span-12">
+                                             <FlashMessages />
                                         </div>
                                         <div className="col-span-12">
                                              <TextInputSimple

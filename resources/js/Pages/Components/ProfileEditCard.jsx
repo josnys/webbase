@@ -45,9 +45,9 @@ const ProfileEditCard = () => {
                                    Update your account's profile information and email address. You may change your password <Link href={route('user.password.edit')} className="font-semibold hover:underline">here.</Link>
                               </p>
                               <div className="w-full mt-3">
-                                   <h3 className="text-center text-slate-700 text-md">Current Photo</h3>
-                                   {!user.currentAvatar && (<img src={`https://ui-avatars.com/api/?name=${auth.user.name}&amp;color=7F9CF5&amp;background=EBF4FF`} className="w-20 h-20 mx-auto rounded-full" />)}
-                                   {user.currentAvatar && (<img src={`${user.currentAvatar}`} className="w-20 h-20 mx-auto rounded-full" />)}
+                                   <h3 className="text-center text-slate-700 text-md">Current Profile Picture</h3>
+                                   {!user.data.person.avatar && (<img src={`https://ui-avatars.com/api/?name=${auth.user.name}&amp;color=7F9CF5&amp;background=EBF4FF`} className="w-20 h-20 mx-auto rounded-full" />)}
+                                   {user.data.person.avatar && (<img src={`${user.data.person.avatar}`} className="w-20 h-20 mx-auto rounded-full" />)}
                               </div>
                          </div>
                     </div>
@@ -58,7 +58,7 @@ const ProfileEditCard = () => {
                                    <div className="grid grid-cols-12">
                                         <div className="col-span-12">
                                              <label className="block text-sm font-medium text-slate-700" htmlFor="avatar">
-                                                  <span>Avatar {data.selectedAvatar}</span>
+                                                  <span>Profile Picture</span>
                                              </label>
                                              <div className="mt-2">
                                                   {data.selectedAvatar && (<img src={`${data.selectedAvatar}`} className="w-20 h-20 rounded-full" />)}

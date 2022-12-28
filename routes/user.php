@@ -25,7 +25,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth', 'ver
      // Profile
      Route::get('/home', [HomeController::class, 'index'])->name('home');
      Route::get('/profile', [ProfileController::class, 'edit'])->name('profile');
-     Route::put('/profile/{user}/edit', [ProfileController::class, 'update'])->name('profile.save');
+     Route::post('/profile/{user}/edit', [ProfileController::class, 'update'])->name('profile.save');
      Route::get('/password', [PasswordController::class, 'edit'])->name('password.edit');
      Route::put('/password/{user}/password', [PasswordController::class, 'update'])->name('password.update');
 });
