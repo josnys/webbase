@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -42,12 +43,12 @@ class User extends Authenticatable implements MustVerifyEmail
           'email_verified_at' => 'datetime',
      ];
 
-     public function person()
+     public function person() : BelongsTo
      {
           return $this->belongsTo(Person::class);
      }
 
-     public function getNameAttribute()
+     public function getNameAttribute() : string
      {
           return "{$this->person->firstname} {$this->person->lastname}";
      }

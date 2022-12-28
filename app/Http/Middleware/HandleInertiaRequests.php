@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use App\Models\User;
 use Inertia\Middleware;
 use App\Services\Admin\UserService;
 
@@ -59,7 +58,7 @@ class HandleInertiaRequests extends Middleware
                               'email' => $user->email,
                               'avatar' => $user->person->avatar,
                               'roles' => $user->roles->pluck('displa_name')->toArray(),
-                              'can' => ($permissions) ? $permissions : []
+                              'can' => $permissions ?? []
                          ] : null,
                     ];
                },
