@@ -59,8 +59,11 @@ class ProfileController extends Controller
             if ($request->hasFile('avatar')) {
                 $image = $avatar->handle($request->file('avatar'), 'users/');
                 $person = Person::find($user->person_id);
+                $previous_avatar = $person->profile_url;
                 $person->profile_url = $image['name'];
                 $person->update();
+
+                Person::deleteAvatar($previous_avatar);
             }
 
             return redirect()->route('user.profile')->with('success', 'Profile updated successfully.');

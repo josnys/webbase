@@ -26,6 +26,17 @@ class Person extends Model
           return ($this->profile_url && Storage::disk('local')->exists('users/' . $this->profile_url)) ? route('show.image', 'users/' . $this->profile_url) : null;
      }
 
+     public function getSmallAvatarAttribute()
+     {
+          return ($this->profile_url && Storage::disk('local')->exists('users/' . $this->profile_url)) ? route('show.image', 'users/thumbnails/' . $this->profile_url) : null;
+     }
+
+     public static function deleteAvatar(string $avatar): void
+     {
+          Storage::disk('local')->delete("users/$avatar");
+          Storage::disk('local')->delete("users/thumbnails/$avatar");
+     }
+
      public static function generateCode() : string
      {
           $code = DB::table('people')->select([
