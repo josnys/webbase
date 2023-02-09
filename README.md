@@ -8,7 +8,7 @@ First of all,
 > Clone the repository, run composer install
 Then
 > run npm install
-Once all the packages are install, view the [Laravel] configuration page for further configuration.
+Once all the packages are install, view the [Laravel](https://laravel.com/docs/9.x/installation) configuration page for further configuration.
 > Run the migration and seeders
 
 If everything is well configured, you may use the credentials:
@@ -17,5 +17,3 @@ in order to login and start creaeting.
 
 ## Enjoy !
 ![Welcome Page](welcome.page.png)
-
-![GitHub Logo](https://user-images.githubusercontent.com/4842675/94345562-c165d180-fff4-11ea-84bf-05f473b01649.png)
