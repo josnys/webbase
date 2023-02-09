@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePage, useForm, Head } from '@inertiajs/inertia-react';
+import { usePage, useForm, Head } from '@inertiajs/react';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
 import { TextInputSimple, TextAreaSimple } from '@/Shared/Inputs';

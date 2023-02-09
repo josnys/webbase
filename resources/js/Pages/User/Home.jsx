@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePage, Head } from '@inertiajs/inertia-react';
+import { usePage, Head } from '@inertiajs/react';
 import UserLayout from '@/Shared/UserLayout';
 
 const Home = () => {

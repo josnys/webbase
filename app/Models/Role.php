@@ -11,6 +11,6 @@ class Role extends LaratrustRole
 
      public function permissions() : BelongsToMany
      {
-          return $this->belongsToMany('App\Models\Permission', 'permission_role');
+          return $this->belongsToMany(Permission::class, 'permission_role');
      }
 }

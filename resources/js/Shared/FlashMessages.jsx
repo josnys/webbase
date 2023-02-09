@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { usePage } from '@inertiajs/inertia-react';
+import { usePage } from '@inertiajs/react';
 import classNames from 'classnames';
 
 const IconSuccess = () => (
-     <svg className="ml-4 mr-2 flex-shrink-0 w-6 h-6 text-green-50 fill-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+     <svg className="flex-shrink-0 w-6 h-6 ml-4 mr-2 text-green-50 fill-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
      </svg>
 );
 
 const IconDanger = () => (
-     <svg className="ml-4 mr-2 flex-shrink-0 w-6 h-6 text-red-50 fill-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+     <svg className="flex-shrink-0 w-6 h-6 ml-4 mr-2 text-red-50 fill-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
      </svg>
 );
 
 const IconWarning = () => (
-     <svg className="ml-4 mr-2 flex-shrink-0 w-6 h-6 text-yellow-50 fill-yellow-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+     <svg className="flex-shrink-0 w-6 h-6 ml-4 mr-2 text-yellow-50 fill-yellow-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
      </svg>
 
@@ -31,7 +31,7 @@ const ButtonClose = ({ color, onClick }) => {
           <button
                onClick={onClick}
                type="button"
-               className="focus:outline-none group mr-2 p-2"
+               className="p-2 mr-2 focus:outline-none group"
                >
                <svg
                     className={className}
@@ -58,10 +58,10 @@ export default () => {
      return (
           <div>
                {flash.success && visible && (
-                    <div className="flex items-center justify-between bg-green-500 rounded max-w-3xl mx-auto">
+                    <div className="flex items-center justify-between max-w-3xl mx-auto bg-green-500 rounded">
                          <div className="flex items-center">
                               <IconSuccess />
-                              <div className="py-4 text-white text-sm font-medium">
+                              <div className="py-4 text-sm font-medium text-white">
                                    {flash.success}
                               </div>
                          </div>
@@ -69,10 +69,10 @@ export default () => {
                     </div>
                )}
                {(flash.error || numOfErrors > 0) && visible && (
-                    <div className="flex items-center justify-between bg-red-500 rounded max-w-3xl mx-auto">
+                    <div className="flex items-center justify-between max-w-3xl mx-auto bg-red-500 rounded">
                          <div className="flex items-center">
                               <IconDanger />
-                              <div className="py-4 text-white text-sm font-medium">
+                              <div className="py-4 text-sm font-medium text-white">
                                    {flash.error && flash.error}
                                    {numOfErrors === 1 && 'There is one form error'}
                                    {numOfErrors > 1 && `There are ${numOfErrors} form errors.`}
@@ -82,10 +82,10 @@ export default () => {
                     </div>
                )}
                {flash.warning && visible && (
-                    <div className="flex items-center justify-between bg-yellow-500 rounded max-w-3xl mx-auto">
+                    <div className="flex items-center justify-between max-w-3xl mx-auto bg-yellow-500 rounded">
                          <div className="flex items-center">
                               <IconWarning />
-                              <div className="py-4 text-yellow-700 text-sm font-medium">
+                              <div className="py-4 text-sm font-medium text-yellow-700">
                                    {flash.warning && flash.warning}
                                    {numOfErrors === 1 && 'There is one form error'}
                                    {numOfErrors > 1 && `There are ${numOfErrors} form errors.`}

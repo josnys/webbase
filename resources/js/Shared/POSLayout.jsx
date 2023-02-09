@@ -1,9 +1,7 @@
 import React from 'react';
-import { usePage } from '@inertiajs/inertia-react';
+import { usePage } from '@inertiajs/react';
 import Helmet from 'react-helmet';
-import MainMenu from './MainMenu';
 import FlashMessages from './FlashMessages';
-import TopHeader from './TopHeader';
 import POSHeader from './POSHeader';
 
 export default function Layout({ children, header }) {

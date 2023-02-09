@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePage } from '@inertiajs/inertia-react';
+import { usePage } from '@inertiajs/react';
 import MainMenuAdmin from './MainMenuAdmin';
 import AdminTopHeader from './AdminTopHeader';
 import BottomHeader from './BottomHeader';
@@ -11,16 +11,16 @@ export default function AdminLayout({ children, header }) {
      return (
           <React.Fragment key="layout">
                <div className="flex flex-col">
-                    <div className="h-screen flex flex-col">
+                    <div className="flex flex-col h-screen">
                          <NetworkBoundary>
                               <div className="md:flex">
                                    <AdminTopHeader />
                                    <BottomHeader>{header}</BottomHeader>
                               </div>
                               <div className="flex flex-grow overflow-hidden">
-                                   <MainMenuAdmin className="bg-slate-200 flex-shrink-0 w-24 p-2 hidden md:block overflow-y-auto" />
+                                   <MainMenuAdmin className="flex-shrink-0 hidden w-24 p-2 overflow-y-auto bg-slate-200 md:block" />
                                    {/* To reset scroll region (https://inertiajs.com/pages#scroll-regions) add `scroll-region="true"` to div below */}
-                                   <div className="w-full overflow-hidden p-4 overflow-y-auto">
+                                   <div className="w-full p-4 overflow-hidden overflow-y-auto">
                                         <ErrorBoundary>
                                              {children}
                                         </ ErrorBoundary>

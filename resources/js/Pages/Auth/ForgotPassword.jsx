@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { usePage, useForm, Head } from '@inertiajs/inertia-react';
+import { usePage, useForm, Head } from '@inertiajs/react';
 import AuthCard from '@/Shared/AuthCard';
 import { ButtonSubmitSimple } from '@/Shared/Buttons';
 import { TextInputSimple } from '@/Shared/Inputs';
