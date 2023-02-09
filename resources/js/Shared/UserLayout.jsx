@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePage } from '@inertiajs/inertia-react';
+import { usePage } from '@inertiajs/react';
 import MainMenu from './MainMenu';
 import TopHeader from './TopHeader';
 import BottomHeader from './BottomHeader';

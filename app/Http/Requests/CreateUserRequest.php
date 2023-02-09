@@ -32,7 +32,7 @@ class CreateUserRequest extends FormRequest
                'identificationType' => ['required', 'string'],
                'phone' => ['required'],
                'address' => ['sometimes', 'string'],
-               'username' => ['required', 'string', 'max:30', 'unique:users'],
+               'username' => ['required', 'string', 'alpha_dash', 'max:30', 'unique:users'],
                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                'photo' => ['sometimes', 'exclude_if:selectedAvatar,null', 'image', 'max:2048', 'mimes:jpeg,jpg,png'],
                'password' => ['required', 'string', 'min:8', 'confirmed'],

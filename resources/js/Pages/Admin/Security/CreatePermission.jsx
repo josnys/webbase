@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, usePage, Head } from '@inertiajs/inertia-react';
+import { Link, usePage, Head } from '@inertiajs/react';
 import AdminLayout from '@/Shared/AdminLayout';
 import DataContainer from '@/Shared/DataContainer';
 import PermissionForm from './PermissionForm';

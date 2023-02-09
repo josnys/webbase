@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePage, useForm, Link } from '@inertiajs/inertia-react';
+import { usePage, useForm, Link } from '@inertiajs/react';
 import { ButtonSubmitSimple } from '@/Shared/Buttons';
 import { TextInputSimple, SelectInputSimple, FileInputShowImage } from '@/Shared/Inputs';
 import FlashMessages from '@/Shared/FlashMessages';

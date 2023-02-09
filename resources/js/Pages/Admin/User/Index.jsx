@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, usePage, Head } from '@inertiajs/inertia-react';
+import { Link, usePage, Head } from '@inertiajs/react';
 import AdminLayout from '@/Shared/AdminLayout';
 import FlashMessages from '@/Shared/FlashMessages';
 import DataContainer from '@/Shared/DataContainer';
@@ -34,11 +34,11 @@ const Index = () => {
                          {info.users.data.map(({id, person, username, email, roles}) => {
                               return <tr key={id}>
                                    <td className="px-2 py-1 border">
-                                        {!person.avatar && (<img src={`https://ui-avatars.com/api/?name=${person.name}&amp;color=7F9CF5&amp;background=EBF4FF`} alt={person.name} className="w-4 h-4 mx-auto rounded-full" />)}
-                                        {person.avatar && (<img src={person.avatar} alt={person.name} className="w-4 h-4 mx-auto rounded-full" />)}
+                                        {!person.avatar && (<img src={`https://ui-avatars.com/api/?name=${person.fullname}&amp;color=7F9CF5&amp;background=EBF4FF`} alt={person.fullname} className="w-4 h-4 mx-auto rounded-full" />)}
+                                        {person.avatar && (<img src={person.avatar} alt={person.fullname} className="w-4 h-4 mx-auto rounded-full" />)}
                                    </td>
                                    <td className="px-2 py-1 border">{person.code}</td>
-                                   <td className="px-2 py-1 border">{person.name}</td>
+                                   <td className="px-2 py-1 border">{person.fullname}</td>
                                    <td className="px-2 py-1 border">{username}</td>
                                    <td className="px-2 py-1 border">{email}</td>
                                    <td className="px-2 py-1 border">{joinValueByKey(roles, 'display_name')}</td>

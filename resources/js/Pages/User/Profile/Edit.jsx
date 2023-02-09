@@ -1,9 +1,7 @@
 import React from 'react';
-import { usePage, Head } from '@inertiajs/inertia-react';
+import { usePage, Head } from '@inertiajs/react';
 import UserLayout from '@/Shared/UserLayout';
 import ProfileEditCard from '@/Pages/Components/ProfileEditCard';
-import PasswordEditCard from '@/Pages/Components/PasswordEditCard';
-import Separator from '@/Shared/Admin/Separator';
 
 const Edit = () => {
      const { auth, errors } = usePage().props;
