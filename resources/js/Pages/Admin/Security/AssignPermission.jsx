@@ -5,9 +5,11 @@ import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
 import { CheckInput } from '@/Shared/Inputs';
 import { ButtonSubmitSimple, ButtonLinkSimple } from '@/Shared/Buttons';
+import FlashMessages from '@/Shared/FlashMessages';
 
 function AssignPermission() {
      const { auth, info } = usePage().props;
+     console.log(info.permissions);
      const { data, setData, post, processing, errors } = useForm({
           role_permissions: info.role_permissions || [],
           checkAll: false,
@@ -18,25 +20,24 @@ function AssignPermission() {
           const key = e.target.name;
           const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
           const _data = parseInt(e.target.value);
-          for(var i = 0; i < data.role_permissions.length; i++){
-               if(data.role_permissions[i].id == _data){
-                    data.role_permissions[i].checked = value;
-                    break;
-               }
-          }
+          let role_permissions = data.role_permissions;
+          let index = role_permissions.findIndex((rp) => {
+               return rp.id === _data;
+          });
+          
           for(var i = 0; i < info.permissions.length; i++){
                if(info.permissions[i].id == _data){
                     info.permissions[i].isCheck = value;
                     break;
                }
           }
-          let perms = data.role_permissions;
-          if(perms.indexOf(_data) != -1){
-               perms.splice(perms.indexOf(_data), 1);
+          
+          if (index != -1){
+               role_permissions.splice(index, 1);
           }else{
-               perms.push(_data);
+               role_permissions.push({id: _data});
           }
-          setData('role_permissions', perms);
+          setData('role_permissions', role_permissions);
      }
 
      function handleAll(e){
@@ -76,6 +77,9 @@ function AssignPermission() {
                          </div>
                     </div>
                     <DataCard>
+                         <div className="items-center col-span-12">
+                              <FlashMessages />
+                         </div>
                          <form onSubmit={handleSubmit}>
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-3">
