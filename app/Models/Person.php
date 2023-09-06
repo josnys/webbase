@@ -31,7 +31,7 @@ class Person extends Model
           return ($this->profile_url && Storage::disk('local')->exists('users/' . $this->profile_url)) ? route('show.image', 'users/thumbnails/' . $this->profile_url) : null;
      }
 
-     public static function deleteAvatar(string $avatar): void
+     public static function deleteAvatar(string | null $avatar): void
      {
           Storage::disk('local')->delete("users/$avatar");
           Storage::disk('local')->delete("users/thumbnails/$avatar");

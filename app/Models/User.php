@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -54,7 +55,7 @@ class User extends Authenticatable implements MustVerifyEmail
           return "{$this->person->firstname} {$this->person->lastname}";
      }
 
-     public function scopeAccess($query)
+     public function scopeAccess($query) : Builder
      {
           return (auth()->user()->id !== 1) ? $query->where('id', '!==', 1) : $query;
      }

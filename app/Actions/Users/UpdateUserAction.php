@@ -2,35 +2,32 @@
 
 namespace App\Actions\Users;
 
+use App\DTO\UserData;
 use App\Models\User;
 use App\Models\Person;
 use Illuminate\Support\Facades\DB;
 
 class UpdateUserAction
 {
-     public function handle(array $data, User $user): User | bool
+     public function handle(UserData $data, User $user): User | bool
      {
           try {
                DB::transaction(function() use ($data, $user) {
+                    $data_array = $data->toArray();
+                    
                     $person = Person::find($user->person_id);
-                    $person->firstname = $data['fname'];
-                    $person->lastname = $data['lname'];
-                    $person->dob = $data['dob'];
-                    $person->sex = $data['sex'];
-                    $person->identification = $data['identification'];
-                    $person->identification_type = $data['identificationType'];
-                    $person->address = $data['address'];
-                    $person->phone = $data['phone'];
+                    $person->firstname = $data_array['fname'];
+                    $person->lastname = $data_array['lname'];
+                    $person->dob = $data_array['dob'];
+                    $person->sex = $data_array['sex'];
+                    $person->identification = $data_array['identification'];
+                    $person->identification_type = $data_array['identificationType'];
+                    $person->address = $data_array['address'];
+                    $person->phone = $data_array['phone'];
                     $person->update();
 
-                    if (isset($data['username'])) {
-                         $user->username = $data['username'];
-                    }
-
-                    if (isset($data['email'])) {
-                         $user->email = $data['email'];
-                    }
-
+                    $user->username = !is_null($data_array['username']) ? $data_array['username'] : $user->username;
+                    $user->email = !is_null($data_array['email']) ? $data_array['email'] : $user->email;
                     $user->update();
                });
 

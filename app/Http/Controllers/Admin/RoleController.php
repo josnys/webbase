@@ -8,12 +8,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests\RoleRequest;
 use App\Models\Role;
 use App\Models\Permission;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
+use Inertia\Response;
 
 class RoleController extends Controller
 {
-     public function create()
+     public function create() : Response
      {
           try {
                $roles = Role::paginate(50)->transform(function($role){
@@ -34,7 +36,7 @@ class RoleController extends Controller
           }
      }
 
-     public function store(RoleRequest $request)
+     public function store(RoleRequest $request) : RedirectResponse
      {
           try {
                $role = new Role;
@@ -50,7 +52,7 @@ class RoleController extends Controller
           }
      }
 
-     public function edit(Role $role)
+     public function edit(Role $role) : Response
      {
           try {
                return Inertia::render('Admin/Security/EditRole', ['info' => [
@@ -65,7 +67,7 @@ class RoleController extends Controller
           }
      }
 
-     public function update(RoleRequest $request, Role $role)
+     public function update(RoleRequest $request, Role $role) : RedirectResponse
      {
           try {
                $role->display_name = $request->get('display');
@@ -79,7 +81,7 @@ class RoleController extends Controller
           }
      }
 
-     public function getAssign(Role $role)
+     public function getAssign(Role $role) : Response
      {
           try {
                $role = $role->with('permissions')->find($role->id);
@@ -114,7 +116,7 @@ class RoleController extends Controller
           }
      }
 
-     public function postAssign(RolePermissionRequest $request, Role $role)
+     public function postAssign(RolePermissionRequest $request, Role $role) : RedirectResponse
      {
           try {
                $input = $request->validated();

@@ -8,7 +8,7 @@ import DataCard from '@/Shared/DataCard';
 
 const ProfileEditCard = () => {
      const { auth, user, info } = usePage().props;
-     const { data, setData, put, processing, errors, transform } = useForm({
+     const { data, setData, post, processing, errors, transform } = useForm({
           fname: user.data.person.firstname || '',
           lname: user.data.person.lastname || '',
           dob: user.data.person.dob || '',
@@ -33,7 +33,7 @@ const ProfileEditCard = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          put(route('user.profile.save', user.data.id));
+          post(route('user.profile.save', user.data.id));
      }
      return (
           <React.Fragment key="uprofile">

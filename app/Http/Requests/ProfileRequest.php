@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\DTO\UserData;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProfileRequest extends FormRequest
@@ -38,5 +39,26 @@ class ProfileRequest extends FormRequest
                'avatar' => ['sometimes', 'exclude_if:selectedAvatar,null', 'image', 'max:2048', 'mimes:jpeg,jpg,png'],
                'address' => ['sometimes', 'string', 'max:120'],
           ];
+     }
+
+     public function payload(): UserData
+     {
+          return UserData::fromRequest(
+               data: [
+                    'fname' => $this->string('fname')->toString(),
+                    'lname' => $this->string('lname')->toString(),
+                    'dob' => $this->string('dob')->toString(),
+                    'sex' => $this->string('sex')->toString(),
+                    'identification' => $this->string('identification')->toString(),
+                    'identificationType' => $this->string('identificationType')->toString(),
+                    'phone' => $this->string('phone')->toString(),
+                    'address' => $this->string('address')->toString(),
+                    'username' => $this->string('username')->toString(),
+                    'email' => $this->string('email')->toString(),
+                    'photo' => $this->file('avatar') ?? null,
+                    'password' => $this->string('password')->toString(),
+                    'pin' => $this->string('pin')->toString()
+               ]
+          );
      }
 }

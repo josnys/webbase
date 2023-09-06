@@ -10,12 +10,14 @@ use Illuminate\Support\MessageBag;
 use App\Http\Requests\PasswordRequest;
 use App\Actions\Users\UpdatePasswordAction;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
+use Inertia\Response;
 
 class PasswordController extends Controller
 {
-    public function edit(Request $request)
+    public function edit(Request $request) : Response
     {
         try {
             $user = User::with('person')->find(auth()->id());
@@ -30,7 +32,7 @@ class PasswordController extends Controller
         }
     }
 
-    public function update(PasswordRequest $request, User $user, UpdatePasswordAction $action)
+    public function update(PasswordRequest $request, User $user, UpdatePasswordAction $action) : RedirectResponse
     {
         try {
             $message = new MessageBag;
