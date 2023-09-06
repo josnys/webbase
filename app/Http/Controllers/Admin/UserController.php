@@ -10,8 +10,10 @@ use App\Actions\Users\CreateUserAction;
 use App\Actions\Users\UpdateUserAction;
 use App\Services\Admin\UserService;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
+use Inertia\Response;
 
 class UserController extends Controller
 {
@@ -34,7 +36,7 @@ class UserController extends Controller
           $this->user_service = new UserService();
      }
 
-     public function index(Request $request)
+     public function index(Request $request) : Response
      {
           try {
                return Inertia::render('Admin/User/Index', ['info' => [
@@ -55,7 +57,7 @@ class UserController extends Controller
           }
      }
 
-     public function create()
+     public function create() : Response
      {
           try {
                return Inertia::render('Admin/User/Create', ['info' => [
@@ -68,10 +70,10 @@ class UserController extends Controller
           }
      }
 
-     public function store(CreateUserRequest $request, CreateUserAction $action)
+     public function store(CreateUserRequest $request, CreateUserAction $action) : RedirectResponse
      {
           try {
-               $user = $action->handle($request->validated());
+               $user = $action->handle($request->payload());
                if(!$user){
                     return redirect()->back()->with('error', 'Something went wrong, try again later.');
                }
@@ -82,7 +84,7 @@ class UserController extends Controller
           }
      }
 
-     public function edit(User $user)
+     public function edit(User $user) : Response
      {
           try {
                return Inertia::render('Admin/User/Edit', ['info' => [
@@ -96,10 +98,10 @@ class UserController extends Controller
           }
      }
 
-     public function update(UpdateUserRequest $request, User $user, UpdateUserAction $action)
+     public function update(UpdateUserRequest $request, User $user, UpdateUserAction $action) : RedirectResponse
      {
           try {
-               $user = $action->handle($request->validated(), $user);
+               $user = $action->handle($request->payload(), $user);
                if(!$user){
                     return redirect()->back()->with('error', 'Something went wrong, try again later.');
                }

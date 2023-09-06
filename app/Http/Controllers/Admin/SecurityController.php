@@ -8,10 +8,11 @@ use App\Models\Role;
 use App\Models\Permission;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
+use Inertia\Response;
 
 class SecurityController extends Controller
 {
-     public function index(Request $request)
+     public function index(Request $request) : Response
      {
           try {
                $roles = Role::paginate(20)->transform(function($role){

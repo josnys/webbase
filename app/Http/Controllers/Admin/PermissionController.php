@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\PermissionRequest;
 use App\Models\Permission;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
+use Inertia\Response;
 
 class PermissionController extends Controller
 {
-     public function create(Request $request)
+     public function create(Request $request) : Response
      {
           try {
                $permissions = Permission::paginate(50)->transform(function($permission){
@@ -35,7 +37,7 @@ class PermissionController extends Controller
           }
      }
 
-     public function store(PermissionRequest $request)
+     public function store(PermissionRequest $request) : RedirectResponse
      {
           try {
                $permission = new Permission;
@@ -51,7 +53,7 @@ class PermissionController extends Controller
           }
      }
 
-     public function edit(Permission $permission)
+     public function edit(Permission $permission) : Response
      {
           try {
                return Inertia::render('Admin/Security/EditPermission', ['info' => [
@@ -66,7 +68,7 @@ class PermissionController extends Controller
           }
      }
 
-     public function update(PermissionRequest $request, Permission $permission)
+     public function update(PermissionRequest $request, Permission $permission) : RedirectResponse
      {
           try {
                $permission->display_name = $request->get('display');

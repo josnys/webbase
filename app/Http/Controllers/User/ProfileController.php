@@ -12,6 +12,7 @@ use App\Models\Person;
 use App\Services\Admin\UserService;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
+use Inertia\Response;
 
 class ProfileController extends Controller
 {
@@ -26,7 +27,7 @@ class ProfileController extends Controller
         $this->user_service = new UserService;
     }
 
-    public function edit(Request $request)
+    public function edit(Request $request) : Response
     {
         try {
             $user = $this->user_service->findId(auth()->id());
@@ -46,24 +47,27 @@ class ProfileController extends Controller
     public function update(ProfileRequest $request, User $user, UpdateUserAction $action, ImageManipulationAction $avatar)
     {
         try {
+            $data = $request->payload();
             $user = User::with('person')->find($user->id);
-            $input = $request->validated();
             
-            $result = $action->handle($input, $user);
+            $result = $action->handle($data, $user);
 
             if(!$result){
                 return redirect()->back()->with('error', $this->error500FullText());
             }
 
+            $data_array = $data->toArray();
 
-            if ($request->hasFile('avatar')) {
-                $image = $avatar->handle($request->file('avatar'), 'users/');
+            if (!is_null($data_array['photo'])) {
+                $image = $avatar->handle($data_array['photo'], 'users/');
                 $person = Person::find($user->person_id);
                 $previous_avatar = $person->profile_url;
                 $person->profile_url = $image['name'];
                 $person->update();
-
-                Person::deleteAvatar($previous_avatar);
+                
+                if(!is_null($previous_avatar)){
+                    Person::deleteAvatar($previous_avatar);
+                }
             }
 
             return redirect()->route('user.profile')->with('success', 'Profile updated successfully.');

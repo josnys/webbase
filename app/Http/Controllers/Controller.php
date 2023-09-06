@@ -11,7 +11,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function error500FullText()
+    public function error500FullText() : string
     {
         return "An error has occured. Please Contact Developer.";
     }

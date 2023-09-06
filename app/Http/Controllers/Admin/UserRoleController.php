@@ -8,8 +8,10 @@ use App\Http\Requests\UserRoleRequest;
 use App\Services\Admin\UserService;
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
+use Inertia\Response;
 
 class UserRoleController extends Controller
 {
@@ -20,7 +22,7 @@ class UserRoleController extends Controller
         $this->user_service = new UserService;
     }
 
-    public function edit(User $user)
+    public function edit(User $user) : Response
     {
         try {
             $user = $this->user_service->findId($user->id);
@@ -56,7 +58,7 @@ class UserRoleController extends Controller
         }
     }
 
-    public function update(UserRoleRequest $request, User $user)
+    public function update(UserRoleRequest $request, User $user) : RedirectResponse
     {
         try {
             $input = $request->validated();
